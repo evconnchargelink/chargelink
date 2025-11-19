@@ -2,11 +2,12 @@ import { CookieOptions, NextFunction, Request, Response } from "express";
 import AppError from "../utils/appError";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken";
-import { AUTH_ROLES } from "../middlewares/auth.middleware";
 import asyncHandler from "../utils/async.handler";
 import { AdminModel } from "../models/admin.model";
 import { UserModel } from "../models/user.model";
 import { config } from "../env.config";
+import { AUTH_ROLES } from "../types/role.type";
+import { ProviderModel } from "../models/provider.model";
 
 export const handleRefreshAccessToken = (requiredRole: AUTH_ROLES) => {
   return asyncHandler(
@@ -26,6 +27,8 @@ export const handleRefreshAccessToken = (requiredRole: AUTH_ROLES) => {
         let InstanceModel: any = UserModel;
 
         if (decodedToken?.role == AUTH_ROLES.ADMIN) InstanceModel = AdminModel;
+
+        if (decodedToken?.role == AUTH_ROLES.PROVIDER) InstanceModel = ProviderModel;
 
         const instance = await InstanceModel.findById(decodedToken?._id);
 

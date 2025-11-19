@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import asyncHandler from "../../utils/async.handler";
 import { UserModel } from "../../models/user.model";
-import { AUTH_ROLES } from "../../middlewares/auth.middleware";
 import { generateAccessAndRefreshTokens } from "../../utils/generateAccessRefreshToken";
+import { AUTH_ROLES } from "../../types/role.type";
 
 
 // Login Controller

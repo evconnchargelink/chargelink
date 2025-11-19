@@ -1,8 +1,8 @@
 import { Document, model, Model, Schema } from "mongoose";
 import jwt from "jsonwebtoken";
-import { AUTH_ROLES } from "../middlewares/auth.middleware";
 import bcrypt from "bcrypt";
 import { config } from "../env.config";
+import { AUTH_ROLES } from "../types/role.type";
 
 export interface Iadmin extends Document {
   _id: Schema.Types.ObjectId;

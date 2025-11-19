@@ -30,14 +30,11 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-app.use(notFoundMiddleware);
-app.use(errorHandlerMiddleware);
-
-app.get("/", (req, res) => {
-  res.send("Hello World! from create-tall");
-});
 
 app.use("/api/v1", v1Router);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

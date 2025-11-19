@@ -7,7 +7,7 @@ import { AUTH_ROLES } from "../types/role.type";
 
 dotenv.config();
 
-export interface IUser extends Document {
+export interface IProvider extends Document {
   _id: Schema.Types.ObjectId;
   name: string;
   email: string;
@@ -20,8 +20,8 @@ export interface IUser extends Document {
   generateRefreshToken(rememberMe: boolean): string;
 }
 
-// Schema for the user database
-const userSchema: Schema<IUser> = new Schema<IUser>({
+// Schema for the provider database
+const providerSchema: Schema<IProvider> = new Schema<IProvider>({
   name: {
     type: String,
     required: true,
@@ -48,7 +48,7 @@ const userSchema: Schema<IUser> = new Schema<IUser>({
   },
 } as const);
 
-userSchema.pre("save", async function (next) {
+providerSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
     this.password = await bcrypt.hash(this.password, 10);
@@ -58,17 +58,17 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-userSchema.methods.isPasswordCorrect = async function (password: string) {
+providerSchema.methods.isPasswordCorrect = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
 // schema method to generate a access token
-userSchema.methods.generateAccessToken = function () {
+providerSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
       _id: this._id,
       email: this.email,
-      role: AUTH_ROLES.USER,
+      role: AUTH_ROLES.PROVIDER,
     },
     config.ACCESS_TOKEN_SECRET as string,
     {
@@ -78,11 +78,11 @@ userSchema.methods.generateAccessToken = function () {
 };
 
 // schema method to generate a refresh token
-userSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
+providerSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
   return jwt.sign(
     {
       _id: this._id,
-      role: AUTH_ROLES.USER,
+      role: AUTH_ROLES.PROVIDER,
     },
     config.REFRESH_TOKEN_SECRET as string,
     {
@@ -91,5 +91,5 @@ userSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
   );
 };
 
-// Model for the User
-export const UserModel: Model<IUser> = model<IUser>("user", userSchema);
+// Model for the provider
+export const ProviderModel: Model<IProvider> = model<IProvider>("provider", providerSchema);

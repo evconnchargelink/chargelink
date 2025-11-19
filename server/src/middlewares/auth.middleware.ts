@@ -4,11 +4,8 @@ import asyncHandler from "../utils/async.handler";
 import { AdminModel } from "../models/admin.model";
 import { Request, Response, NextFunction } from "express";
 import { UserModel } from "../models/user.model";
-
-export enum AUTH_ROLES {
-  ADMIN = "ADMIN",
-  USER = "USER",
-}
+import { AUTH_ROLES } from "../types/role.type";
+import { ProviderModel } from "../models/provider.model";
 
 export const authMiddleware = (requiredRole: AUTH_ROLES) => {
   return asyncHandler(async (req:Request, _:Response, next:NextFunction) => {
@@ -46,6 +43,15 @@ export const authMiddleware = (requiredRole: AUTH_ROLES) => {
         }
 
         req.admin = admin;
+      } else if (requiredRole == AUTH_ROLES.PROVIDER) {
+        const provider = await ProviderModel.findById(decodedToken?._id).select(
+          "-password -refreshToken"
+        );
+        if (!provider) {
+          throw new AppError("Invalid Access Token", 401);
+        }
+
+        req.provider = provider;
       }
 
       next();

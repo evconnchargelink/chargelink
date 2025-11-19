@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { handleRefreshAccessToken } from "../../../controllers/refreshToken.controller";
-import { AUTH_ROLES } from "../../../middlewares/auth.middleware";
 import { handleLogout } from "../../../controllers/logout.controller";
 import { login } from "../../../controllers/user/auth.controller";
 import { signup } from "../../../controllers/user/auth.controller";
+import { AUTH_ROLES } from "../../../types/role.type";
 
 const router = Router();
 
