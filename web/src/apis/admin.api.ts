@@ -9,7 +9,6 @@ adminApi.defaults.withCredentials = true;
 
 adminApi.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    // No need to add Authorization header manually; cookies will handle authentication
     return config;
   },
   (error) => {
@@ -19,7 +18,6 @@ adminApi.interceptors.request.use(
 
 adminApi.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => {
-    // Process the response if needed, but no need to handle tokens here
     return response;
   },
   async (error) => {

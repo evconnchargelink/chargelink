@@ -1,13 +1,13 @@
 import axios, { type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
 
-const userApi = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_BASE_URL,
+const providerApi = axios.create({
+  baseURL: import.meta.env.VITE_BACKEND_BASE_URL + "/provider",
   withCredentials: true,
 });
 
-userApi.defaults.withCredentials = true;
+providerApi.defaults.withCredentials = true;
 
-userApi.interceptors.request.use(
+providerApi.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     return config;
   },
@@ -16,7 +16,7 @@ userApi.interceptors.request.use(
   }
 );
 
-userApi.interceptors.response.use(
+providerApi.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => {
     return response;
   },
@@ -32,13 +32,13 @@ userApi.interceptors.response.use(
       try {
         // Attempt to refresh tokens using the refresh endpoint
         await axios.post(
-          `${import.meta.env.VITE_BACKEND_BASE_URL}/refresh-token`,
+          `${import.meta.env.VITE_BACKEND_BASE_URL}/provider/refresh-token`,
           {},
           { withCredentials: true }
         );
 
         // Retry the original request after successfully refreshing tokens
-        return userApi(originalRequest);
+        return providerApi(originalRequest);
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
 
@@ -50,4 +50,4 @@ userApi.interceptors.response.use(
   }
 );
 
-export default userApi;
+export default providerApi;
