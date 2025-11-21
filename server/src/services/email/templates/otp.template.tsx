@@ -29,7 +29,7 @@ export default function OtpTemplate({
           <Section style={{ textAlign: "center", marginBottom: "20px", padding: "20px", backgroundColor: "#44d54e" }}>
             <Img
               src={"https://aries-assets.s3.ap-south-1.amazonaws.com/app-mark.png"}
-              alt={`Aries Logo`}
+              alt={`Chargelink logo`}
               width="64"
               height="64"
               style={{ margin: "0 auto" }}
@@ -42,7 +42,7 @@ export default function OtpTemplate({
 
           {/* Heading */}
           <Heading as="h2" style={heading}>
-            Aries Verification Code
+            ChargeLink Verification Code
           </Heading>
 
           <Text style={emailStyle}>{email}</Text>

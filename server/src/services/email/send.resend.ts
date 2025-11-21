@@ -17,9 +17,9 @@ export async function sendOtpEmail(to: string, otp: string, description: string,
   );
 
   return await resend.emails.send({
-    from: "Aries <no-reply@no-reply.ronakpaul.com>",
+    from: "ChargeLink <no-reply@no-reply.ronakpaul.com>",
     to,
-    subject: "Your Aries OTP Code",
+    subject: "Your ChargeLink OTP Code",
     html,
   });
 }
