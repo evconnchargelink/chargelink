@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Layout from "./Layout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Dashboard from "./pages/user/Dashboard";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
 
         <Route element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

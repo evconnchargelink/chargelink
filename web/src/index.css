@@ -1,6 +1,72 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #000;
+}
 
 body {
   margin: 0;
+  background-color: white;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animated-border-wrapper {
+  position: relative;
+  border-radius: 0.75rem; /* Equivalent to rounded-xl */
+  background-color: transparent; /* This wrapper itself is just a frame */
+  padding: 1px; /* Create a 1px gap for the static border when not focused */
+  box-shadow: 0 0 0 1px #d1d5db; /* Static border color (gray-300) */
+  transition: box-shadow 0.4s ease-out; /* Smooth transition for static border */
+}
+
+.animated-border-wrapper:focus-within {
+  box-shadow: none; /* Remove static border when focused */
+}
+
+.animated-border-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Now perfectly covers the wrapper's padded area */
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0%,
+    transparent 60%,
+    #000 95%,
+    /* Active border color (black) */ transparent 100%
+  );
+  border-radius: inherit; /* Inherit border-radius from parent (0.75rem) */
+  animation: spin 4s linear infinite paused;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.4s ease-out; /* Smooth transition for opacity */
+  z-index: 0; /* Behind the input */
+}
+
+.animated-border-wrapper:focus-within::before {
+  animation-play-state: running;
+  opacity: 1; /* Visible when focused */
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* The actual Input element */
+.animated-border-wrapper > input {
+  position: relative; /* Crucial to layer above ::before */
+  z-index: 1; /* Ensures input content is above the pseudo-element */
+  background-color: white !important; /* Always white */
+  border: none !important; /* Remove its own native border */
+  border-radius: calc(
+    0.75rem - 1px
+  ); /* Slightly smaller radius for inner input */
 }
