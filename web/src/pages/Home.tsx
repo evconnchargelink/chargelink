@@ -6,9 +6,19 @@ import { CiBookmark } from "react-icons/ci";
 import { MdBatteryAlert } from "react-icons/md";
 import realtimeImg from "../assets/realtime.jpeg";
 import hostprogramImg from "../assets/hostprogram.jpeg";
-import { FaCheck } from "react-icons/fa";
 import Footer from "../components/Footer";
 import section11Img from "../assets/section1-1-img.jpeg";
+import { useEffect, useRef, useState } from "react";
+import { motion, useSpring, useTransform } from "framer-motion";
+import Slider from "../components/Slider";
+import { cn } from "../utils/cn.util";
+
+const currencyData = {
+  USD: { symbol: "$", rate: 1, max: 20, step: 0.5 },
+  EUR: { symbol: "€", rate: 0.93, max: 18.5, step: 0.5 },
+  GBP: { symbol: "£", rate: 0.79, max: 16, step: 0.5 },
+  INR: { symbol: "₹", rate: 83.5, max: 1670, step: 10 },
+};
 
 const Section1Contents = [
   {
@@ -167,8 +177,47 @@ const CardWithoutImage = ({ content }: { content: CardType }) => {
 };
 
 const Home = () => {
+  const [currentTab, setCurrentTab] = useState<string>("Quick setup");
+  const [hours, setHours] = useState([8]);
+  const [days, setDays] = useState([5]);
+  const [price, setPrice] = useState([420]); // Initial price set to roughly 5 USD in INR (5 * 83.5 = 417.5)
+  const [currency, setCurrency] = useState("INR"); // Default currency set to INR
+  const prevCurrencyRef = useRef("INR"); // Initial previous currency set to INR
+
+  const currentCurrency = currencyData[currency as keyof typeof currencyData];
+
+  // Corrected logic: Price in the slider is ALWAYS in the selected currency.
+  const monthlyEarnings = hours[0] * days[0] * price[0] * 4.33;
+
+  const earningsSpring = useSpring(monthlyEarnings, {
+    mass: 0.8,
+    stiffness: 100,
+    damping: 20,
+  });
+  const displayEarnings = useTransform(earningsSpring, (current) =>
+    Math.floor(current).toLocaleString("en-US")
+  );
+
+  useEffect(() => {
+    earningsSpring.set(monthlyEarnings);
+  }, [monthlyEarnings, earningsSpring]);
+
+  // Effect to convert price when currency changes
+  useEffect(() => {
+    const prevRate =
+      currencyData[prevCurrencyRef.current as keyof typeof currencyData]
+        ?.rate || 1;
+    const newRate =
+      currencyData[currency as keyof typeof currencyData]?.rate || 1;
+
+    if (prevCurrencyRef.current !== currency) {
+      setPrice((prev) => [(prev[0] / prevRate) * newRate]);
+      prevCurrencyRef.current = currency;
+    }
+  }, [currency]);
+
   return (
-    <>
+    <div>
       <HeroSection />
 
       <div className="px-12 pb-16">
@@ -299,7 +348,7 @@ const Home = () => {
                   />
                 </div>
 
-                <div className="bg-white px-6 py-6 rounded-b-2xl text-white border-b border-b-black border-l border-r border-l-black border-r-black">
+                <div className="bg-white px-6 py-6 rounded-b-2xl text-white border-b border-b-black/30 border-l border-r border-l-black/30 border-r-black/30">
                   <div className="space-y-4">
                     <p className="text-sm text-black">{content.tag}</p>
                     <p className="text-2xl font-semibold text-black">
@@ -320,6 +369,78 @@ const Home = () => {
           </div>
         </div>
 
+        {/* earn from your charger auto scroll section */}
+        <div className="flex flex-col items-center justify-center space-y-16 py-20">
+          <div className="flex flex-col items-center justify-center space-y-8">
+            <h2 className="text-sm font-semibold">Hosts</h2>
+            <p className="text-4xl font-semibold">Earn from your charger</p>
+
+            <p className="text-base font-light">
+              List your station in minutes and start earning per session. Weekly
+              payouts keep the money flowing.
+            </p>
+
+            <div className="flex space-x-8">
+              <button className="flex space-x-4 text-sm mt-8 border border-black px-8 py-3">
+                Start
+              </button>
+              <button className="flex space-x-2 items-center text-sm mt-8">
+                <p>Learn</p>
+                <LuChevronRight />
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center space-y-8">
+            <div className="flex items-center space-x-10">
+              {["Quick setup", "Weekly payout", "Smart updates"].map(
+                (item, index) => (
+                  <div
+                    key={index}
+                    className={`text-sm pb-2 cursor-pointer ${
+                      currentTab === item
+                        ? "font-semibold border-b-2 border-black"
+                        : "font-normal"
+                    }`}
+                    onClick={() => setCurrentTab(item)}
+                  >
+                    <p>{item}</p>
+                  </div>
+                )
+              )}
+            </div>
+
+            <div className="flex flex-row flex-1 items-center justify-center gap-12 py-10">
+              <div className="text-sm font-semibold flex-[0.5] space-y-6">
+                <h2>Setup</h2>
+                <p className="text-4xl font-semibold">
+                  List in two minutes flat
+                </p>
+                <p className="text-base font-light">
+                  Add your charger to the network and begin accepting bookings
+                  immediately.
+                </p>
+                <div className="flex space-x-8">
+                  <button className="flex space-x-4 text-sm mt-8 border border-black px-8 py-3">
+                    List
+                  </button>
+                  <button className="flex space-x-2 items-center text-sm mt-8">
+                    <p>Explore</p>
+                    <LuChevronRight />
+                  </button>
+                </div>
+              </div>
+              <div className="flex-[0.5]">
+                <img
+                  src="https://i0.wp.com/sunnysidehistory.org/wp-content/uploads/2022/05/2022_05_06_GOOGLEMAPS_SCREENSHOT_SUNNYSIDE.jpg?ssl=1"
+                  alt="Map image"
+                  className="w-full h-[600px] object-cover rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Pricing section */}
         <div className="flex flex-col items-center justify-center space-y-12 py-20">
           <div className="flex flex-col items-center justify-center space-y-8">
@@ -332,74 +453,195 @@ const Home = () => {
           </div>
 
           <div className="flex items-center justify-center space-x-11">
-            <div className="flex flex-col p-8 w-[400px] h-[500px] justify-between border border-black">
-              <div className="flex flex-col space-y-14">
-                <div className="flex flex-col items-center justify-center space-y-4">
-                  <p className="text-lg font-semibold">Residential</p>
-                  <p className="text-4xl font-bold">₹8/kWh</p>
-
-                  <p className="text-base ">or ₹9999 yearly</p>
-                </div>
-
-                <div className="flex flex-col space-y-2">
-                  {[
-                    "Real-time availability",
-                    "Book slots in advance",
-                    "No hidden charges",
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-4">
-                      <FaCheck />
-                      <p>{item}</p>
+            <div className="py-5">
+              <motion.div
+                className="max-w-4xl mx-auto px-4 text-center"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <div className=" bg-white sm:px-16 w-[600px] py-12 rounded-2xl shadow-xl border border-gray-100">
+                  <div className="text-center mb-8">
+                    <p className="text-lg text-gray-600">
+                      Potential Monthly Earnings
+                    </p>
+                    <p className="text-6xl sm:text-8xl font-black text-black tracking-tighter my-2">
+                      {currentCurrency.symbol}
+                      <motion.span>{displayEarnings}</motion.span>
+                    </p>
+                    <div className="flex justify-center gap-2 mt-4">
+                      {Object.entries(currencyData).map(([curr]) => (
+                        <button
+                          key={curr}
+                          onClick={() => setCurrency(curr)}
+                          className={cn(
+                            "px-3 py-1 text-sm font-semibold rounded-full transition-all",
+                            currency === curr
+                              ? "bg-black text-white"
+                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          )}
+                        >
+                          {curr}
+                        </button>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
 
-              <button className=" w-full bg-black text-white py-3">
-                Calculate
-              </button>
-            </div>
-
-            <div className="flex flex-col p-8 w-[400px] h-[500px] justify-between border border-black">
-              <div className="flex flex-col space-y-14">
-                <div className="flex flex-col items-center justify-center space-y-4">
-                  <p className="text-lg font-semibold">Business plan</p>
-                  <p className="text-4xl font-bold">₹10/kWh</p>
-
-                  <p className="text-base ">or ₹19999 yearly</p>
-                </div>
-
-                <div className="flex flex-col space-y-2">
-                  {[
-                    "Mobile app access",
-                    "24/7 customer support",
-                    "Priority booking",
-                    "Dedicated account manager",
-                    "Bulk discounts available",
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-4">
-                      <FaCheck />
-                      <p>{item}</p>
+                  <div className="max-w-xl mx-auto mt-12 space-y-10">
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center font-medium">
+                        <label>Hours available per day</label>
+                        <span className="font-bold text-lg">
+                          {hours[0]} hrs
+                        </span>
+                      </div>
+                      <Slider
+                        value={hours}
+                        onValueChange={setHours}
+                        max={24}
+                        step={1}
+                      />
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center font-medium">
+                        <label>Active days per week</label>
+                        <span className="font-bold text-lg">
+                          {days[0]} days
+                        </span>
+                      </div>
+                      <Slider
+                        value={days}
+                        onValueChange={setDays}
+                        max={7}
+                        step={1}
+                      />
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center font-medium">
+                        <label>Your price per hour</label>
+                        <span className="font-bold text-lg">
+                          {currentCurrency.symbol}
+                          {price[0].toFixed(currentCurrency.step >= 1 ? 0 : 2)}
+                        </span>
+                      </div>
+                      <Slider
+                        value={price}
+                        onValueChange={setPrice}
+                        max={currentCurrency.max}
+                        step={currentCurrency.step}
+                      />
+                    </div>
+                  </div>
 
-              <button className="w-full bg-black text-white py-3">
-                Calculate
-              </button>
+                  <div className="mt-12">
+                    <button className="bg-black text-white px-5 py-3 rounded-xl">Start Earning Now</button>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
 
+      {/* reviews section*/}
+      <div className="flex flex-col items-center justify-center space-y-12 py-20">
+        <div className="flex flex-col items-center justify-center space-y-8">
+          <p className="text-4xl font-semibold">
+            Drivers and hosts love ChargeLink
+          </p>
 
-        {/* reviews section*/}
-        <div></div>
+          <p className="text-base font-light">
+            Real stories from real people using network
+          </p>
+        </div>
 
-        
-        <Footer />
+        <div className="grid grid-cols-3 gap-14">
+          <div className="flex flex-col items-center justify-center space-y-10">
+            <p className="text-center text-lg font-semibold">
+              "I found a charger in minutes and was back on the road. No stress,
+              no surprises."
+            </p>
+
+            <div className="flex flex-col space-y-6 items-center justify-center">
+              <div className="w-[50px] h-[50px] bg-slate-400 rounded-full"></div>
+
+              <div className="flex flex-col space-y-1 items-center justify-center">
+                <p>Rajesh kumar</p>
+                <p className="text-xs font-light">Driver, Jaipur</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center space-y-10">
+            <p className="text-center text-lg font-semibold">
+              "I found a charger in minutes and was back on the road. No stress,
+              no surprises."
+            </p>
+
+            <div className="flex flex-col space-y-6 items-center justify-center">
+              <div className="w-[50px] h-[50px] bg-slate-400 rounded-full"></div>
+
+              <div className="flex flex-col space-y-1 items-center justify-center">
+                <p>Rajesh kumar</p>
+                <p className="text-xs font-light">Driver, Jaipur</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center space-y-10">
+            <p className="text-center text-lg font-semibold">
+              "I found a charger in minutes and was back on the road. No stress,
+              no surprises."
+            </p>
+
+            <div className="flex flex-col space-y-6 items-center justify-center">
+              <div className="w-[50px] h-[50px] bg-slate-400 rounded-full"></div>
+
+              <div className="flex flex-col space-y-1 items-center justify-center">
+                <p>Rajesh kumar</p>
+                <p className="text-xs font-light">Driver, Jaipur</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </>
+
+      {/* newsletter section */}
+      <div className="flex flex-col items-center justify-center space-y-12 py-20">
+        <div className="flex flex-col items-center justify-center space-y-8">
+          <div className="space-y-2">
+            <p className="text-4xl font-semibold text-center">Stay</p>
+            <p className="text-4xl font-semibold text-center"> in the loop</p>
+          </div>
+
+          <p className="text-sm font-light text-center">
+            Get updates on new stations, special offers, and charging tips
+            delivered to your inbox
+          </p>
+        </div>
+
+        <div className="space-y-5">
+          <div className="flex items-center space-x-4">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="py-3 px-4 border border-black w-[300px] text-sm"
+            />
+
+            <button className="py-3 px-4 bg-black text-white text-sm">
+              Subscribe
+            </button>
+          </div>
+
+          <p className="text-xs text-center font-light">
+            We respect your inbox. Unsubscribe at any time.
+          </p>
+        </div>
+      </div>
+
+      <Footer />
+      </div>
+    </div>
   );
 };
 
