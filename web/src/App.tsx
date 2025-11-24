@@ -24,6 +24,12 @@ import HostProfile from "./pages/host/Profile";
 import HostChargers from "./pages/host/Chargers";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import AdminEarnings from "./pages/admin/Earnings";
+import AdminUsers from "./pages/admin/Users";
+import AdminNotifications from "./pages/admin/Notifications";
+import AdminAnalytics from "./pages/admin/Analytics";
+import AdminStations from "./pages/admin/Stations";
+import AdminSettings from "./pages/admin/Settings";
 
 const App = () => {
   return (
@@ -61,6 +67,12 @@ const App = () => {
 
           {/* admin routes */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/earnings" element={<AdminEarnings />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/notifications" element={<AdminNotifications />} />
+          <Route path="/admin/analytics" element={<AdminAnalytics />} />
+          <Route path="/admin/stations" element={<AdminStations />} />
+          <Route path="/admin/settings" element={<AdminSettings />} />
         </Route>
       </Routes>
       </LocalizationProvider>

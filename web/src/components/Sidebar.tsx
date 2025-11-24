@@ -1,11 +1,22 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { IoAnalytics, IoCarSportOutline, IoExitOutline, IoTicketOutline } from "react-icons/io5";
-import { LuHistory, LuLayoutDashboard, LuSettings, LuWallet } from "react-icons/lu";
+import {
+  IoAnalytics,
+  IoCarSportOutline,
+  IoExitOutline,
+  IoTicketOutline,
+} from "react-icons/io5";
+import {
+  LuHistory,
+  LuLayoutDashboard,
+  LuSettings,
+  LuWallet,
+} from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { MdOutlineLocalGasStation } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GiMoneyStack } from "react-icons/gi";
+import { FiUsers } from "react-icons/fi";
 
 const userSidebarContent = [
   {
@@ -101,7 +112,7 @@ const providerSidebarContent = [
     redirect: "/host/profile",
     size: "22",
   },
-   {
+  {
     title: "Notifications",
     icon: IoMdNotificationsOutline,
     redirect: "/host/notifications",
@@ -120,6 +131,42 @@ const adminSidebarContent = [
     title: "Dashboard",
     icon: LuLayoutDashboard,
     redirect: "/admin/dashboard",
+    size: "22",
+  },
+  {
+    title: "Stations",
+    icon: MdOutlineLocalGasStation,
+    redirect: "/admin/stations",
+    size: "22",
+  },
+  {
+    title: "Users",
+    icon: FiUsers,
+    redirect: "/admin/users",
+    size: "22",
+  },
+  {
+    title: "Earnings",
+    icon: GiMoneyStack,
+    redirect: "/admin/earnings",
+    size: "22",
+  },
+  {
+    title: "Analytics",
+    icon: IoAnalytics,
+    redirect: "/admin/analytics",
+    size: "22",
+  },
+  {
+    title: "Notifications",
+    icon: IoMdNotificationsOutline,
+    redirect: "/admin/notifications",
+    size: "22",
+  },
+  {
+    title: "Settings",
+    icon: LuSettings,
+    redirect: "/admin/settings",
     size: "22",
   },
 ];
