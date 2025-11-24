@@ -15,6 +15,13 @@ import CarDetails from "./pages/driver/CarDetails";
 import Notifications from "./pages/driver/Notifications";
 import HostDashboard from "./pages/host/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
+import Reservations from "./pages/host/Reservations";
+import Earnings from "./pages/host/Earnings";
+import HostNotifications from "./pages/host/Notifications";
+import HostSettings from "./pages/host/Settings";
+import HostAnalytics from "./pages/host/Analytics";
+import HostProfile from "./pages/host/Profile";
+import HostChargers from "./pages/host/Chargers";
 
 const App = () => {
   return (
@@ -41,7 +48,13 @@ const App = () => {
 
           {/* host routes */}
           <Route path="/host/dashboard" element={<HostDashboard />} />
-
+          <Route path="/host/reservations" element={<Reservations />} />
+          <Route path="/host/earnings" element={<Earnings />} />
+          <Route path="/host/notifications" element={<HostNotifications />} />
+          <Route path="/host/settings" element={<HostSettings />} />
+          <Route path="/host/analytics" element={<HostAnalytics />} />
+          <Route path="/host/profile" element={<HostProfile />} />
+          <Route path="/host/chargers" element={<HostChargers />} />
 
           {/* admin routes */}
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
