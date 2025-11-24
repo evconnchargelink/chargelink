@@ -1,10 +1,18 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
 import logo from "/logo.png";
 import { LuSettings } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Header2 = () => {
   const navigate = useNavigate();
+
+  const [currentRole, setCurrentRole] = useState<string>("");
+  const location = useLocation();
+
+  useEffect(() => {
+    setCurrentRole(location.pathname.split("/")[1] || "");
+  }, [location]);
 
   return (
     <header className="flex flex-col sticky top-0 z-50 ">
@@ -15,18 +23,18 @@ const Header2 = () => {
 
         <div className="flex items-center space-x-6">
           <IoMdNotificationsOutline
-            onClick={() => navigate("/driver/notifications")}
+            onClick={() => navigate(`${currentRole}/notifications`)}
             className="text-2xl text-slate-500 cursor-pointer"
           />
 
           <LuSettings
-            onClick={() => navigate("/driver/settings")}
+            onClick={() => navigate(`${currentRole}/settings`)}
             className="text-xl text-slate-500 cursor-pointer"
           />
 
           <div
             className="flex items-center space-x-4 cursor-pointer"
-            onClick={() => navigate("/driver/profile")}
+            onClick={() => navigate(`${currentRole}/profile`)}
           >
             <div className="w-[35px] h-[35px] bg-slate-300 rounded-full">
               <img
@@ -38,7 +46,9 @@ const Header2 = () => {
 
             <div className="flex flex-col items-start">
               <p className="text-sm font-medium">Ronak Paul</p>
-              <p className="text-xs text-slate-400">Driver</p>
+              <p className="text-xs text-slate-400">
+                {currentRole.charAt(0).toUpperCase() + currentRole.slice(1)}
+              </p>
             </div>
           </div>
         </div>

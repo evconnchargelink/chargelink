@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { IoCarSportOutline, IoExitOutline, IoTicketOutline } from "react-icons/io5";
+import { IoAnalytics, IoCarSportOutline, IoExitOutline, IoTicketOutline } from "react-icons/io5";
 import { LuHistory, LuLayoutDashboard, LuSettings, LuWallet } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { MdOutlineLocalGasStation } from "react-icons/md";
@@ -81,6 +81,12 @@ const providerSidebarContent = [
     title: "Reservations",
     icon: IoTicketOutline,
     redirect: "/host/reservations",
+    size: "22",
+  },
+  {
+    title: "Analytics",
+    icon: IoAnalytics,
+    redirect: "/host/analytics",
     size: "22",
   },
   {
