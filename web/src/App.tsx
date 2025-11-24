@@ -22,10 +22,13 @@ import HostSettings from "./pages/host/Settings";
 import HostAnalytics from "./pages/host/Analytics";
 import HostProfile from "./pages/host/Profile";
 import HostChargers from "./pages/host/Chargers";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const App = () => {
   return (
     <BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -60,6 +63,7 @@ const App = () => {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Route>
       </Routes>
+      </LocalizationProvider>
     </BrowserRouter>
   );
 };
