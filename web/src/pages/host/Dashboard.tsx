@@ -89,7 +89,7 @@ const HostDashboard = () => {
       </div>
 
       {/* current and past bookings */}
-      <div className="w-full flex-1 h-full flex items-center gap-8">
+      <div className="w-full flex-1 h-full flex items-center gap-8 overflow-y-hidden">
         <div className="flex-[0.4] w-full h-full bg-white shadow-[0px_1px_3px_0px_#0000001A] rounded-xl p-4 space-y-8">
           <div>
             <p className="text-sm text-slate-600">Current Bookings</p>
@@ -107,7 +107,7 @@ const HostDashboard = () => {
           </div>
         </div>
 
-        <div className="flex-[0.6] w-full h-full rounded-xl">
+        <div className="flex-[0.6] w-full h-full rounded-xl bg-white shadow-[0px_1px_3px_0px_#0000001A] p-4">
           <BarChart
             xAxis={[
               {
@@ -134,7 +134,7 @@ const HostDashboard = () => {
                 label: "Avg Earnings %",
               },
             ]}
-            height={400}
+            height={370}
             sx={{
               "& .MuiBarElement-root": {
                 rx: 6,

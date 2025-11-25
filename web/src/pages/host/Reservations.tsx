@@ -177,14 +177,14 @@ const Reservations = () => {
   }, []);
 
   return (
-    <div className="w-full h-full p-8 relative overflow-y-scroll">
+    <div className="w-full h-full relative overflow-y-scroll">
       {/* heading */}
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-2 px-8 pt-8">
         <h1 className="text-3xl font-bold text-[#1E1E1E]">Reservations</h1>
         <p className="text-base text-[#6B7280]">Your reservations history from different drivers</p>
       </div>
 
-      <div className="my-10 w-full">
+      <div className="my-10 w-full px-8">
         <ActivityCalendar
           ref={calendarRef}
           data={data}
@@ -206,7 +206,7 @@ const Reservations = () => {
         />
       </div>
 
-      <div className="my-14 space-y-14">
+      <div className="my-14 space-y-14 px-8">
         <div className=" flex items-center justify-between sticky top-0 bg-[#F8F9FC] py-5">
           <div className="flex items-center space-x-5">
             <div className="flex items-center space-x-2 border w-[400px] border-slate-400 px-4 py-2 rounded-lg">

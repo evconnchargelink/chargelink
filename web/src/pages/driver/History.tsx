@@ -133,14 +133,14 @@ const history = [
 
 const History = () => {
   return (
-    <div className="w-full h-full p-8 overflow-y-scroll">
+    <div className="w-full h-full overflow-y-scroll">
       {/* heading */}
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-2 px-8 pt-8">
         <h1 className="text-3xl font-bold text-[#1E1E1E]">History</h1>
         <p className="text-base text-[#6B7280]">Your all activity history</p>
       </div>
 
-      <div className="my-4 space-y-14">
+      <div className="my-4 space-y-14 px-8">
         <div className="w-full flex items-center justify-between sticky top-0 bg-[#F8F9FC] py-5">
           <div className="flex items-center space-x-5 w-full">
             <div className="flex items-center space-x-2 border w-full border-slate-400 px-4 py-2 rounded-lg">

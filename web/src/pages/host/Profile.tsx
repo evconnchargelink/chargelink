@@ -30,7 +30,7 @@ const ExpandedDocModal = ({
 };
 
 const DocCard = ({ imgURL }: { imgURL: string }) => {
-  const [isHovered, setIsHovered] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const [isExpanded, setIsExpanded] = useState(false);
 
