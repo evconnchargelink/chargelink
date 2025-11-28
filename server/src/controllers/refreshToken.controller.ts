@@ -4,10 +4,10 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken";
 import asyncHandler from "../utils/async.handler";
 import { AdminModel } from "../models/admin.model";
-import { UserModel } from "../models/user.model";
+import { DriverModel } from "../models/driver.model";
 import { config } from "../env.config";
 import { AUTH_ROLES } from "../types/role.type";
-import { ProviderModel } from "../models/provider.model";
+import { HostModel } from "../models/host.model";
 
 export const handleRefreshAccessToken = (requiredRole: AUTH_ROLES) => {
   return asyncHandler(
@@ -24,11 +24,11 @@ export const handleRefreshAccessToken = (requiredRole: AUTH_ROLES) => {
           config.REFRESH_TOKEN_SECRET as string
         ) as JwtPayload;
 
-        let InstanceModel: any = UserModel;
+        let InstanceModel: any = DriverModel;
 
         if (decodedToken?.role == AUTH_ROLES.ADMIN) InstanceModel = AdminModel;
 
-        if (decodedToken?.role == AUTH_ROLES.PROVIDER) InstanceModel = ProviderModel;
+        if (decodedToken?.role == AUTH_ROLES.HOST) InstanceModel = HostModel;
 
         const instance = await InstanceModel.findById(decodedToken?._id);
 

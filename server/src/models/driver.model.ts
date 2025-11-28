@@ -1,19 +1,29 @@
 import { Document, Model, Schema, model } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import dotenv from "dotenv";
 import { config } from "../env.config";
 import { AUTH_ROLES } from "../types/role.type";
 
-dotenv.config();
 
-export interface IUser extends Document {
+export interface IDriver extends Document {
   _id: Schema.Types.ObjectId;
   name: string;
   email: string;
+  number: string;
   isEmailVerified: boolean;
   password: string;
   otp: number;
+  kyc: {
+   aadharNumber: string;
+   aadharFront: string;
+   aadharBack: string;
+   panNumber: string;
+   panFront: string;
+   isVerified: boolean;
+  }
+  settings: {
+    isNotificationEnabled: boolean;
+  }
   refreshToken: string;
   isPasswordCorrect(password: string): Promise<boolean>;
   generateAccessToken(): string;
@@ -21,7 +31,7 @@ export interface IUser extends Document {
 }
 
 // Schema for the user database
-const userSchema: Schema<IUser> = new Schema<IUser>({
+const driverSchema: Schema<IDriver> = new Schema<IDriver>({
   name: {
     type: String,
     required: true,
@@ -48,7 +58,7 @@ const userSchema: Schema<IUser> = new Schema<IUser>({
   },
 } as const);
 
-userSchema.pre("save", async function (next) {
+driverSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
     this.password = await bcrypt.hash(this.password, 10);
@@ -58,17 +68,17 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-userSchema.methods.isPasswordCorrect = async function (password: string) {
+driverSchema.methods.isPasswordCorrect = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
 // schema method to generate a access token
-userSchema.methods.generateAccessToken = function () {
+driverSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
       _id: this._id,
       email: this.email,
-      role: AUTH_ROLES.USER,
+      role: AUTH_ROLES.DRIVER,
     },
     config.ACCESS_TOKEN_SECRET as string,
     {
@@ -78,11 +88,11 @@ userSchema.methods.generateAccessToken = function () {
 };
 
 // schema method to generate a refresh token
-userSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
+driverSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
   return jwt.sign(
     {
       _id: this._id,
-      role: AUTH_ROLES.USER,
+      role: AUTH_ROLES.DRIVER,
     },
     config.REFRESH_TOKEN_SECRET as string,
     {
@@ -92,4 +102,4 @@ userSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
 };
 
 // Model for the User
-export const UserModel: Model<IUser> = model<IUser>("user", userSchema);
+export const DriverModel: Model<IDriver> = model<IDriver>("driver", driverSchema);

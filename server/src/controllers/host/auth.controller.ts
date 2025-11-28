@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import asyncHandler from "../../utils/async.handler";
-import { UserModel } from "../../models/user.model";
+import { HostModel } from "../../models/host.model";
 import { generateAccessAndRefreshTokens } from "../../utils/generateAccessRefreshToken";
 import { AUTH_ROLES } from "../../types/role.type";
 
@@ -20,7 +20,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 
   try {
     // Check if employee with the given email exists
-    const user = await UserModel.findOne({ email });
+    const user = await HostModel.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -33,7 +33,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 
     // Generate JWT token
     const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
-      AUTH_ROLES.USER,
+      AUTH_ROLES.HOST,
       user._id,
       rememberMe
     );
@@ -79,14 +79,14 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
 
   try {
     // Check if user with the same email already exists
-    const existingUser = await UserModel.findOne({ email });
+    const existingUser = await HostModel.findOne({ email });
     if (existingUser) {
       return res
         .status(409)
         .json({ message: "User with this email already exists." });
     }
 
-    const user = new UserModel({
+    const user = new HostModel({
       name,
       email,
       password: password,
@@ -96,7 +96,7 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
 
     // Generate JWT token
     const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
-      AUTH_ROLES.USER,
+      AUTH_ROLES.HOST,
       user._id,
       false
     );

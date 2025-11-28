@@ -3,9 +3,9 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import asyncHandler from "../utils/async.handler";
 import { AdminModel } from "../models/admin.model";
 import { Request, Response, NextFunction } from "express";
-import { UserModel } from "../models/user.model";
+import { DriverModel } from "../models/driver.model";
 import { AUTH_ROLES } from "../types/role.type";
-import { ProviderModel } from "../models/provider.model";
+import { HostModel } from "../models/host.model";
 
 export const authMiddleware = (requiredRole: AUTH_ROLES) => {
   return asyncHandler(async (req:Request, _:Response, next:NextFunction) => {
@@ -24,16 +24,16 @@ export const authMiddleware = (requiredRole: AUTH_ROLES) => {
       if (decodedToken?.role != requiredRole)
         throw new AppError("Unauthorized request", 401);
 
-      if (requiredRole == AUTH_ROLES.USER) {
-        const user = await UserModel.findById(decodedToken?._id).select(
+      if (requiredRole == AUTH_ROLES.DRIVER) {
+        const driver = await DriverModel.findById(decodedToken?._id).select(
           "-password -refreshToken"
         );
 
-        if (!user) {
+        if (!driver) {
           throw new AppError("Invalid Access Token", 401);
         }
 
-        req.user = user;
+        req.driver = driver;
       } else if (requiredRole == AUTH_ROLES.ADMIN) {
         const admin = await AdminModel.findById(decodedToken?._id).select(
           "-password -refreshToken"
@@ -43,15 +43,15 @@ export const authMiddleware = (requiredRole: AUTH_ROLES) => {
         }
 
         req.admin = admin;
-      } else if (requiredRole == AUTH_ROLES.PROVIDER) {
-        const provider = await ProviderModel.findById(decodedToken?._id).select(
+      } else if (requiredRole == AUTH_ROLES.HOST) {
+        const host = await HostModel.findById(decodedToken?._id).select(
           "-password -refreshToken"
         );
-        if (!provider) {
+        if (!host) {
           throw new AppError("Invalid Access Token", 401);
         }
 
-        req.provider = provider;
+        req.provider = host;
       }
 
       next();

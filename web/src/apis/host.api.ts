@@ -1,7 +1,7 @@
 import axios, { type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
 
 const providerApi = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_BASE_URL + "/provider",
+  baseURL: import.meta.env.VITE_BACKEND_BASE_URL + "/host",
   withCredentials: true,
 });
 

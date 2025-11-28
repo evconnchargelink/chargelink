@@ -1,19 +1,28 @@
 import { Document, Model, Schema, model } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import dotenv from "dotenv";
 import { config } from "../env.config";
 import { AUTH_ROLES } from "../types/role.type";
 
-dotenv.config();
-
-export interface IProvider extends Document {
+export interface IHost extends Document {
   _id: Schema.Types.ObjectId;
   name: string;
   email: string;
+  number: string;
   isEmailVerified: boolean;
   password: string;
   otp: number;
+  kyc: {
+   aadharNumber: string;
+   aadharFront: string;
+   aadharBack: string;
+   panNumber: string;
+   panFront: string;
+   isVerified: boolean;
+  }
+  settings: {
+    isNotificationEnabled: boolean;
+  }
   refreshToken: string;
   isPasswordCorrect(password: string): Promise<boolean>;
   generateAccessToken(): string;
@@ -21,7 +30,7 @@ export interface IProvider extends Document {
 }
 
 // Schema for the provider database
-const providerSchema: Schema<IProvider> = new Schema<IProvider>({
+const hostSchema: Schema<IHost> = new Schema<IHost>({
   name: {
     type: String,
     required: true,
@@ -48,7 +57,7 @@ const providerSchema: Schema<IProvider> = new Schema<IProvider>({
   },
 } as const);
 
-providerSchema.pre("save", async function (next) {
+hostSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   try {
     this.password = await bcrypt.hash(this.password, 10);
@@ -58,17 +67,17 @@ providerSchema.pre("save", async function (next) {
   }
 });
 
-providerSchema.methods.isPasswordCorrect = async function (password: string) {
+hostSchema.methods.isPasswordCorrect = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
 // schema method to generate a access token
-providerSchema.methods.generateAccessToken = function () {
+hostSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
       _id: this._id,
       email: this.email,
-      role: AUTH_ROLES.PROVIDER,
+      role: AUTH_ROLES.HOST,
     },
     config.ACCESS_TOKEN_SECRET as string,
     {
@@ -78,11 +87,11 @@ providerSchema.methods.generateAccessToken = function () {
 };
 
 // schema method to generate a refresh token
-providerSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
+hostSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
   return jwt.sign(
     {
       _id: this._id,
-      role: AUTH_ROLES.PROVIDER,
+      role: AUTH_ROLES.HOST,
     },
     config.REFRESH_TOKEN_SECRET as string,
     {
@@ -92,4 +101,4 @@ providerSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
 };
 
 // Model for the provider
-export const ProviderModel: Model<IProvider> = model<IProvider>("provider", providerSchema);
+export const HostModel: Model<IHost> = model<IHost>("host", hostSchema);

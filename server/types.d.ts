@@ -1,14 +1,14 @@
 import { Request } from "express";
 import { AdminModel } from "./src/models/admin.model";
-import { UserModel } from "./src/models/user.model";
-import { ProviderModel } from "./src/models/provider.model";
+import { DriverModel } from "./src/models/driver.model";
+import { HostModel } from "./src/models/host.model";
 
 declare global {
   namespace Express {
     interface Request {
-      user?: UserModel;
+      driver?: DriverModel;
       admin?: AdminModel;
-      provider?: ProviderModel;
+      provider?: HostModel;
     }
   }
 }
