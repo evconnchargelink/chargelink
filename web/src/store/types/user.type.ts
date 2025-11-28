@@ -1,15 +1,16 @@
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: "driver" | "host" | "admin";
+  profileImgURL?: string;
+}
+
 export interface UserState {
   isAuthenticated: boolean;
   user: User | null;
   loading: boolean;
   error: string | null;
-}
-
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  // Add other user properties as needed
 }
 
 export interface LoginCredentials {

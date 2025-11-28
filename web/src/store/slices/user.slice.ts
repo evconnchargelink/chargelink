@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import type { UserState, User } from '../types/user.type';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import type { UserState, User } from "../types/user.type";
 
 const initialState: UserState = {
   isAuthenticated: false,
@@ -10,7 +10,7 @@ const initialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     loginStart: (state) => {
