@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Layout from "./Layout";
 import Login from "./pages/Login";
@@ -45,6 +45,7 @@ const App = () => {
 
         <Route element={<AuthLayout />}>
           {/* driver routes */}
+          <Route path="/driver" element={<Navigate to="/driver/dashboard" />} />
           <Route path="/driver/dashboard" element={<Dashboard />} />
           <Route path="/driver/find" element={<FinderCharger />} />
           <Route path="/driver/bookings" element={<Bookings />} />
@@ -56,6 +57,7 @@ const App = () => {
           <Route path="/driver/notifications" element={<Notifications />} />
 
           {/* host routes */}
+          <Route path="/host" element={<Navigate to="/host/dashboard" />} />
           <Route path="/host/dashboard" element={<HostDashboard />} />
           <Route path="/host/reservations" element={<Reservations />} />
           <Route path="/host/earnings" element={<Earnings />} />
@@ -66,6 +68,7 @@ const App = () => {
           <Route path="/host/chargers" element={<HostChargers />} />
 
           {/* admin routes */}
+          <Route path="/admin" element={<Navigate to="/admin/dashboard" />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/earnings" element={<AdminEarnings />} />
           <Route path="/admin/users" element={<AdminUsers />} />

@@ -52,6 +52,7 @@ const MapView = ({ onClose }: { onClose: () => void }) => {
           disableDefaultUI
         />
       </APIProvider>
+{/* what si thw enig of this  */}
 
       <button
         onClick={onClose}

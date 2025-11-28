@@ -3,6 +3,7 @@ import { FaExpand } from "react-icons/fa";
 import { useState } from "react";
 import { LuFilter, LuSearch } from "react-icons/lu";
 import StationCard from "../../components/StationCard";
+import { FaMinimize } from "react-icons/fa6";
 
 const FinderCharger = () => {
   const [isMapExpanded, setIsMapExpanded] = useState(false);
@@ -73,7 +74,7 @@ const FinderCharger = () => {
                   onClick={() => setIsDrawerOpen(!isDrawerOpen)}
                   className=" bg-slate-800 text-white px-3 py-2 rounded-lg flex items-center justify-center cursor-pointer shadow-[0px_1px_3px_0px_#0000001A]"
                 >
-                  <p className="text-[10px]">Open Drawer</p>
+                  <p className="text-[10px]"> {isDrawerOpen ? 'Close' : 'Open'} Drawer</p>
                 </div>
               )}
 
@@ -81,7 +82,10 @@ const FinderCharger = () => {
                 onClick={() => setIsMapExpanded(!isMapExpanded)}
                 className=" bg-slate-800 text-white w-[30px] h-[30px] rounded-lg flex items-center justify-center cursor-pointer shadow-[0px_1px_3px_0px_#0000001A]"
               >
-                <FaExpand />
+                {
+                  isMapExpanded ? <FaMinimize /> : <FaExpand />
+                }
+                
               </div>
             </div>
 

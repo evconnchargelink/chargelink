@@ -38,7 +38,7 @@ const statsInfo = [
 
 const AdminDashboard = () => {
   return (
-    <div className="w-full h-full p-8">
+    <div className="w-full h-full flex flex-col p-8">
       {/* heading */}
       <div className="flex flex-col space-y-2">
         <h1 className="text-3xl font-bold text-[#1E1E1E]">Dashboard</h1>
@@ -83,6 +83,20 @@ const AdminDashboard = () => {
             </div>
           </div>
         ))}
+      </div>
+
+
+        {/*  */}
+      <div className="w-full flex-1 h-full flex items-center gap-8 overflow-y-hidden">
+
+        <div className="flex-[0.4] w-full h-full bg-white shadow-[0px_1px_3px_0px_#0000001A] rounded-xl p-4 space-y-8">
+
+        </div>
+
+
+        <div className="flex-[0.6] w-full h-full bg-white shadow-[0px_1px_3px_0px_#0000001A] rounded-xl p-4 space-y-8">
+
+        </div>
       </div>
     </div>
   );
