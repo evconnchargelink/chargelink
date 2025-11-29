@@ -1,13 +1,13 @@
 import axios, { type AxiosResponse, type InternalAxiosRequestConfig } from "axios";
 
-const userApi = axios.create({
+const driverApi = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_BASE_URL,
   withCredentials: true,
 });
 
-userApi.defaults.withCredentials = true;
+driverApi.defaults.withCredentials = true;
 
-userApi.interceptors.request.use(
+driverApi.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     return config;
   },
@@ -16,7 +16,7 @@ userApi.interceptors.request.use(
   }
 );
 
-userApi.interceptors.response.use(
+driverApi.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => {
     return response;
   },
@@ -38,7 +38,7 @@ userApi.interceptors.response.use(
         );
 
         // Retry the original request after successfully refreshing tokens
-        return userApi(originalRequest);
+        return driverApi(originalRequest);
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
 
@@ -50,4 +50,4 @@ userApi.interceptors.response.use(
   }
 );
 
-export default userApi;
+export default driverApi;

@@ -1,27 +1,21 @@
+import hostApi from "../../apis/host.api";
+
 class AuthService {
   constructor() {}
 
   async login(email: string, password: string) {
-    // TODO: Implement login logic
-    // Return a mock user object for now
+    const response = await hostApi.post("/login", { email, password });
+
     return {
-      id: "1",
-      email,
-      name: "Host User",
-      role: "host" as const,
-      profileImgURL: null,
+      hostId: response.data.hostId,
     };
   }
 
-  async signup(name: string, email: string, password: string) {
-    // TODO: Implement signup logic
-    // Return a mock user object for now
+  async signup(name: string, email: string, password: string, number: string) {
+    const response = await hostApi.post("/signup", { name, email, password, number });
+
     return {
-      id: "1",
-      email,
-      name,
-      role: "host" as const,
-      profileImgURL: null,
+      hostId: response.data.hostId,
     };
   }
 }
