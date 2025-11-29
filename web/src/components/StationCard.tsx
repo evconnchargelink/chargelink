@@ -1,7 +1,10 @@
 import { IoLocationOutline, IoStar } from "react-icons/io5";
 import { MdElectricBolt } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const StationCard = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full hover:shadow-lg hover:scale-95 transition-all duration-300 cursor-pointer rounded-lg">
       <div className="w-full h-[150px] bg-blue-400 rounded-t-lg">
@@ -42,7 +45,7 @@ const StationCard = () => {
                 </div>
 
                 <div>
-                    <button className="bg-black text-white text-xs px-4 py-2 rounded-lg cursor-pointer">Book Now</button>
+                    <button onClick={() => navigate('/driver/find/book')} className="bg-black text-white text-xs px-4 py-2 rounded-lg cursor-pointer">Book Now</button>
                 </div>
         </div>
       </div>

@@ -30,6 +30,7 @@ import AdminNotifications from "./pages/admin/Notifications";
 import AdminAnalytics from "./pages/admin/Analytics";
 import AdminStations from "./pages/admin/Stations";
 import AdminSettings from "./pages/admin/Settings";
+import BookCharger from "./pages/driver/BookCharger";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/driver" element={<Navigate to="/driver/dashboard" />} />
           <Route path="/driver/dashboard" element={<Dashboard />} />
           <Route path="/driver/find" element={<FinderCharger />} />
+          <Route path="/driver/find/book" element={<BookCharger />} />
           <Route path="/driver/bookings" element={<Bookings />} />
           <Route path="/driver/history" element={<History />} />
           <Route path="/driver/profile" element={<Profile />} />

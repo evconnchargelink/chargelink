@@ -8,10 +8,12 @@ export const DatePicker = ({
   className,
   setDate,
   date,
+  isTimeShown = false,
 }: {
   className?: string;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
   date: Date;
+  isTimeShown?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
@@ -44,7 +46,11 @@ export const DatePicker = ({
 
       {/* Hidden DateTimePicker */}
       <DateTimePicker
-        views={["day", "month", "year"]}
+        views={
+          isTimeShown
+            ? ["day", "month", "year", "hours", "minutes"]
+            : ["day", "month", "year"]
+        }
         value={dayjs(date)}
         onChange={(newValue) => {
           setDate(newValue?.toDate() || new Date());

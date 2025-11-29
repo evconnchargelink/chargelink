@@ -1,4 +1,4 @@
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
 import {
   IoIosAdd,
   IoIosCheckmarkCircleOutline,
@@ -6,6 +6,7 @@ import {
   IoIosInformationCircleOutline,
 } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import MapWithRouting from "../../components/Map";
 
 const statsInfo = [
   {
@@ -122,15 +123,20 @@ const Dashboard = () => {
         </div>
 
         <div className="flex-[0.6] w-full h-full rounded-xl">
-          <APIProvider apiKey={import.meta.env.VITE_MAPS_API_KEY}>
-            <Map
+          {/* <APIProvider apiKey={import.meta.env.VITE_MAPS_API_KEY}> */}
+            {/* route between two points */}
+            {/* <Map
               style={{ width: "100%", height: "100%" }}
-              defaultCenter={{ lat: 22.54992, lng: 0 }}
-              defaultZoom={3}
+              defaultCenter={{ lat: 22.54992, lng: 72.93993 }}
+              defaultZoom={10}
               gestureHandling="greedy"
               disableDefaultUI
+              mapId="92b5cb93229cb323b16c57b8"
             />
-          </APIProvider>
+            <AdvancedMarker position={{ lat: 22.54992, lng: 72.93993 }} />
+          </APIProvider> */}
+
+          <MapWithRouting />
         </div>
       </div>
     </div>
