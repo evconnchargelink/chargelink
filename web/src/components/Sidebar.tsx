@@ -17,6 +17,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GiMoneyStack } from "react-icons/gi";
 import { FiUsers } from "react-icons/fi";
+import Modal from "./Modal";
 
 const userSidebarContent = [
   {
@@ -182,6 +183,40 @@ const adminSidebarContent = [
 //   }[];
 // };
 
+const LogoutModal = ({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) => {
+  return (
+    <Modal open={open} onClose={onClose}>
+      <div
+        className="w-fit h-fit bg-white rounded-lg p-16 flex flex-col items-center justify-center space-y-8"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <p className="text-lg font-medium">
+          Are you sure you want to logout?
+        </p>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={onClose}
+            className="border border-black text-black px-8 py-2 rounded-lg text-sm cursor-pointer"
+          >
+            Cancel
+          </button>
+          <button className="border border-red-500 text-white bg-red-500 px-8 py-2 rounded-lg text-sm cursor-pointer">
+            Logout
+          </button>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
 const chooseContent = (role: string) => {
   if (role === "driver") return userSidebarContent;
   if (role === "host") return providerSidebarContent;
@@ -195,61 +230,71 @@ const Sidebar = () => {
 
   const [currentRoute, setCurrentRoute] = useState<string>("");
   const location = useLocation();
+  const [logoutModalOpen, setLogoutModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setCurrentRoute(location.pathname);
   }, [location]);
 
   return (
-    <div className="h-full px-3 py-4 flex flex-col justify-between">
-      <div>
-        {chooseContent(location.pathname.split("/")[1] || "").map(
-          (item, index) => (
-            <div
-              onClick={() => navigate(item.redirect || "")}
-              key={index}
-              className="py-4 px-4 cursor-pointer rounded-lg"
-              style={{
-                backgroundColor: currentRoute.includes(item.redirect || "")
-                  ? "#000"
-                  : "transparent",
-              }}
-            >
-              <div className="flex items-center space-x-3">
-                {item.icon({
-                  width: item.size,
-                  height: item.size,
-                  color: currentRoute.includes(item.redirect || "")
-                    ? "#fff"
-                    : "#6B7280",
-                  className: "text-xl",
-                })}
-                <p
-                  className="text-sm font-medium"
-                  style={{
+    <>
+      <LogoutModal
+        open={logoutModalOpen}
+        onClose={() => setLogoutModalOpen(false)}
+      />
+      <div className="h-full px-3 py-4 flex flex-col justify-between">
+        <div>
+          {chooseContent(location.pathname.split("/")[1] || "").map(
+            (item, index) => (
+              <div
+                onClick={() => navigate(item.redirect || "")}
+                key={index}
+                className="py-4 px-4 cursor-pointer rounded-lg"
+                style={{
+                  backgroundColor: currentRoute.includes(item.redirect || "")
+                    ? "#000"
+                    : "transparent",
+                }}
+              >
+                <div className="flex items-center space-x-3">
+                  {item.icon({
+                    width: item.size,
+                    height: item.size,
                     color: currentRoute.includes(item.redirect || "")
                       ? "#fff"
                       : "#6B7280",
-                  }}
-                >
-                  {item.title}
-                </p>
+                    className: "text-xl",
+                  })}
+                  <p
+                    className="text-sm font-medium"
+                    style={{
+                      color: currentRoute.includes(item.redirect || "")
+                        ? "#fff"
+                        : "#6B7280",
+                    }}
+                  >
+                    {item.title}
+                  </p>
+                </div>
               </div>
+            )
+          )}
+        </div>
+
+        <div className="my-4 px-2">
+          <button
+            onClick={() => setLogoutModalOpen(true)}
+            className="w-full flex items-center space-x-3 bg-[#F8F9FC] rounded-lg border border-[#E3E3E3] px-3 py-2 cursor-pointer hover:scale-105 transition-all"
+          >
+            <div className="w-[24px] h-[24px] rounded-full bg-[#FF383C] flex items-center justify-center">
+              <IoExitOutline className="text-white text-sm" />
             </div>
-          )
-        )}
-      </div>
 
-      <div className="my-4 px-2">
-        <button className="w-full flex items-center space-x-3 bg-[#F8F9FC] rounded-lg border border-[#E3E3E3] px-3 py-2">
-          <div className="w-[24px] h-[24px] rounded-full bg-[#FF383C] flex items-center justify-center">
-            <IoExitOutline className="text-white text-sm" />
-          </div>
-
-          <p className="text-[13px] text-[#1E1E1E] font-medium">Logout</p>
-        </button>
+            <p className="text-[13px] text-[#1E1E1E] font-medium">Logout</p>
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

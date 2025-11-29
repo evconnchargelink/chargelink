@@ -148,12 +148,13 @@ export default function MapWithRouting(): JSX.Element {
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <APIProvider apiKey={import.meta.env.VITE_MAPS_API_KEY as string}>
+        {/* hide controls */}
         <Map
           style={{ width: "100%", height: "100%" }}
           defaultCenter={currentPosition}
           defaultZoom={13}
           gestureHandling="greedy"
-          disableDefaultUI={false}
+          disableDefaultUI={true}
           mapId="92b5cb93229cb323b16c57b8"
         >
           {/* Route - must be inside Map */}
@@ -194,6 +195,7 @@ export default function MapWithRouting(): JSX.Element {
         position: 'absolute',
         top: 10,
         left: 10,
+        display: "none",
         background: 'white',
         padding: '15px',
         borderRadius: '8px',

@@ -1,4 +1,3 @@
-import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
 import {
   IoIosAdd,
   IoIosCheckmarkCircleOutline,

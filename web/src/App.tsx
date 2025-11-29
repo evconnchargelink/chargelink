@@ -31,6 +31,7 @@ import AdminAnalytics from "./pages/admin/Analytics";
 import AdminStations from "./pages/admin/Stations";
 import AdminSettings from "./pages/admin/Settings";
 import BookCharger from "./pages/driver/BookCharger";
+import Track from "./pages/driver/Track";
 
 const App = () => {
   return (
@@ -51,12 +52,14 @@ const App = () => {
           <Route path="/driver/find" element={<FinderCharger />} />
           <Route path="/driver/find/book" element={<BookCharger />} />
           <Route path="/driver/bookings" element={<Bookings />} />
+          <Route path="/driver/bookings/:id/track" element={<Track />} />
           <Route path="/driver/history" element={<History />} />
           <Route path="/driver/profile" element={<Profile />} />
           <Route path="/driver/wallet" element={<Wallet />} />
           <Route path="/driver/settings" element={<Settings />} />
           <Route path="/driver/car-details" element={<CarDetails />} />
           <Route path="/driver/notifications" element={<Notifications />} />
+
 
           {/* host routes */}
           <Route path="/host" element={<Navigate to="/host/dashboard" />} />

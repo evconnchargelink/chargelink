@@ -1,7 +1,10 @@
 import { MdElectricBolt } from "react-icons/md";
 import { IoLocationOutline, IoStar } from "react-icons/io5";
 import { useState } from "react";
-import { DatePicker } from "../../components/DatePicker";
+import { DatePickerWithTime } from "../../components/DatePicker";
+import { timeDiff } from "../../utils/time.util";
+import { useNavigate } from "react-router-dom";
+import MapWithRouting from "../../components/Map";
 
 // Declare Razorpay type for TypeScript
 declare global {
@@ -19,7 +22,13 @@ interface RazorpayResponse {
 const BookCharger = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<Date>(new Date());
-  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date>(
+    new Date(new Date().getTime() + 4 * 60 * 60 * 1000)
+  );
+
+  const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   const loadRazorpayScript = (): Promise<boolean> => {
     return new Promise((resolve) => {
@@ -31,7 +40,7 @@ const BookCharger = () => {
     });
   };
 
-  const handlePayment = async () => {
+  const handlePayment = async (amount: number) => {
     setLoading(true);
 
     const res = await loadRazorpayScript();
@@ -46,7 +55,7 @@ const BookCharger = () => {
 
     const options = {
       key: import.meta.env.VITE_RAZORPAY_TEST_API_KEY, // Replace with your Test Key ID
-      amount: 23000, // Amount in paise (50000 paise = ₹500)
+      amount: amount * 100, // Amount in paise (50000 paise = ₹500)
       currency: "INR",
       name: "Chargelink",
       description: "Charging session payment",
@@ -58,6 +67,7 @@ const BookCharger = () => {
 
         // Here you can send the response to your backend for verification
         setLoading(false);
+        navigate(`/driver/bookings/${response.razorpay_payment_id}/track`);
       },
       prefill: {
         name: "John Doe",
@@ -84,6 +94,20 @@ const BookCharger = () => {
 
   return (
     <div className=" w-full h-full relative">
+      {isMapOpen && (
+        <>
+          <button
+            onClick={() => setIsMapOpen(false)}
+            className="border-[0.8px] border-black rounded-lg px-3 py-2 bg-black cursor-pointer absolute top-4 right-4 z-50"
+          >
+            <p className="text-xs text-white font-medium">Close Map</p>
+          </button>
+          <div className="w-full h-full absolute top-0 left-0 z-40">
+            <MapWithRouting />
+          </div>
+        </>
+      )}
+
       <div className="w-full h-[300px] bg-slate-200 absolute top-0 left-0">
         <img
           src="https://i0.wp.com/sunnysidehistory.org/wp-content/uploads/2022/05/2022_05_06_GOOGLEMAPS_SCREENSHOT_SUNNYSIDE.jpg?ssl=1"
@@ -94,7 +118,10 @@ const BookCharger = () => {
       <div className="w-full flex items-center justify-between px-8 pt-8 relative z-10">
         <h1 className="text-3xl font-bold text-[#1E1E1E] ">Book Charger</h1>
 
-        <button className="order-[0.8px] border-black rounded-lg px-3 py-2 bg-black cursor-pointer">
+        <button
+          onClick={() => setIsMapOpen(true)}
+          className="border-[0.8px] border-black rounded-lg px-3 py-2 bg-black cursor-pointer"
+        >
           <p className="text-xs text-white font-medium">Open Map</p>
         </button>
       </div>
@@ -115,21 +142,13 @@ const BookCharger = () => {
             {/* start section */}
             <div className="flex-[0.5] space-y-3">
               <p className="text-base text-[#1E1E1E] font-semibold">Start</p>
-              <DatePicker
-                date={startDate}
-                setDate={setStartDate}
-                isTimeShown={true}
-              />
+              <DatePickerWithTime date={startDate} setDate={setStartDate} />
             </div>
 
             {/* end section */}
             <div className="flex-[0.5] space-y-3">
               <p className="text-base text-[#1E1E1E] font-semibold">End</p>
-              <DatePicker
-                date={endDate}
-                setDate={setEndDate}
-                isTimeShown={true}
-              />
+              <DatePickerWithTime date={endDate} setDate={setEndDate} />
             </div>
           </div>
 
@@ -150,7 +169,7 @@ const BookCharger = () => {
             </p>
 
             <textarea
-              className="border border-gray-300 text-sm rounded-md px-3 py-2 outline-none w-full"
+              className="border border-gray-300 text-sm rounded-md px-3 py-2 outline-none w-full resize-none"
               rows={3}
               placeholder="Any special instructions or requirements..."
             ></textarea>
@@ -158,10 +177,12 @@ const BookCharger = () => {
 
           <div className="w-full flex flex-col space-y-5">
             <button
-              onClick={handlePayment}
-              className="bg-black text-white px-4 py-3 rounded-lg transition-colors"
+              onClick={() => handlePayment(timeDiff(startDate, endDate) * 100)}
+              className="bg-black text-white px-4 py-3 font-semibold rounded-lg transition-colors"
             >
-              {loading ? "Processing..." : "Proceed to Payment"}
+              {loading
+                ? "Processing..."
+                : `Pay ₹${timeDiff(startDate, endDate) * 100}`}
             </button>
           </div>
         </div>
@@ -201,12 +222,29 @@ const BookCharger = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between border-t border-slate-200 p-4 bg-white/95 rounded-b-lg">
-                <div className="text-xl">
-                  <p>
-                    <span className="font-bold text-xl">₹230</span>/hr
+              <div className="flex flex-col border-y border-slate-200 bg-white/95 rounded-b-lg py-4 space-y-4">
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-medium text-base">Duration</p>
+
+                  <p className=" text-sm">{timeDiff(startDate, endDate)} hr</p>
+                </div>
+
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-medium text-base">Rate</p>
+
+                  <p className="text-sm">
+                    <span>₹100</span>
+                    <span className="text-xs">/hr</span>
                   </p>
                 </div>
+              </div>
+
+              <div className="w-full flex items-center justify-between">
+                <p className="font-medium text-base">Total</p>
+
+                <p className="text-sm font-medium">
+                  ₹{timeDiff(startDate, endDate) * 100}
+                </p>
               </div>
             </div>
           </div>

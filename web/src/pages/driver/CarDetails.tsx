@@ -1,5 +1,28 @@
+import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { MdElectricBolt } from "react-icons/md";
+import Modal from "../../components/Modal";
+
+const AddCarModal = ({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) => {
+  return (
+    <Modal open={open} onClose={onClose}>
+      <div
+        className="w-[80%] h-[80%] bg-white rounded-2xl p-8"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <p className="text-xl font-medium">Add a new car</p>
+      </div>
+    </Modal>
+  );
+};
 
 const CarCard = () => {
   return (
@@ -14,7 +37,6 @@ const CarCard = () => {
       <div className="w-full h-fit bg-white rounded-b-lg py-4 space-y-5">
         <div className="w-full flex items-center justify-between px-4">
           <p className="text-base font-semibold">Mahindra XEV 9e</p>
-         
         </div>
 
         <div className="flex items-center space-x-7 text-sm px-4">
@@ -27,15 +49,20 @@ const CarCard = () => {
             <p>Type 2</p>
           </div>
         </div>
-
-        
       </div>
     </div>
   );
 };
 
 const CarDetails = () => {
+  const [isAddCarModalOpen, setIsAddCarModalOpen] = useState(false);
+
   return (
+    <>
+    <AddCarModal
+        open={isAddCarModalOpen}
+        onClose={() => setIsAddCarModalOpen(false)}
+      />
     <div className="w-full h-full p-8 overflow-y-scroll">
       {/* heading */}
       <div className="flex items-center justify-between">
@@ -47,7 +74,7 @@ const CarDetails = () => {
         </div>
 
         <div className="flex items-center space-x-3">
-          <button className="flex items-center space-x-3 border-[0.8px] border-black rounded-lg px-3 py-2 bg-black cursor-pointer">
+          <button onClick={() => setIsAddCarModalOpen(true)} className="flex items-center space-x-3 border-[0.8px] border-black rounded-lg px-3 py-2 bg-black cursor-pointer">
             <IoIosAdd className="text-white text-lg" />
             <p className="text-sm text-white font-medium">Add Car</p>
           </button>
@@ -60,9 +87,9 @@ const CarDetails = () => {
         <CarCard />
         <CarCard />
         <CarCard />
-
       </div>
     </div>
+    </>
   );
 };
 

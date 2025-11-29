@@ -71,3 +71,67 @@ export const DatePicker = ({
     </>
   );
 };
+
+
+
+export const DatePickerWithTime = ({
+  className,
+  setDate,
+  date,
+}: {
+  className?: string;
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
+  date: Date;
+}) => {
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef<HTMLDivElement>(null);
+
+  const formatDate = (date: Dayjs | null) => {
+    if (!date) return { date: "" };
+    return {
+      date: date.format("dddd, MMMM D, YYYY"),
+    };
+  };
+
+  const { date: formattedDate } = formatDate(dayjs(date));
+
+  return (
+    <>
+      <div
+        ref={anchorRef}
+        className={cn(
+          "w-full flex items-center space-x-4 border-[0.8px] border-gray-300 rounded-lg px-3 py-3 cursor-pointer",
+          className || ""
+        )}
+        onClick={() => setOpen(true)}
+      >
+        <LuCalendar className="text-neutral-700 text-sm" />
+
+        <div className="flex items-center space-x-2">
+          <p className="text-xs text-neutral-700 font-medium">{formattedDate}, {dayjs(date).format("hh:mm A")}</p>
+        </div>
+      </div>
+
+      {/* Hidden DateTimePicker */}
+      <DateTimePicker
+        views={["day", "month", "year", "hours", "minutes"]}
+        value={dayjs(date)}
+        onChange={(newValue) => {
+          setDate(newValue?.toDate() || new Date());
+        }}
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        slotProps={{
+          textField: {
+            sx: { display: "none" },
+          },
+          popper: {
+            anchorEl: anchorRef.current,
+            placement: "top-start",
+          },
+        }}
+      />
+    </>
+  );
+};

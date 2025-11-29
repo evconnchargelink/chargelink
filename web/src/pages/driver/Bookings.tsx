@@ -5,8 +5,8 @@ import { LuFilter, LuSearch } from "react-icons/lu";
 const data = [
   {
     date: "2025-01-01",
-    count: 2,
-    level: 1,
+    count: 0,
+    level: 0,
   },
   {
     date: "2025-02-02",
@@ -14,9 +14,9 @@ const data = [
     level: 4,
   },
   {
-    date: "2025-12-29",
-    count: 11,
-    level: 3,
+    date: "2025-12-31",
+    count: 0,
+    level: 0,
   },
 ];
 
