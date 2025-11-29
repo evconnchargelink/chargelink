@@ -5,99 +5,43 @@ import { generateAccessAndRefreshTokens } from "../../utils/generateAccessRefres
 import { AUTH_ROLES } from "../../types/role.type";
 
 
-// Login Controller
-export const login = asyncHandler(async (req: Request, res: Response) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  const rememberMe: boolean = req.body.rememberMe || false;
-
-  // Input validation
-  if (!email || !password) {
-    return res
-      .status(400)
-      .json({ message: "Email and password are required." });
-  }
-
-  try {
-    // Check if employee with the given email exists
-    const user = await HostModel.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found." });
-    }
-
-    // Verify the password
-    const isPasswordValid = await user.isPasswordCorrect(password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid password." });
-    }
-
-    // Generate JWT token
-    const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
-      AUTH_ROLES.HOST,
-      user._id,
-      rememberMe
-    );
-
-    const cookieOptions = {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Send cookies only over HTTPS in production
-      // sameSite: "strict",
-      maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-    };
-
-    res
-      .status(200)
-      .cookie("accessToken", accessToken, cookieOptions)
-      .cookie("refreshToken", refreshToken, {
-        ...cookieOptions,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      })
-      .json({
-        message: "Login successful.",
-        userId: user._id,
-      });
-  } catch (e) {
-    res.status(500).json({ message: "An error occurred during login." });
-  }
-});
-
-
-
 
 // Signup Controller
 export const signup = asyncHandler(async (req: Request, res: Response) => {
   const name: string = req.body.name;
   const email: string = req.body.email;
   const password: string = req.body.password;
+  const phone: string = req.body.number;
 
   // Input validation
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !phone) {
     return res
       .status(400)
       .json({ message: "Name, Email and Password are required." });
   }
 
   try {
-    // Check if user with the same email already exists
-    const existingUser = await HostModel.findOne({ email });
-    if (existingUser) {
+    // Check if host with the same email already exists
+    const existingHost = await HostModel.findOne({ email });
+    if (existingHost) {
       return res
         .status(409)
-        .json({ message: "User with this email already exists." });
+        .json({ message: "Host with this email already exists." });
     }
 
-    const user = new HostModel({
+    const host = new HostModel({
       name,
       email,
       password: password,
+      number: phone,
     });
 
-    await user.save();
+    await host.save();
 
     // Generate JWT token
     const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
       AUTH_ROLES.HOST,
-      user._id,
+      host._id,
       false
     );
 
@@ -117,11 +61,11 @@ export const signup = asyncHandler(async (req: Request, res: Response) => {
       })
       .json({
         message: "Signup successful.",
-        userId: user._id,
+        hostId: host._id,
       });
   } catch (e) {
     res
       .status(500)
-      .json({ message: "An error occurred while saving the user." });
+      .json({ message: "An error occurred while saving the host." });
   }
 });
