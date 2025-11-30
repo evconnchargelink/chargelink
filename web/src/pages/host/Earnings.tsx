@@ -65,13 +65,70 @@ const AddAccountModal = ({
         onClick={(e) => {
           e.stopPropagation();
         }}
-      ></div>
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-xl font-medium">Add a new account</p>
+
+          <button className="bg-black rounded-lg px-3 py-2 cursor-pointer">
+            <p className="text-sm text-white font-medium">Add Account</p>
+          </button>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
+const ShowAccountsModal = ({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) => {
+  return (
+    <Modal open={open} onClose={onClose}>
+      <div
+        className="w-[80%] h-[80%] bg-white rounded-2xl p-8"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-xl font-medium">Accounts</p>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
+
+const WithdrawModal = ({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) => {
+  return (
+    <Modal open={open} onClose={onClose}>
+      <div
+        className="w-[80%] h-[80%] bg-white rounded-2xl p-8"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-xl font-medium">Withdraw</p>
+        </div>
+      </div>
     </Modal>
   );
 };
 
 const Earnings = () => {
   const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);
+  const [isShowAccountsModalOpen, setIsShowAccountsModalOpen] = useState(false);
+  const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const [date, setDate] = useState<Date>(new Date());
 
   return (
@@ -79,6 +136,14 @@ const Earnings = () => {
       <AddAccountModal
         open={isAddAccountModalOpen}
         onClose={() => setIsAddAccountModalOpen(false)}
+      />
+      <ShowAccountsModal
+        open={isShowAccountsModalOpen}
+        onClose={() => setIsShowAccountsModalOpen(false)}
+      />
+      <WithdrawModal
+        open={isWithdrawModalOpen}
+        onClose={() => setIsWithdrawModalOpen(false)}
       />
       <div className="w-full h-full p-8 overflow-y-scroll">
         {/* heading */}
@@ -140,11 +205,15 @@ const Earnings = () => {
 
           {/* Right section */}
           <div className="flex items-center space-x-3">
-            <button className="border-[0.8px] border-black rounded-lg px-3 py-2 bg-black cursor-pointer">
+            <button
+              onClick={() => setIsWithdrawModalOpen(true)}
+              className="border-[0.8px] border-black rounded-lg px-3 py-2 bg-black cursor-pointer">
               <p className="text-sm text-white font-medium">Withdraw</p>
             </button>
 
-            <button className="border-[0.8px] border-black rounded-lg px-3 py-2 cursor-pointer">
+            <button
+              onClick={() => setIsShowAccountsModalOpen(true)}
+              className="border-[0.8px] border-black rounded-lg px-3 py-2 cursor-pointer">
               <p className="text-sm text-black font-medium">Show Accounts</p>
             </button>
           </div>

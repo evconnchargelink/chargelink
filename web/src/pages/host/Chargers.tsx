@@ -1,11 +1,13 @@
 import { IoIosAdd } from "react-icons/io";
 import Modal from "../../components/Modal";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { IoLocationOutline, IoStar } from "react-icons/io5";
 import { MdElectricBolt } from "react-icons/md";
 import { FiUploadCloud } from "react-icons/fi";
 import useToast from "../../hooks/toast.hook";
-import { SEVERITY } from "../../store";
+import ChargerService from "../../services/host/charger.service";
+
+const chargerService = new ChargerService();
 
 const ChargerCard = () => {
   return (
@@ -61,12 +63,97 @@ const AddChargerModal = ({
   open: boolean;
   onClose: () => void;
 }) => {
-  const {openToast} = useToast()
+  const [imgFile, setImgFile] = useState<File | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const [title, setTitle] = useState<string>("");
+
+  const [location, setLocation] = useState<{
+    lat: number;
+    lng: number;
+  }>({
+    lat: 0,
+    lng: 0,
+  });
+
+  const [type, setType] = useState<string>("");
+  const [power, setPower] = useState<number>(0);
+  const [amenities, setAmenities] = useState<string[]>(["ahah"]);
+  const [price, setPrice] = useState<number>(0);
+
+  const { openToast } = useToast();
+
+  const openFileSelector = () => {
+    if (!inputRef) return;
+
+    inputRef.current?.click();
+
+    const file = inputRef.current?.files?.[0];
+    if (!file) return;
+
+    setImgFile(file);
+  };
+
+  const fetchCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      openToast("Geolocation is not supported by your browser", "ERROR");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setLocation({
+        lat: Number(latitude.toFixed(5)),
+        lng: Number(longitude.toFixed(5)),
+      });
+    });
+  };
+
+  const checkFormValidity = () => {
+    if (
+      !title ||
+      !location ||
+      !type ||
+      !power ||
+      !amenities ||
+      !price ||
+      !imgFile
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  const addCharger = async () => {
+    if (!checkFormValidity() || !imgFile) {
+      openToast("Please fill all the fields", "ERROR");
+      return;
+    }
+
+    try {
+      const response = await chargerService.addCharger({
+        title,
+        location,
+        type,
+        power,
+        amenities,
+        price,
+        imgFile,
+      });
+
+      if (response.status === 200) {
+        openToast("Charger added successfully", "SUCCESS");
+        onClose();
+      }
+    } catch (e: any) {
+      openToast(e.message, "ERROR");
+    }
+  };
 
   return (
     <Modal open={open} onClose={onClose}>
       <div
-        className="w-[80%] h-[80%] bg-white rounded-2xl p-8"
+        className="w-[80%] h-fit bg-white rounded-2xl p-8"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -74,7 +161,11 @@ const AddChargerModal = ({
         <div className="flex items-center justify-between">
           <p className="text-xl font-medium">Add Charger</p>
 
-          <button onClick={() => openToast("Charger added successfully", "SUCCESS")} className="bg-black rounded-lg px-3 py-2 cursor-pointer">
+          <button
+            onClick={addCharger}
+            disabled={!checkFormValidity()}
+            className={`bg-black rounded-lg px-3 py-2 cursor-pointer ${checkFormValidity()?"opacity-100":"opacity-40"}`}
+          >
             <p className="text-sm text-white font-medium">Add Charger</p>
           </button>
         </div>
@@ -82,7 +173,11 @@ const AddChargerModal = ({
         <div className="my-8 w-full flex flex-1 gap-x-6 justify-between">
           {/* left section */}
           <div className="flex-[0.4]">
-            <div className="w-full h-[200px] border border-dotted rounded-xl flex flex-col items-center justify-center space-y-3">
+            <input ref={inputRef} type="file" className="hidden" />
+            <div
+              onClick={openFileSelector}
+              className="w-full h-[200px] border border-dotted rounded-xl flex flex-col items-center justify-center space-y-3 cursor-pointer"
+            >
               <FiUploadCloud className="text-4xl text-gray-400" />
 
               <p className="text-sm text-gray-400">Upload image of the place</p>
@@ -91,31 +186,69 @@ const AddChargerModal = ({
 
           {/* right section */}
           <div className="flex-[0.55] flex flex-col space-y-8">
-
+            <div className="flex flex-col space-y-2">
+              <p className="text-base font-medium">Title*</p>
+              <input
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                type="text"
+                placeholder="Enter a title"
+                className="border border-gray-300 rounded-lg px-4 py-2 w-full"
+              />
+            </div>
 
             <div className="flex flex-col space-y-2">
-              <p className="text-base font-medium">Name*</p>
-              <input type="text" placeholder="Enter a name" className="border border-gray-300 rounded-lg px-4 py-2 w-full"/>
+              <div className="flex items-center space-x-3">
+                <p className="text-base font-medium">Location*</p>
+                <p className="text-sm text-gray-500">
+                  ( {location.lat}, {location.lng} )
+                </p>
+              </div>
+              <div
+                onClick={fetchCurrentLocation}
+                className="border border-gray-300 rounded-lg px-4 py-2 cursor-pointer text-sm text-gray-500 bg-gray-100 flex items-center justify-center space-x-2"
+              >
+                <IoLocationOutline className="text-gray-500" />
+                <p>Set current location</p>
+              </div>
             </div>
 
-             <div className="flex flex-col space-y-2">
-              <p className="text-base font-medium">Location*</p>
-              <input type="text" placeholder="Enter the location" className="border border-gray-300 rounded-lg px-4 py-2 w-full"/>
-            </div>
-
-             <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-2">
               <p className="text-base font-medium">Charger Type*</p>
-              <input type="text" placeholder="Enter the charger type" className="border border-gray-300 rounded-lg px-4 py-2 w-full"/>
+              <select
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                className="border border-gray-300 rounded-lg px-4 py-2 w-full outline-none text-gray-500"
+              >
+                <option value="">Select Charger Type</option>
+                <option value="Type 1">Type 1</option>
+                <option value="Type 2">Type 2</option>
+                <option value="CCS">CCS</option>
+                <option value="CHAdeMO">CHAdeMO</option>
+              </select>
             </div>
-
 
             <div className="flex flex-col space-y-2">
               <p className="text-base font-medium">Hourly Rate*</p>
-              <input type="text" placeholder="Enter the hourly rate" className="border border-gray-300 rounded-lg px-4 py-2 w-full"/>
+              <input
+                type="text"
+                value={price}
+                onChange={(e) => setPrice(Number(e.target.value))}
+                placeholder="Enter the hourly rate"
+                className="border border-gray-300 rounded-lg px-4 py-2 w-full"
+              />
             </div>
 
-
-
+            <div className="flex flex-col space-y-2">
+              <p className="text-base font-medium">Power*</p>
+              <input
+                type="text"
+                value={power}
+                onChange={(e) => setPower(Number(e.target.value))}
+                placeholder="Enter the power in kwh"
+                className="border border-gray-300 rounded-lg px-4 py-2 w-full"
+              />
+            </div>
           </div>
         </div>
       </div>

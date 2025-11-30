@@ -1,33 +1,57 @@
 import { useState } from "react";
+import CustomSwitch from "../../components/Switch";
+
+const SwitchSetting = ({label, defaultChecked = false}: {label: string, defaultChecked?: boolean}) => {
+  return (
+    <div className="flex items-center justify-between">
+      <p className="text-sm">{label}</p>
+
+      <CustomSwitch defaultChecked={defaultChecked} />
+    </div>
+  );
+};
 
 const NotificationsSettings = () => {
   return (
     <div>
-      <div>
+      <div className="border-b border-b-slate-200 pb-4">
         <h2 className="text-xl font-semibold text-[#1E1E1E]">Notification</h2>
       </div>
 
-      <div className="my-8"></div>
+      <div className="my-4 space-y-5">
+        <SwitchSetting label="Latest chargelink update notifications" defaultChecked />
+        <SwitchSetting label="Booking notifications" defaultChecked />
+        <SwitchSetting label="Security notifications" />
+      </div>
     </div>
   );
 };
+
 const SecuritySettings = () => {
-  return <div>
+  return (
     <div>
+      <div className="border-b border-b-slate-200 pb-4">
         <h2 className="text-xl font-semibold text-[#1E1E1E]">Security</h2>
       </div>
 
-      <div className="my-8"></div>
-  </div>;
+      <div className="my-4 space-y-5">
+        <SwitchSetting label="Two-factor authentication" />
+      </div>
+    </div>
+  );
 };
 const BillingSettings = () => {
-  return <div>
+  return (
     <div>
+      <div className="border-b border-b-slate-200 pb-4">
         <h2 className="text-xl font-semibold text-[#1E1E1E]">Billing</h2>
       </div>
 
-      <div className="my-8"></div>
-  </div>;
+      <div className="my-4 space-y-5">
+        <SwitchSetting label="Auto-renewal" />
+      </div>
+    </div>
+  );
 };
 
 const tabs = [

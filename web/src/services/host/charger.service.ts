@@ -1,20 +1,42 @@
+import hostApi from "../../apis/host.api";
+
 class ChargerService {
   constructor() {}
 
-  // TODO: Implement charger management methods
-  async getAllChargers() {
-    // TODO: Implement API call to get all chargers
-    return [];
+  async getAll() {
+    return hostApi.get("/chargers");
   }
 
-  async getChargerById(id: string) {
-    // TODO: Implement API call to get charger by ID
-    return null;
-  }
+  async addCharger({
+    title,
+    location,
+    type,
+    power,
+    amenities,
+    price,
+    imgFile,
+  }: {
+    title: string;
+    location: {
+      lat: number;
+      lng: number;
+    };
+    type: string;
+    power: number;
+    amenities: string[];
+    price: number;
+    imgFile: File;
+  }) {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("location", JSON.stringify(location));
+    formData.append("type", type);
+    formData.append("power", power.toString());
+    formData.append("amenities", JSON.stringify(amenities));
+    formData.append("price", price.toString());
+    formData.append("file", imgFile);
 
-  async createCharger(data: any) {
-    // TODO: Implement API call to create charger
-    return null;
+    return hostApi.post("/charger", formData);
   }
 
   async updateCharger(id: string, data: any) {
