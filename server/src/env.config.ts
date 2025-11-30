@@ -15,4 +15,8 @@ export const config = {
   ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
   RESEND: process.env.RESEND,
+  GCP_PROJECT_ID: process.env.GCP_PROJECT_ID,
+  GCP_CLIENT_EMAIL: process.env.GCP_CLIENT_EMAIL,
+  GCP_PRIVATE_KEY: process.env.GCP_PRIVATE_KEY,
+  GCS_BUCKET_NAME: process.env.GCS_BUCKET_NAME,
 };

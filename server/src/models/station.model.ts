@@ -8,11 +8,12 @@ export interface IStation extends Document {
   thumbnail: string;
   location: {
     lat: number;
-    lon: number;
+    lng: number;
   },
   amenities: string[], // wifi restroom food_drinks free_parking
   chargerType: string;
-  power: string;
+  power: number;
+  price: number;
 }
 
 // Schema for the user database
@@ -41,7 +42,7 @@ const stationSchema: Schema<IStation> = new Schema<IStation>({
       type: Number,
       required: true,
     },
-    lon: {
+    lng: {
       type: Number,
       required: true,
     },
@@ -55,7 +56,11 @@ const stationSchema: Schema<IStation> = new Schema<IStation>({
     required: true,
   },
   power: {
-    type: String,
+    type: Number,
+    required: true,
+  },
+  price: {
+    type: Number,
     required: true,
   },
 } as const);

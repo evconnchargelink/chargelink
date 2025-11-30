@@ -55,8 +55,14 @@ export const handleRefreshAccessToken = (requiredRole: AUTH_ROLES) => {
 
         return res
           .status(200)
-          .cookie("accessToken", accessToken, options)
-          .cookie("refreshToken", refreshToken, options)
+          .cookie("accessToken", accessToken, {
+            ...options,
+            maxAge: 24 * 60 * 60 * 1000,
+          })
+          .cookie("refreshToken", refreshToken, {
+            ...options,
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+          })
           .json({ message: "tokens refreshed" });
       } catch (error: any) {
         return next(
