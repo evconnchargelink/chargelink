@@ -42,7 +42,6 @@ const App = () => {
       <Provider store={store}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Routes>
-            <Route element={<IdentityLayout />}>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
 
@@ -104,7 +103,6 @@ const App = () => {
                 <Route path="/admin/stations" element={<AdminStations />} />
                 <Route path="/admin/settings" element={<AdminSettings />} />
               </Route>
-            </Route>
           </Routes>
         </LocalizationProvider>
       </Provider>
