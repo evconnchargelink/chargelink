@@ -47,19 +47,19 @@ jobs:
           gsutil -m rsync -r -d \
             ./dist gs://${{ secrets.GCP_BUCKET_NAME }}
 
-      - name: Set proper Cache-Control headers
-        run: |
-          # Set cache headers for static assets (1 year)
-          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" \
-            "gs://${{ secrets.GCP_BUCKET_NAME }}/static/**"
+      # - name: Set proper Cache-Control headers
+      #   run: |
+      #     # Set cache headers for static assets (1 year)
+      #     gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" \
+      #       "gs://${{ secrets.GCP_BUCKET_NAME }}/assets/**"
           
-          # Set cache headers for HTML files (no cache)
-          gsutil -m setmeta -h "Cache-Control:no-cache, no-store, must-revalidate" \
-            "gs://${{ secrets.GCP_BUCKET_NAME }}/**/*.html"
+      #     # Set cache headers for HTML files (no cache)
+      #     gsutil -m setmeta -h "Cache-Control:no-cache, no-store, must-revalidate" \
+      #       "gs://${{ secrets.GCP_BUCKET_NAME }}/**/*.html"
           
-          # Set cache headers for index.html
-          gsutil setmeta -h "Cache-Control:no-cache, no-store, must-revalidate" \
-            "gs://${{ secrets.GCP_BUCKET_NAME }}/index.html"
+      #     # Set cache headers for index.html
+      #     gsutil setmeta -h "Cache-Control:no-cache, no-store, must-revalidate" \
+      #       "gs://${{ secrets.GCP_BUCKET_NAME }}/index.html"
 
       - name: Deployment complete
         run: |
