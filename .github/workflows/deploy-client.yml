@@ -45,10 +45,7 @@ jobs:
         run: |
           # Upload all files
           gsutil -m rsync -r -d \
-            ./build gs://${{ secrets.GCP_BUCKET_NAME }}
-          
-          # Alternative for specific frameworks:
-          # For Vite: ./dist
+            ./dist gs://${{ secrets.GCP_BUCKET_NAME }}
 
       - name: Set proper Cache-Control headers
         run: |
