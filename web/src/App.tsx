@@ -32,7 +32,6 @@ import AdminStations from "./pages/admin/Stations";
 import AdminSettings from "./pages/admin/Settings";
 import BookCharger from "./pages/driver/BookCharger";
 import Track from "./pages/driver/Track";
-import IdentityLayout from "./IdentityLayout";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
