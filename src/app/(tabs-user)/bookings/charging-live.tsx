@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -13,158 +13,75 @@ export default function ChargingLiveScreen() {
   const percentComplete = 39; // Example: 39% complete
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center justify-center px-6">
         {/* Charging icon and title */}
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>⚡️</Text>
+        <View className="w-[54px] h-[54px] rounded-full bg-[#fff7ea] items-center justify-center mb-3.5">
+          <Text className="text-[28px] text-[#de9400]">⚡️</Text>
         </View>
-        <Text style={styles.title}>Charging Live</Text>
-        <Text style={styles.subtitle}>
+        <Text className="text-[23px] font-bold text-[#de9400] mb-1">
+          Charging Live
+        </Text>
+        <Text className="text-[15px] text-[#555] mb-5 text-center leading-6">
           Your session is now active at {station}
         </Text>
 
         {/* Live session stats */}
-        <View style={styles.liveCard}>
-          <Text style={styles.label}>Time Elapsed</Text>
-          <Text style={styles.value}>{elapsed}</Text>
-          <Text style={styles.label}>Energy Used</Text>
-          <Text style={styles.value}>{energySoFar}</Text>
-          <Text style={styles.label}>Estimated Amount</Text>
-          <Text style={styles.value}>{estimatedAmount}</Text>
+        <View className="w-11/12 bg-white rounded-2xl py-3 px-4 mb-6 shadow-md">
+          <Text className="text-[11px] font-semibold text-gray-400">
+            Live session
+          </Text>
+
+          <Text className="text-[13px] text-[#888] mt-2.5">Time Elapsed</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {elapsed}
+          </Text>
+
+          <Text className="text-[13px] text-[#888] mt-3">Energy Used</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {energySoFar}
+          </Text>
+
+          <Text className="text-[13px] text-[#888] mt-3">
+            Estimated Amount
+          </Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {estimatedAmount}
+          </Text>
         </View>
 
         {/* Progress bar */}
-        <View style={styles.progressBarBg}>
-          <View style={[styles.progressBarFill, { width: `${percentComplete}%` }]} />
+        <View className="w-11/12 h-3.5 bg-[#d6e2f0] rounded-full overflow-hidden mt-1 mb-2">
+          <View
+            className="h-full bg-[#de9400] rounded-full"
+            style={{ width: `${percentComplete}%` }}
+          />
         </View>
-        <Text style={styles.progressText}>{percentComplete}% complete</Text>
+        <Text className="text-[15px] text-[#555] mb-7 text-center">
+          {percentComplete}% complete
+        </Text>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.stopBtn}
+            className="w-full bg-[#de9400] py-3.5 rounded-xl mb-3.5 items-center"
             onPress={() => router.push("/(tabs-user)/bookings/charging-complete")}
           >
-            <Text style={styles.stopBtnText}>End Session</Text>
+            <Text className="text-[16px] text-white font-bold tracking-[0.4px]">
+              End Session
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
-    backgroundColor: "#fff7ea",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 14,
-  },
-  icon: {
-    fontSize: 28,
-    color: "#de9400",
-  },
-  title: {
-    fontSize: 23,
-    fontWeight: "bold",
-    color: "#de9400",
-    marginBottom: 5,
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#555",
-    marginBottom: 18,
-    textAlign: "center",
-    lineHeight: 22,
-  },
-  liveCard: {
-    width: "92%",
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    paddingVertical: 13,
-    paddingHorizontal: 16,
-    marginBottom: 24,
-    shadowColor: "#000",
-    shadowOpacity: 0.07,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 5,
-    elevation: 2,
-  },
-  label: {
-    fontSize: 13,
-    color: "#888",
-    marginTop: 10,
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#222",
-    marginTop: 2,
-  },
-  progressBarBg: {
-    width: "88%",
-    height: 18,
-    backgroundColor: "#d6e2f0",
-    borderRadius: 10,
-    overflow: "hidden",
-    marginBottom: 8,
-    marginTop: 4,
-  },
-  progressBarFill: {
-    height: "100%",
-    backgroundColor: "#de9400",
-    borderRadius: 10,
-  },
-  progressText: {
-    fontSize: 15,
-    color: "#555",
-    marginBottom: 28,
-    textAlign: "center",
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  stopBtn: {
-    width: "100%",
-    backgroundColor: "#de9400",
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 14,
-    alignItems: "center",
-  },
-  stopBtnText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-  },
-});

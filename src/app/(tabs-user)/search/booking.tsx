@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function BookingScreen() {
-  const { stationId, name } = useLocalSearchParams();
+  const { stationId, name } = useLocalSearchParams<{
+    stationId?: string;
+    name?: string;
+  }>();
 
   const [selectedSlot, setSelectedSlot] = useState("");
 
@@ -17,7 +20,7 @@ export default function BookingScreen() {
     }
 
     router.navigate({
-      pathname: "/(tabs-user)/search/payment-summary",
+      pathname: "/(tabs-user)/wallet/payment-method",
       params: {
         stationId,
         name,
@@ -27,112 +30,62 @@ export default function BookingScreen() {
   };
 
   return (
-    <View style={styles.container}>
-
+    <View className="flex-1 bg-[#f3f4f6] px-5 pt-[60px]">
       {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.navigate("/(tabs-user)/search/charger")}>
+      <View className="flex-row items-center mb-6">
+        <TouchableOpacity
+          onPress={() => router.navigate("/(tabs-user)/search/charger")}
+        >
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Confirm Booking</Text>
+        <Text className="text-[22px] font-bold ml-3">Confirm Booking</Text>
       </View>
 
       {/* Station Details */}
-      <View style={styles.infoCard}>
-        <Text style={styles.label}>Station Name:</Text>
-        <Text style={styles.value}>{name}</Text>
+      <View className="bg-white rounded-xl p-5 shadow-md mb-6">
+        <Text className="text-[16px] font-semibold">Station Name:</Text>
+        <Text className="text-[16px] text-[#444] mb-2">{name}</Text>
 
-        <Text style={styles.label}>Station ID:</Text>
-        <Text style={styles.value}>{stationId}</Text>
+        <Text className="text-[16px] font-semibold">Station ID:</Text>
+        <Text className="text-[16px] text-[#444]">{stationId}</Text>
       </View>
 
       {/* Time Slots */}
-      <Text style={styles.section}>Select Charging Slot</Text>
-      <View style={styles.slotContainer}>
-        {slots.map((slot) => (
-          <TouchableOpacity
-            key={slot}
-            style={[
-              styles.slot,
-              selectedSlot === slot && styles.selectedSlot,
-            ]}
-            onPress={() => setSelectedSlot(slot)}
-          >
-            <Text
-              style={[
-                styles.slotText,
-                selectedSlot === slot && styles.slotTextSelected,
-              ]}
+      <Text className="text-[20px] font-semibold mb-2">
+        Select Charging Slot
+      </Text>
+      <View className="flex-row flex-wrap -m-1 mb-6">
+        {slots.map((slot) => {
+          const isSelected = selectedSlot === slot;
+          return (
+            <TouchableOpacity
+              key={slot}
+              className={`px-4 py-2 rounded-xl m-1 ${
+                isSelected ? "bg-[#111827]" : "bg-[#E5E7EB]"
+              }`}
+              onPress={() => setSelectedSlot(slot)}
             >
-              {slot}
-            </Text>
-          </TouchableOpacity>
-        ))}
+              <Text
+                className={`text-[15px] ${
+                  isSelected ? "text-white font-semibold" : "text-[#333]"
+                }`}
+              >
+                {slot}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
 
       {/* Proceed to Payment */}
-      <TouchableOpacity style={styles.btn} onPress={handleBooking}>
-        <Text style={styles.btnText}>Proceed to Payment</Text>
+      <TouchableOpacity
+        className="bg-black py-3.5 rounded-xl items-center mt-auto mb-4"
+        onPress={handleBooking}
+      >
+        <Text className="text-white text-[18px] font-semibold">
+          Proceed to Payment
+        </Text>
       </TouchableOpacity>
-
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, paddingTop: 60, backgroundColor: "#f3f4f6" },
-
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 25,
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: "bold",
-    marginLeft: 10,
-  },
-
-  infoCard: {
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 12,
-    elevation: 2,
-    marginBottom: 25,
-  },
-
-  label: { fontSize: 16, fontWeight: "600" },
-  value: { fontSize: 16, color: "#444", marginBottom: 10 },
-
-  section: { fontSize: 20, fontWeight: "600", marginBottom: 10 },
-
-  slotContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10,
-    marginBottom: 25,
-  },
-
-  slot: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 10,
-    backgroundColor: "#E5E7EB",
-  },
-
-  selectedSlot: {
-    backgroundColor: "#111827",
-  },
-
-  slotText: { color: "#333", fontSize: 15 },
-  slotTextSelected: { color: "white", fontWeight: "600" },
-
-  btn: {
-    backgroundColor: "black",
-    padding: 15,
-    borderRadius: 12,
-    alignItems: "center",
-  },
-
-  btnText: { color: "white", fontSize: 18, fontWeight: "600" },
-});

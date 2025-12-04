@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -6,121 +6,52 @@ export default function ScanQRScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center justify-center px-6">
         {/* QR Code Icon */}
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>📷</Text>
+        <View className="w-14 h-14 rounded-full bg-[#e6f3ff] items-center justify-center mb-4">
+          <Text className="text-[32px] text-[#277ddb]">📷</Text>
         </View>
-        <Text style={styles.title}>Scan Charging Station QR</Text>
-        <Text style={styles.subtitle}>
-          To start your charging session, please scan the QR code at your selected station using your phone's camera.
+
+        <Text className="text-[22px] font-bold text-[#277ddb] mb-1 text-center">
+          Scan Charging Station QR
+        </Text>
+        <Text className="text-[15px] text-[#555] text-center leading-6 mb-6">
+          To start your charging session, please scan the QR code at your
+          selected station using your phone&apos;s camera.
         </Text>
 
         {/* Placeholder QR box */}
-        <View style={styles.qrBox}>
-          <Text style={styles.qrText}>QR Camera View</Text>
+        <View className="w-52 h-52 bg-[#e6f3ff] rounded-2xl items-center justify-center mb-9 border-2 border-[#277ddb]">
+          <Text className="text-[17px] font-bold text-[#277ddb] mb-1">
+            QR Camera View
+          </Text>
+          <Text className="text-[11px] text-[#277ddb]">
+            (Camera preview here)
+          </Text>
         </View>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.scanBtn}
+            className="w-full bg-[#277ddb] py-4 rounded-xl mb-3.5 items-center"
             onPress={() => router.push("/(tabs-user)/bookings/connect-cable")}
           >
-            <Text style={styles.scanText}>Simulate Scan</Text>
+            <Text className="text-[16px] text-white font-bold tracking-[0.4px]">
+              Simulate Scan
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline mt-1">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: "#e6f3ff",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 15,
-  },
-  icon: {
-    fontSize: 32,
-    color: "#277ddb",
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#277ddb",
-    marginBottom: 4,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#555",
-    textAlign: "center",
-    lineHeight: 22,
-    marginBottom: 22,
-  },
-  qrBox: {
-    width: 200,
-    height: 200,
-    backgroundColor: "#e6f3ff",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 38,
-    borderWidth: 2,
-    borderColor: "#277ddb",
-  },
-  qrText: {
-    fontSize: 17,
-    color: "#277ddb",
-    fontWeight: "bold",
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  scanBtn: {
-    width: "100%",
-    backgroundColor: "#277ddb",
-    paddingVertical: 15,
-    borderRadius: 10,
-    marginBottom: 13,
-    alignItems: "center",
-  },
-  scanText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-    marginTop: 4,
-  },
-});

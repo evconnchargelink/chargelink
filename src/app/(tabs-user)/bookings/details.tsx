@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -16,136 +16,80 @@ export default function BookingDetailsScreen() {
     bookingId: "ABCD-1234",
   };
 
+  const statusIcon =
+    booking.status === "Completed"
+      ? "✅"
+      : booking.status === "Cancelled"
+      ? "❌"
+      : "📅";
+
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 px-6 items-center justify-center">
         {/* Title & status icon */}
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>
-            {booking.status === "Completed" ? "✅" : booking.status === "Cancelled" ? "❌" : "📅"}
-          </Text>
+        <View className="w-[52px] h-[52px] rounded-full bg-[#e5ffe2] items-center justify-center mb-4">
+          <Text className="text-[28px] text-[#188832]">{statusIcon}</Text>
         </View>
-        <Text style={styles.title}>Booking Details</Text>
-        <Text style={styles.idText}>Booking ID: {booking.bookingId}</Text>
+        <Text className="text-[22px] font-bold text-[#188832] mb-1 text-center">
+          Booking Details
+        </Text>
+        <Text className="text-[13px] text-[#777] mb-4">
+          Booking ID: {booking.bookingId}
+        </Text>
 
         {/* Booking info card */}
-        <View style={styles.card}>
-          <Text style={styles.label}>EV Station</Text>
-          <Text style={styles.value}>{booking.station}</Text>
-          <Text style={styles.label}>Date & Slot</Text>
-          <Text style={styles.value}>{booking.date}, {booking.timeSlot}</Text>
-          <Text style={styles.label}>Vehicle</Text>
-          <Text style={styles.value}>{booking.vehicle}</Text>
-          <Text style={styles.label}>Amount</Text>
-          <Text style={styles.value}>{booking.amount}</Text>
-          <Text style={styles.label}>Status</Text>
-          <Text style={styles.value}>{booking.status}</Text>
+        <View className="w-[94%] bg-white rounded-xl py-4 px-4 mb-9 shadow-md">
+          <Text className="text-[11px] font-semibold text-gray-400 mb-1">
+            Summary
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-2">EV Station</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.station}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Date &amp; Slot</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.date}, {booking.timeSlot}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Vehicle</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.vehicle}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Amount</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.amount}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Status</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.status}
+          </Text>
         </View>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.actionBtn}
+            className="w-full bg-[#188832] py-3.5 rounded-xl mb-4 items-center"
             onPress={() => router.push("/(tabs-user)/search/invoice")}
           >
-            <Text style={styles.actionText}>View Invoice</Text>
+            <Text className="text-[16px] text-white font-bold tracking-[0.4px]">
+              View Invoice
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    padding: 24,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: "#e5ffe2",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 15,
-  },
-  icon: {
-    fontSize: 28,
-    color: "#188832",
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#188832",
-    marginBottom: 3,
-    textAlign: "center",
-  },
-  idText: {
-    fontSize: 13,
-    color: "#777",
-    marginBottom: 14,
-  },
-  card: {
-    width: "94%",
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    paddingVertical: 18,
-    paddingHorizontal: 18,
-    marginBottom: 36,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  label: {
-    fontSize: 14,
-    color: "#999",
-    marginTop: 10,
-  },
-  value: {
-    fontSize: 16,
-    color: "#222",
-    fontWeight: "bold",
-    marginTop: 2,
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  actionBtn: {
-    width: "100%",
-    backgroundColor: "#188832",
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 16,
-    alignItems: "center",
-  },
-  actionText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-  },
-});

@@ -37,15 +37,15 @@ export default function BookingsScreen() {
             <View className="flex-row items-center mb-5">
               <View className="w-12 h-12 rounded-full border-2 border-black" />
               <View className="ml-3">
-                <TouchableOpacity onPress={()=>{
+                <TouchableOpacity onPress={() => {
                   router.replace("/(tabs-user)/profile")
                 }}>
-                <Text className="text-sm font-semibold text-black">
-                  ABC
-                </Text>
-                <Text className="text-[11px] text-gray-500">
-                  abc12@gmail.com
-                </Text>
+                  <Text className="text-sm font-semibold text-black">
+                    ABC
+                  </Text>
+                  <Text className="text-[11px] text-gray-500">
+                    abc12@gmail.com
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -137,29 +137,70 @@ export default function BookingsScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Booking card 1 */}
+        {/* NEW: connectivity buttons */}
+        <View className="mb-5 space-y-3">
+          <TouchableOpacity
+            className="w-full bg-black rounded-2xl px-4 py-3 items-center"
+            onPress={() => router.push("/(tabs-user)/bookings/scan-qr")}
+          >
+            <Text className="text-white text-sm font-semibold">
+              📷 Scan QR to Start Session
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            className="w-full bg-gray-900 rounded-2xl px-4 py-3 items-center"
+            onPress={() => router.push("/(tabs-user)/bookings/charging-live")}
+          >
+            <Text className="text-white text-sm font-semibold">
+              ⚡ View Current Session
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            className="w-full bg-white border border-gray-300 rounded-2xl px-4 py-3 items-center"
+            onPress={() => router.push("/(tabs-user)/search/invoice")}
+          >
+            <Text className="text-sm font-semibold text-gray-800">
+              🧾 Invoice & Ratings
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Existing booking cards or links */}
         <TouchableOpacity
           className="w-full bg-gray-100 rounded-2xl p-4 mb-4"
-          onPress={() => router.push("/(tabs-user)/bookings/details")}
+          onPress={() => router.push("/(tabs-user)/bookings/upcoming")}
         >
           <Text className="text-sm font-semibold text-gray-900 mb-1">
-            Booking details
+            Upcoming bookings
           </Text>
           <Text className="text-xs text-gray-600">
-            Tap to view more information about this charging session.
+            View all your scheduled sessions.
           </Text>
         </TouchableOpacity>
 
-        {/* Booking card 2 */}
         <TouchableOpacity
           className="w-full bg-gray-100 rounded-2xl p-4 mb-4"
-          onPress={() => router.push("/(tabs-user)/bookings/details")}
+          onPress={() => router.push("/(tabs-user)/bookings/past")}
         >
           <Text className="text-sm font-semibold text-gray-900 mb-1">
-            Booking details
+            Past bookings
           </Text>
           <Text className="text-xs text-gray-600">
-            Tap to view more information about this charging session.
+            See completed charging history.
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          className="w-full bg-gray-100 rounded-2xl p-4 mb-4"
+          onPress={() => router.push("/(tabs-user)/bookings/cancelled")}
+        >
+          <Text className="text-sm font-semibold text-gray-900 mb-1">
+            Cancelled bookings
+          </Text>
+          <Text className="text-xs text-gray-600">
+            View sessions that were cancelled.
           </Text>
         </TouchableOpacity>
       </ScrollView>

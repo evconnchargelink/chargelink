@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -12,153 +12,76 @@ export default function ChargingCompleteScreen() {
   const amount = "₹384";
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>✅</Text>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center justify-center px-6">
+        <View className="w-16 h-16 rounded-full bg-[#e5ffe2] items-center justify-center mb-4">
+          <Text className="text-[36px] text-[#21a438]">✅</Text>
         </View>
-        <Text style={styles.success}>Charging Complete!</Text>
-        <Text style={styles.subtitle}>You have successfully finished charging your EV.</Text>
+
+        <Text className="text-2xl font-bold text-[#188832] mb-1">
+          Charging Complete!
+        </Text>
+        <Text className="text-base text-[#555] mb-5 text-center leading-6">
+          You have successfully finished charging your EV.
+        </Text>
 
         {/* Session Summary */}
-        <View style={styles.summaryCard}>
-          <Text style={styles.sessionLabel}>Station</Text>
-          <Text style={styles.sessionValue}>{station}</Text>
-          <Text style={styles.sessionLabel}>Session Time</Text>
-          <Text style={styles.sessionValue}>{sessionTime}</Text>
-          <Text style={styles.sessionLabel}>Energy Used</Text>
-          <Text style={styles.sessionValue}>{energy}</Text>
-          <Text style={styles.sessionLabel}>Amount Paid</Text>
-          <Text style={styles.sessionValue}>{amount}</Text>
+        <View className="w-11/12 bg-white rounded-2xl py-4 px-5 mb-7 shadow-md">
+          <Text className="text-xs font-semibold text-gray-400 mb-1">
+            Session summary
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-2">Station</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {station}
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-3">Session Time</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {sessionTime}
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-3">Energy Used</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {energy}
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-3">Amount Paid</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {amount}
+          </Text>
         </View>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.actionBtn}
+            className="w-full bg-[#188832] py-3.5 rounded-xl mb-3 items-center"
             onPress={() => router.push("/(tabs-user)/search/invoice")}
           >
-            <Text style={styles.actionText}>View Invoice</Text>
+            <Text className="text-base font-bold text-white tracking-[0.4px]">
+              View Invoice
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.actionBtnOutline}
+            className="w-full border-2 border-[#188832] py-3.5 rounded-xl mb-5 items-center"
             onPress={() => router.push("/(tabs-user)/search/rating")}
           >
-            <Text style={styles.actionTextOutline}>Rate Experience</Text>
+            <Text className="text-base font-bold text-[#188832] tracking-[0.4px]">
+              Rate Experience
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="mt-1 items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: "#e5ffe2",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  icon: {
-    fontSize: 36,
-    color: "#21a438",
-  },
-  success: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#188832",
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#555",
-    marginBottom: 18,
-    textAlign: "center",
-    lineHeight: 22,
-  },
-  summaryCard: {
-    width: "90%",
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    paddingVertical: 16,
-    paddingHorizontal: 18,
-    marginBottom: 26,
-    shadowColor: "#000",
-    shadowOpacity: 0.07,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  sessionLabel: {
-    fontSize: 14,
-    color: "#888",
-    marginTop: 11,
-  },
-  sessionValue: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: "#222",
-    marginTop: 2,
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  actionBtn: {
-    width: "100%",
-    backgroundColor: "#188832",
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 12,
-    alignItems: "center",
-  },
-  actionText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  actionBtnOutline: {
-    width: "100%",
-    borderColor: "#188832",
-    borderWidth: 2,
-    paddingVertical: 13,
-    borderRadius: 10,
-    marginBottom: 22,
-    alignItems: "center",
-  },
-  actionTextOutline: {
-    fontSize: 16,
-    color: "#188832",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    marginTop: 6,
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-  },
-});

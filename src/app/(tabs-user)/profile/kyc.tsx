@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   Alert,
@@ -37,93 +36,72 @@ export default function KycScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#f2f2f7" }}>
-    <View style={styles.container}>
-      <Text style={styles.title}>KYC Verification 🔐</Text>
+    <SafeAreaView className="flex-1 bg-[#f2f2f7]">
+      <View className="flex-1 pt-[70px] px-5">
+        <Text className="text-[26px] font-bold text-center">
+          KYC Verification 🔐
+        </Text>
+        <Text className="text-xs text-gray-500 text-center mt-1 mb-4">
+          Verify your identity for faster and secure bookings.
+        </Text>
 
-      <View style={styles.card}>
-        <View style={styles.inputBox}>
-          <Ionicons name="person-outline" size={22} color="#666" />
-          <TextInput
-            style={styles.input}
-            placeholder="Full Name"
-            value={fullName}
-            onChangeText={setFullName}
-          />
+        <View className="bg-white rounded-2xl p-5 shadow-md">
+          <View className="flex-row items-center bg-[#F3F4F6] px-3 py-3 rounded-xl mb-4">
+            <Ionicons name="person-outline" size={22} color="#666" />
+            <TextInput
+              className="flex-1 ml-2.5 text-base text-black"
+              placeholder="Full Name"
+              placeholderTextColor="#9ca3af"
+              value={fullName}
+              onChangeText={setFullName}
+            />
+          </View>
+
+          <View className="flex-row items-center bg-[#F3F4F6] px-3 py-3 rounded-xl mb-4">
+            <Ionicons name="card-outline" size={22} color="#666" />
+            <TextInput
+              className="flex-1 ml-2.5 text-base text-black"
+              placeholder="Aadhaar Number"
+              placeholderTextColor="#9ca3af"
+              keyboardType="number-pad"
+              maxLength={12}
+              value={aadhaar}
+              onChangeText={setAadhaar}
+            />
+          </View>
+
+          <View className="flex-row items-center bg-[#F3F4F6] px-3 py-3 rounded-xl">
+            <Ionicons name="document-text-outline" size={22} color="#666" />
+            <TextInput
+              className="flex-1 ml-2.5 text-base text-black"
+              placeholder="PAN Number"
+              placeholderTextColor="#9ca3af"
+              autoCapitalize="characters"
+              maxLength={10}
+              value={pan}
+              onChangeText={setPan}
+            />
+          </View>
         </View>
 
-        <View style={styles.inputBox}>
-          <Ionicons name="card-outline" size={22} color="#666" />
-          <TextInput
-            style={styles.input}
-            placeholder="Aadhaar Number"
-            keyboardType="number-pad"
-            maxLength={12}
-            value={aadhaar}
-            onChangeText={setAadhaar}
-          />
-        </View>
+        <TouchableOpacity
+          className="bg-black py-3.5 rounded-xl items-center mt-6"
+          onPress={handleSubmit}
+        >
+          <Text className="text-white text-[16px] font-bold">
+            Submit KYC
+          </Text>
+        </TouchableOpacity>
 
-        <View style={styles.inputBox}>
-          <Ionicons name="document-text-outline" size={22} color="#666" />
-          <TextInput
-            style={styles.input}
-            placeholder="PAN Number"
-            autoCapitalize="characters"
-            maxLength={10}
-            value={pan}
-            onChangeText={setPan}
-          />
-        </View>
+        <TouchableOpacity
+          onPress={() => router.navigate("/(tabs-user)/profile")}
+          className="mt-5 items-center"
+        >
+          <Text className="text-[16px] font-medium text-blue-600">
+            ← Back
+          </Text>
+        </TouchableOpacity>
       </View>
-
-      <TouchableOpacity style={styles.saveBtn} onPress={handleSubmit}>
-        <Text style={styles.saveText}>Submit KYC</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => router.navigate("/(tabs-user)/profile")} style={{ marginTop: 20 }}>
-        <Text style={styles.back}>← Back</Text>
-      </TouchableOpacity>
-    </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 70, paddingHorizontal: 20 },
-  title: { fontSize: 26, fontWeight: "bold", marginBottom: 20, textAlign: "center" },
-
-  card: {
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 20,
-    elevation: 4,
-  },
-
-  inputBox: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#F3F4F6",
-    padding: 12,
-    borderRadius: 12,
-    marginBottom: 15,
-  },
-
-  input: {
-    flex: 1,
-    marginLeft: 10,
-    fontSize: 16,
-  },
-
-  saveBtn: {
-    backgroundColor: "black",
-    padding: 15,
-    borderRadius: 12,
-    alignItems: "center",
-    marginTop: 25,
-  },
-
-  saveText: { color: "white", fontSize: 16, fontWeight: "bold" },
-
-  back: { fontSize: 16, color: "blue", fontWeight: "500" },
-});

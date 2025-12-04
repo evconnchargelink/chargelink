@@ -91,6 +91,7 @@ src/api/host.ts
 src/api/payment.ts
 src/api/user.ts
 src/app/_layout.tsx
+src/app/(auth)/_layout.tsx
 src/app/(auth)/basic-details.tsx
 src/app/(auth)/intro.tsx
 src/app/(auth)/login.tsx
@@ -114,6 +115,7 @@ src/app/(tabs-user)/bookings/index.tsx
 src/app/(tabs-user)/bookings/past.tsx
 src/app/(tabs-user)/bookings/scan-qr.tsx
 src/app/(tabs-user)/bookings/upcoming.tsx
+src/app/(tabs-user)/chargers/index.tsx
 src/app/(tabs-user)/home/index.tsx
 src/app/(tabs-user)/map.tsx
 src/app/(tabs-user)/profile/change-password.tsx
@@ -286,9 +288,9 @@ export * from 'expo-router';
 declare module 'expo-router' {
   export namespace ExpoRouter {
     export interface __routes<T extends string | object = string> {
-      hrefInputParams: { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/modal`; params?: Router.UnknownInputParams; } | { pathname: `/test-role`; params?: Router.UnknownInputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/basic-details` | `/basic-details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/intro` | `/intro`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/login` | `/login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/otp` | `/otp`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/signup` | `/signup`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/splash` | `/splash`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/add-charger` | `/add-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/earnings` | `/earnings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/home-login` | `/home-login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/manage-charger` | `/manage-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/pricing-settings` | `/pricing-settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/upload-pictures` | `/upload-pictures`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/map` | `/map`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/cancelled` | `/bookings/cancelled`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-complete` | `/bookings/charging-complete`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-live` | `/bookings/charging-live`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/connect-cable` | `/bookings/connect-cable`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/details` | `/bookings/details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings` | `/bookings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/past` | `/bookings/past`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/scan-qr` | `/bookings/scan-qr`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/upcoming` | `/bookings/upcoming`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/home` | `/home`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/change-password` | `/profile/change-password`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/edit-profile` | `/profile/edit-profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile` | `/profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/kyc` | `/profile/kyc`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/notifications` | `/profile/notifications`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/refer-and-earn` | `/profile/refer-and-earn`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/settings` | `/profile/settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/support` | `/profile/support`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/usage-management` | `/profile/usage-management`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/booking` | `/search/booking`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/charger` | `/search/charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/filter` | `/search/filter`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search` | `/search`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/invoice` | `/search/invoice`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-done` | `/search/payment-done`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-summary` | `/search/payment-summary`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/rating` | `/search/rating`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/results` | `/search/results`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-method` | `/wallet/add-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-money` | `/wallet/add-money`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet` | `/wallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/manage-methods` | `/wallet/manage-methods`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-method` | `/wallet/payment-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/rules-laws` | `/wallet/rules-laws`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/transactions` | `/wallet/transactions`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/card` | `/wallet/payment-screen/card`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet` | `/wallet/payment-screen/chargelinkwallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/upi` | `/wallet/payment-screen/upi`; params?: Router.UnknownInputParams; };
-      hrefOutputParams: { pathname: Router.RelativePathString, params?: Router.UnknownOutputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownOutputParams } | { pathname: `/modal`; params?: Router.UnknownOutputParams; } | { pathname: `/test-role`; params?: Router.UnknownOutputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/basic-details` | `/basic-details`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/intro` | `/intro`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/login` | `/login`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/otp` | `/otp`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/signup` | `/signup`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/splash` | `/splash`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/add-charger` | `/add-charger`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/earnings` | `/earnings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/home-login` | `/home-login`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/manage-charger` | `/manage-charger`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/pricing-settings` | `/pricing-settings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/upload-pictures` | `/upload-pictures`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/map` | `/map`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/cancelled` | `/bookings/cancelled`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-complete` | `/bookings/charging-complete`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-live` | `/bookings/charging-live`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/connect-cable` | `/bookings/connect-cable`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/details` | `/bookings/details`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings` | `/bookings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/past` | `/bookings/past`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/scan-qr` | `/bookings/scan-qr`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/upcoming` | `/bookings/upcoming`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/home` | `/home`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/change-password` | `/profile/change-password`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/edit-profile` | `/profile/edit-profile`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile` | `/profile`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/kyc` | `/profile/kyc`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/notifications` | `/profile/notifications`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/refer-and-earn` | `/profile/refer-and-earn`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/settings` | `/profile/settings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/support` | `/profile/support`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/usage-management` | `/profile/usage-management`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/booking` | `/search/booking`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/charger` | `/search/charger`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/filter` | `/search/filter`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search` | `/search`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/invoice` | `/search/invoice`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-done` | `/search/payment-done`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-summary` | `/search/payment-summary`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/rating` | `/search/rating`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/results` | `/search/results`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-method` | `/wallet/add-method`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-money` | `/wallet/add-money`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet` | `/wallet`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/manage-methods` | `/wallet/manage-methods`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-method` | `/wallet/payment-method`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/rules-laws` | `/wallet/rules-laws`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/transactions` | `/wallet/transactions`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/card` | `/wallet/payment-screen/card`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet` | `/wallet/payment-screen/chargelinkwallet`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/upi` | `/wallet/payment-screen/upi`; params?: Router.UnknownOutputParams; };
-      href: Router.RelativePathString | Router.ExternalPathString | `/modal${`?${string}` | `#${string}` | ''}` | `/test-role${`?${string}` | `#${string}` | ''}` | `/_sitemap${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/basic-details${`?${string}` | `#${string}` | ''}` | `/basic-details${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/intro${`?${string}` | `#${string}` | ''}` | `/intro${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/login${`?${string}` | `#${string}` | ''}` | `/login${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/otp${`?${string}` | `#${string}` | ''}` | `/otp${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/signup${`?${string}` | `#${string}` | ''}` | `/signup${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/splash${`?${string}` | `#${string}` | ''}` | `/splash${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/add-charger${`?${string}` | `#${string}` | ''}` | `/add-charger${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/earnings${`?${string}` | `#${string}` | ''}` | `/earnings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/home-login${`?${string}` | `#${string}` | ''}` | `/home-login${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/manage-charger${`?${string}` | `#${string}` | ''}` | `/manage-charger${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/pricing-settings${`?${string}` | `#${string}` | ''}` | `/pricing-settings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/upload-pictures${`?${string}` | `#${string}` | ''}` | `/upload-pictures${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/map${`?${string}` | `#${string}` | ''}` | `/map${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/cancelled${`?${string}` | `#${string}` | ''}` | `/bookings/cancelled${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/charging-complete${`?${string}` | `#${string}` | ''}` | `/bookings/charging-complete${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/charging-live${`?${string}` | `#${string}` | ''}` | `/bookings/charging-live${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/connect-cable${`?${string}` | `#${string}` | ''}` | `/bookings/connect-cable${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/details${`?${string}` | `#${string}` | ''}` | `/bookings/details${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings${`?${string}` | `#${string}` | ''}` | `/bookings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/past${`?${string}` | `#${string}` | ''}` | `/bookings/past${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/scan-qr${`?${string}` | `#${string}` | ''}` | `/bookings/scan-qr${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/upcoming${`?${string}` | `#${string}` | ''}` | `/bookings/upcoming${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/home${`?${string}` | `#${string}` | ''}` | `/home${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/change-password${`?${string}` | `#${string}` | ''}` | `/profile/change-password${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/edit-profile${`?${string}` | `#${string}` | ''}` | `/profile/edit-profile${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile${`?${string}` | `#${string}` | ''}` | `/profile${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/kyc${`?${string}` | `#${string}` | ''}` | `/profile/kyc${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/notifications${`?${string}` | `#${string}` | ''}` | `/profile/notifications${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/refer-and-earn${`?${string}` | `#${string}` | ''}` | `/profile/refer-and-earn${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/settings${`?${string}` | `#${string}` | ''}` | `/profile/settings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/support${`?${string}` | `#${string}` | ''}` | `/profile/support${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/usage-management${`?${string}` | `#${string}` | ''}` | `/profile/usage-management${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/booking${`?${string}` | `#${string}` | ''}` | `/search/booking${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/charger${`?${string}` | `#${string}` | ''}` | `/search/charger${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/filter${`?${string}` | `#${string}` | ''}` | `/search/filter${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search${`?${string}` | `#${string}` | ''}` | `/search${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/invoice${`?${string}` | `#${string}` | ''}` | `/search/invoice${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/payment-done${`?${string}` | `#${string}` | ''}` | `/search/payment-done${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/payment-summary${`?${string}` | `#${string}` | ''}` | `/search/payment-summary${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/rating${`?${string}` | `#${string}` | ''}` | `/search/rating${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/results${`?${string}` | `#${string}` | ''}` | `/search/results${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/add-method${`?${string}` | `#${string}` | ''}` | `/wallet/add-method${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/add-money${`?${string}` | `#${string}` | ''}` | `/wallet/add-money${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet${`?${string}` | `#${string}` | ''}` | `/wallet${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/manage-methods${`?${string}` | `#${string}` | ''}` | `/wallet/manage-methods${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-method${`?${string}` | `#${string}` | ''}` | `/wallet/payment-method${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/rules-laws${`?${string}` | `#${string}` | ''}` | `/wallet/rules-laws${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/transactions${`?${string}` | `#${string}` | ''}` | `/wallet/transactions${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-screen/card${`?${string}` | `#${string}` | ''}` | `/wallet/payment-screen/card${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet${`?${string}` | `#${string}` | ''}` | `/wallet/payment-screen/chargelinkwallet${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-screen/upi${`?${string}` | `#${string}` | ''}` | `/wallet/payment-screen/upi${`?${string}` | `#${string}` | ''}` | { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/modal`; params?: Router.UnknownInputParams; } | { pathname: `/test-role`; params?: Router.UnknownInputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/basic-details` | `/basic-details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/intro` | `/intro`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/login` | `/login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/otp` | `/otp`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/signup` | `/signup`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/splash` | `/splash`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/add-charger` | `/add-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/earnings` | `/earnings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/home-login` | `/home-login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/manage-charger` | `/manage-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/pricing-settings` | `/pricing-settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/upload-pictures` | `/upload-pictures`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/map` | `/map`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/cancelled` | `/bookings/cancelled`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-complete` | `/bookings/charging-complete`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-live` | `/bookings/charging-live`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/connect-cable` | `/bookings/connect-cable`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/details` | `/bookings/details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings` | `/bookings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/past` | `/bookings/past`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/scan-qr` | `/bookings/scan-qr`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/upcoming` | `/bookings/upcoming`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/home` | `/home`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/change-password` | `/profile/change-password`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/edit-profile` | `/profile/edit-profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile` | `/profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/kyc` | `/profile/kyc`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/notifications` | `/profile/notifications`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/refer-and-earn` | `/profile/refer-and-earn`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/settings` | `/profile/settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/support` | `/profile/support`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/usage-management` | `/profile/usage-management`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/booking` | `/search/booking`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/charger` | `/search/charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/filter` | `/search/filter`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search` | `/search`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/invoice` | `/search/invoice`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-done` | `/search/payment-done`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-summary` | `/search/payment-summary`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/rating` | `/search/rating`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/results` | `/search/results`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-method` | `/wallet/add-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-money` | `/wallet/add-money`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet` | `/wallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/manage-methods` | `/wallet/manage-methods`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-method` | `/wallet/payment-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/rules-laws` | `/wallet/rules-laws`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/transactions` | `/wallet/transactions`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/card` | `/wallet/payment-screen/card`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet` | `/wallet/payment-screen/chargelinkwallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/upi` | `/wallet/payment-screen/upi`; params?: Router.UnknownInputParams; };
+      hrefInputParams: { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/modal`; params?: Router.UnknownInputParams; } | { pathname: `/test-role`; params?: Router.UnknownInputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/basic-details` | `/basic-details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/intro` | `/intro`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/login` | `/login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/otp` | `/otp`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/signup` | `/signup`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/splash` | `/splash`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/add-charger` | `/add-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/earnings` | `/earnings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/home-login` | `/home-login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/manage-charger` | `/manage-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/pricing-settings` | `/pricing-settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/upload-pictures` | `/upload-pictures`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/map` | `/map`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/cancelled` | `/bookings/cancelled`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-complete` | `/bookings/charging-complete`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-live` | `/bookings/charging-live`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/connect-cable` | `/bookings/connect-cable`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/details` | `/bookings/details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings` | `/bookings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/past` | `/bookings/past`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/scan-qr` | `/bookings/scan-qr`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/upcoming` | `/bookings/upcoming`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/chargers` | `/chargers`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/home` | `/home`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/change-password` | `/profile/change-password`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/edit-profile` | `/profile/edit-profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile` | `/profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/kyc` | `/profile/kyc`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/notifications` | `/profile/notifications`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/refer-and-earn` | `/profile/refer-and-earn`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/settings` | `/profile/settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/support` | `/profile/support`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/usage-management` | `/profile/usage-management`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/booking` | `/search/booking`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/charger` | `/search/charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/filter` | `/search/filter`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search` | `/search`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/invoice` | `/search/invoice`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-done` | `/search/payment-done`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-summary` | `/search/payment-summary`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/rating` | `/search/rating`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/results` | `/search/results`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-method` | `/wallet/add-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-money` | `/wallet/add-money`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet` | `/wallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/manage-methods` | `/wallet/manage-methods`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-method` | `/wallet/payment-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/rules-laws` | `/wallet/rules-laws`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/transactions` | `/wallet/transactions`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/card` | `/wallet/payment-screen/card`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet` | `/wallet/payment-screen/chargelinkwallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/upi` | `/wallet/payment-screen/upi`; params?: Router.UnknownInputParams; };
+      hrefOutputParams: { pathname: Router.RelativePathString, params?: Router.UnknownOutputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownOutputParams } | { pathname: `/modal`; params?: Router.UnknownOutputParams; } | { pathname: `/test-role`; params?: Router.UnknownOutputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/basic-details` | `/basic-details`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/intro` | `/intro`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/login` | `/login`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/otp` | `/otp`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/signup` | `/signup`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(auth)'}/splash` | `/splash`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/add-charger` | `/add-charger`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/earnings` | `/earnings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/home-login` | `/home-login`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/manage-charger` | `/manage-charger`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/pricing-settings` | `/pricing-settings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-host)'}/upload-pictures` | `/upload-pictures`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/map` | `/map`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/cancelled` | `/bookings/cancelled`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-complete` | `/bookings/charging-complete`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-live` | `/bookings/charging-live`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/connect-cable` | `/bookings/connect-cable`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/details` | `/bookings/details`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings` | `/bookings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/past` | `/bookings/past`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/scan-qr` | `/bookings/scan-qr`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/bookings/upcoming` | `/bookings/upcoming`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/chargers` | `/chargers`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/home` | `/home`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/change-password` | `/profile/change-password`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/edit-profile` | `/profile/edit-profile`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile` | `/profile`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/kyc` | `/profile/kyc`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/notifications` | `/profile/notifications`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/refer-and-earn` | `/profile/refer-and-earn`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/settings` | `/profile/settings`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/support` | `/profile/support`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/profile/usage-management` | `/profile/usage-management`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/booking` | `/search/booking`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/charger` | `/search/charger`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/filter` | `/search/filter`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search` | `/search`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/invoice` | `/search/invoice`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-done` | `/search/payment-done`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-summary` | `/search/payment-summary`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/rating` | `/search/rating`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/search/results` | `/search/results`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-method` | `/wallet/add-method`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-money` | `/wallet/add-money`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet` | `/wallet`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/manage-methods` | `/wallet/manage-methods`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-method` | `/wallet/payment-method`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/rules-laws` | `/wallet/rules-laws`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/transactions` | `/wallet/transactions`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/card` | `/wallet/payment-screen/card`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet` | `/wallet/payment-screen/chargelinkwallet`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/upi` | `/wallet/payment-screen/upi`; params?: Router.UnknownOutputParams; };
+      href: Router.RelativePathString | Router.ExternalPathString | `/modal${`?${string}` | `#${string}` | ''}` | `/test-role${`?${string}` | `#${string}` | ''}` | `/_sitemap${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/basic-details${`?${string}` | `#${string}` | ''}` | `/basic-details${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/intro${`?${string}` | `#${string}` | ''}` | `/intro${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/login${`?${string}` | `#${string}` | ''}` | `/login${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/otp${`?${string}` | `#${string}` | ''}` | `/otp${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/signup${`?${string}` | `#${string}` | ''}` | `/signup${`?${string}` | `#${string}` | ''}` | `${'/(auth)'}/splash${`?${string}` | `#${string}` | ''}` | `/splash${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/add-charger${`?${string}` | `#${string}` | ''}` | `/add-charger${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/earnings${`?${string}` | `#${string}` | ''}` | `/earnings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/home-login${`?${string}` | `#${string}` | ''}` | `/home-login${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/manage-charger${`?${string}` | `#${string}` | ''}` | `/manage-charger${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/pricing-settings${`?${string}` | `#${string}` | ''}` | `/pricing-settings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-host)'}/upload-pictures${`?${string}` | `#${string}` | ''}` | `/upload-pictures${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/map${`?${string}` | `#${string}` | ''}` | `/map${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/cancelled${`?${string}` | `#${string}` | ''}` | `/bookings/cancelled${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/charging-complete${`?${string}` | `#${string}` | ''}` | `/bookings/charging-complete${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/charging-live${`?${string}` | `#${string}` | ''}` | `/bookings/charging-live${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/connect-cable${`?${string}` | `#${string}` | ''}` | `/bookings/connect-cable${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/details${`?${string}` | `#${string}` | ''}` | `/bookings/details${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings${`?${string}` | `#${string}` | ''}` | `/bookings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/past${`?${string}` | `#${string}` | ''}` | `/bookings/past${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/scan-qr${`?${string}` | `#${string}` | ''}` | `/bookings/scan-qr${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/bookings/upcoming${`?${string}` | `#${string}` | ''}` | `/bookings/upcoming${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/chargers${`?${string}` | `#${string}` | ''}` | `/chargers${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/home${`?${string}` | `#${string}` | ''}` | `/home${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/change-password${`?${string}` | `#${string}` | ''}` | `/profile/change-password${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/edit-profile${`?${string}` | `#${string}` | ''}` | `/profile/edit-profile${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile${`?${string}` | `#${string}` | ''}` | `/profile${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/kyc${`?${string}` | `#${string}` | ''}` | `/profile/kyc${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/notifications${`?${string}` | `#${string}` | ''}` | `/profile/notifications${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/refer-and-earn${`?${string}` | `#${string}` | ''}` | `/profile/refer-and-earn${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/settings${`?${string}` | `#${string}` | ''}` | `/profile/settings${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/support${`?${string}` | `#${string}` | ''}` | `/profile/support${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/profile/usage-management${`?${string}` | `#${string}` | ''}` | `/profile/usage-management${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/booking${`?${string}` | `#${string}` | ''}` | `/search/booking${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/charger${`?${string}` | `#${string}` | ''}` | `/search/charger${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/filter${`?${string}` | `#${string}` | ''}` | `/search/filter${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search${`?${string}` | `#${string}` | ''}` | `/search${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/invoice${`?${string}` | `#${string}` | ''}` | `/search/invoice${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/payment-done${`?${string}` | `#${string}` | ''}` | `/search/payment-done${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/payment-summary${`?${string}` | `#${string}` | ''}` | `/search/payment-summary${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/rating${`?${string}` | `#${string}` | ''}` | `/search/rating${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/search/results${`?${string}` | `#${string}` | ''}` | `/search/results${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/add-method${`?${string}` | `#${string}` | ''}` | `/wallet/add-method${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/add-money${`?${string}` | `#${string}` | ''}` | `/wallet/add-money${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet${`?${string}` | `#${string}` | ''}` | `/wallet${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/manage-methods${`?${string}` | `#${string}` | ''}` | `/wallet/manage-methods${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-method${`?${string}` | `#${string}` | ''}` | `/wallet/payment-method${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/rules-laws${`?${string}` | `#${string}` | ''}` | `/wallet/rules-laws${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/transactions${`?${string}` | `#${string}` | ''}` | `/wallet/transactions${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-screen/card${`?${string}` | `#${string}` | ''}` | `/wallet/payment-screen/card${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet${`?${string}` | `#${string}` | ''}` | `/wallet/payment-screen/chargelinkwallet${`?${string}` | `#${string}` | ''}` | `${'/(tabs-user)'}/wallet/payment-screen/upi${`?${string}` | `#${string}` | ''}` | `/wallet/payment-screen/upi${`?${string}` | `#${string}` | ''}` | { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/modal`; params?: Router.UnknownInputParams; } | { pathname: `/test-role`; params?: Router.UnknownInputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/basic-details` | `/basic-details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/intro` | `/intro`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/login` | `/login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/otp` | `/otp`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/signup` | `/signup`; params?: Router.UnknownInputParams; } | { pathname: `${'/(auth)'}/splash` | `/splash`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/add-charger` | `/add-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/earnings` | `/earnings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/home-login` | `/home-login`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/manage-charger` | `/manage-charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/pricing-settings` | `/pricing-settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-host)'}/upload-pictures` | `/upload-pictures`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/map` | `/map`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/cancelled` | `/bookings/cancelled`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-complete` | `/bookings/charging-complete`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/charging-live` | `/bookings/charging-live`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/connect-cable` | `/bookings/connect-cable`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/details` | `/bookings/details`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings` | `/bookings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/past` | `/bookings/past`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/scan-qr` | `/bookings/scan-qr`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/bookings/upcoming` | `/bookings/upcoming`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/chargers` | `/chargers`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/home` | `/home`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/change-password` | `/profile/change-password`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/edit-profile` | `/profile/edit-profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile` | `/profile`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/kyc` | `/profile/kyc`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/notifications` | `/profile/notifications`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/refer-and-earn` | `/profile/refer-and-earn`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/settings` | `/profile/settings`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/support` | `/profile/support`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/profile/usage-management` | `/profile/usage-management`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/booking` | `/search/booking`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/charger` | `/search/charger`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/filter` | `/search/filter`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search` | `/search`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/invoice` | `/search/invoice`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-done` | `/search/payment-done`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/payment-summary` | `/search/payment-summary`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/rating` | `/search/rating`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/search/results` | `/search/results`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-method` | `/wallet/add-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/add-money` | `/wallet/add-money`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet` | `/wallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/manage-methods` | `/wallet/manage-methods`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-method` | `/wallet/payment-method`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/rules-laws` | `/wallet/rules-laws`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/transactions` | `/wallet/transactions`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/card` | `/wallet/payment-screen/card`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/chargelinkwallet` | `/wallet/payment-screen/chargelinkwallet`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs-user)'}/wallet/payment-screen/upi` | `/wallet/payment-screen/upi`; params?: Router.UnknownInputParams; };
     }
   }
 }
@@ -468,6 +470,455 @@ module.exports = withNativeWind(config, {
   },
   "private": true
 }
+</file>
+
+<file path="README.md">
+# ⚡ EV Charging Station Platform
+
+A comprehensive EV charging station booking platform with web and mobile applications. Find, book, and pay for charging stations in real-time.
+
+## 📁 Project Structure
+
+```
+├── web/          # React web application
+├── app/          # React Native mobile app (Expo)
+├── server/       # Express backend server
+└── README.md
+```
+
+## 🛠️ Tech Stack
+
+### Web (`/web`)
+- React + TypeScript
+- Redux
+- Tailwind CSS
+- Material UI
+- Google Maps SDK
+
+### Mobile App (`/app`)
+- React Native + TypeScript
+- Expo Go
+- NativeWind
+- Google Maps React Native SDK
+
+### Server (`/server`)
+- Express + TypeScript
+- MongoDB / PostgreSQL
+- JWT Authentication
+- Payment Gateway Integration
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+- MongoDB or PostgreSQL
+- Expo CLI (for mobile development)
+
+### Environment Variables
+
+Create `.env` files in each directory:
+
+#### `/server/.env`
+```env
+PORT=8000
+NODE_ENV=development
+MONGO_URI=your_mongo_uri
+ACCESS_TOKEN_SECRET=your_access_token_secret
+REFRESH_TOKEN_SECRET=your_refresh_token_secret
+
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+PAYMENT_GATEWAY_KEY=your_payment_gateway_key
+PAYMENT_GATEWAY_SECRET=your_payment_gateway_secret
+
+ELEVEN_LABS_API_KEY=your_elevenlabs_key
+GCP_PROJECT_ID=your_gcp_project_id
+```
+
+#### `/web/.env`
+```env
+VITE_BACKEND_BASE_URL=http://localhost:8000/api/v1
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+VITE_PAYMENT_GATEWAY_KEY=your_payment_gateway_key
+```
+
+#### `/app/.env`
+```env
+EXPO_PUBLIC_API_URL=http://localhost:8000/api/v1
+EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+EXPO_PUBLIC_PAYMENT_GATEWAY_KEY=your_payment_gateway_key
+```
+
+## 📦 Installation
+
+### Install all dependencies
+
+```bash
+# Install server dependencies
+cd server
+npm install
+
+# Install web dependencies
+cd ../web
+npm install
+
+# Install mobile app dependencies
+cd ../app
+npm install
+```
+
+## 🏃‍♂️ Running the Application
+
+### Start Backend Server
+
+```bash
+cd server
+npm run dev
+```
+
+Server will run on `http://localhost:5000`
+
+### Start Web Application
+
+```bash
+cd web
+npm start
+```
+
+Web app will run on `http://localhost:3000`
+
+### Start Mobile Application
+
+```bash
+cd app
+npx expo start
+```
+
+Scan QR code with Expo Go app on your phone or press:
+- `a` - Open on Android emulator
+- `i` - Open on iOS simulator
+- `w` - Open in web browser
+
+## 📝 Available Scripts
+
+### Server (`/server`)
+
+```bash
+npm run dev          # Start development server with hot reload
+npm run build        # Build TypeScript to JavaScript
+npm start            # Start production server
+npm run test         # Run tests
+npm run lint         # Run ESLint
+```
+
+### Web (`/web`)
+
+```bash
+npm start            # Start development server
+npm run build        # Build for production
+npm run test         # Run tests
+npm run lint         # Run ESLint
+```
+
+### App (`/app`)
+
+```bash
+npx expo start       # Start Expo development server
+npm run android      # Start on Android
+npm run ios          # Start on iOS
+npm run web          # Start on web
+npm run test         # Run tests
+```
+
+
+## 🚀 Deployment
+
+### Backend (Server)
+
+```bash
+cd server
+npm run build
+npm start
+```
+
+Deploy to: GCP, AWS, Heroku, Railway, etc.
+
+### Web Application
+
+```bash
+cd web
+npm run build
+```
+
+Deploy `build/` folder to: Vercel, Netlify, AWS S3, etc.
+
+### Mobile Application
+
+```bash
+cd app
+eas build --platform android
+eas build --platform ios
+```
+
+Follow Expo EAS Build documentation for app store deployment.
+</file>
+
+<file path="server/src/db/connect.db.ts">
+import mongoose from "mongoose";
+import { config } from "../env.config";
+
+let db = null;
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(config.MONGO_URI as string);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Error: ${error.message}`);
+    } else {
+      console.error(`Unexpected error: ${error}`);
+    }
+
+    process.exit(1);
+  }
+};
+
+export default connectDB;
+</file>
+
+<file path="server/src/middlewares/errorHandler.middleware.ts">
+import { StatusCodes } from "http-status-codes";
+import AppError from "../utils/appError";
+
+const errorHandlerMiddleware = (
+  err: any,
+  req: any,
+  res: any,
+  next: () => void
+) => {
+  console.log("---errorHandlerMiddleware---");
+  console.log(err);
+  let error: AppError;
+
+  if (err instanceof AppError) {
+    error = err;
+  } else {
+    error = new AppError(
+      err.message || "Something went wrong, try again later",
+      err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+
+  if (err.name === "ValidationError") {
+    const message = Object.values(err.errors)
+      .map((item: any) => item.message)
+      .join(",");
+    error = new AppError(message, StatusCodes.BAD_REQUEST);
+  }
+
+  if (err.code && err.code === 11000) {
+    error = new AppError(
+      `${Object.keys(err.keyValue)} field must be unique`,
+      StatusCodes.BAD_REQUEST
+    );
+  }
+
+  res.status(error.statusCode).json({
+    status: error.status,
+    message: error.message,
+  });
+};
+
+export default errorHandlerMiddleware;
+</file>
+
+<file path="server/src/middlewares/notFound.middleware.ts">
+import { Request, Response, NextFunction } from 'express';
+
+const notFoundMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  console.log("---notFoundMiddleware---");
+  const error = new Error(`Not Found - ${req.originalUrl}`);
+  res.status(404);
+  next(error);
+};
+
+export default notFoundMiddleware;
+</file>
+
+<file path="server/src/models/provider.model.ts">
+import { Document, Model, Schema, model } from "mongoose";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import { config } from "../env.config";
+import { AUTH_ROLES } from "../types/role.type";
+
+dotenv.config();
+
+export interface IProvider extends Document {
+  _id: Schema.Types.ObjectId;
+  name: string;
+  email: string;
+  isEmailVerified: boolean;
+  password: string;
+  otp: number;
+  refreshToken: string;
+  isPasswordCorrect(password: string): Promise<boolean>;
+  generateAccessToken(): string;
+  generateRefreshToken(rememberMe: boolean): string;
+}
+
+// Schema for the provider database
+const providerSchema: Schema<IProvider> = new Schema<IProvider>({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  otp: {
+    type: Number,
+  },
+  isEmailVerified: Boolean,
+  password: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+
+  refreshToken: {
+    type: String,
+    trim: true,
+  },
+} as const);
+
+providerSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  try {
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+  } catch (error: any) {
+    next(error);
+  }
+});
+
+providerSchema.methods.isPasswordCorrect = async function (password: string) {
+  return await bcrypt.compare(password, this.password);
+};
+
+// schema method to generate a access token
+providerSchema.methods.generateAccessToken = function () {
+  return jwt.sign(
+    {
+      _id: this._id,
+      email: this.email,
+      role: AUTH_ROLES.PROVIDER,
+    },
+    config.ACCESS_TOKEN_SECRET as string,
+    {
+      expiresIn: "1h",
+    }
+  );
+};
+
+// schema method to generate a refresh token
+providerSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
+  return jwt.sign(
+    {
+      _id: this._id,
+      role: AUTH_ROLES.PROVIDER,
+    },
+    config.REFRESH_TOKEN_SECRET as string,
+    {
+      expiresIn: rememberMe ? "20d" : "7d",
+    }
+  );
+};
+
+// Model for the provider
+export const ProviderModel: Model<IProvider> = model<IProvider>("provider", providerSchema);
+</file>
+
+<file path="server/src/routes/v1/provider/index.ts">
+import { Router } from "express";
+
+const router = Router();
+
+
+
+export default router;
+</file>
+
+<file path="server/src/services/email/controllers/resend.controller.ts">
+import { Request, Response } from "express";
+import { render } from "@react-email/components";
+import OtpTemplate from "../templates/otp.template";
+import React from "react";
+import asyncHandler from "../../../utils/async.handler";
+
+export const resendOTPTemplate = asyncHandler(async (req: Request, res: Response) => {
+  const html = await render(
+    React.createElement(OtpTemplate, {
+      otp: "123456",
+      description: "Your OTP is 123456",
+      email: "ronakpaul1@gmail.com",
+      name: "Ronak",
+    })
+  );
+
+
+  res.set("Content-Type", "text/html");
+  res.send(html);
+});
+</file>
+
+<file path="server/src/types/role.type.ts">
+export enum AUTH_ROLES {
+  ADMIN = "ADMIN",
+  USER = "USER",
+  PROVIDER = "PROVIDER",
+}
+</file>
+
+<file path="server/src/utils/appError.ts">
+export default class AppError extends Error {
+    statusCode: number;
+    status: string;
+    isOperational: boolean;
+
+    constructor(message: string, statusCode: number) {
+        super(message);
+        this.statusCode = statusCode;
+        this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+        this.isOperational = true;
+
+        Error.captureStackTrace(this, this.constructor);
+    }
+}
+</file>
+
+<file path="server/src/utils/async.handler.ts">
+import { Request, Response, NextFunction } from 'express';
+
+const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<any>) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    fn(req, res, next).catch(next);
+  };
+};
+
+export default asyncHandler;
+</file>
+
+<file path="server/src/utils/otp.util.ts">
+export const generateOtp = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
 </file>
 
 <file path="src/.gitignore">
@@ -674,22 +1125,20 @@ export type UserProfile = {
 
 <file path="src/app/_layout.tsx">
 import "nativewind/dist/tailwind";
+import "../../global.css";
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-
+import { Redirect } from 'expo-router';
 import { useColorScheme } from '../hooks/use-color-scheme';
-
-// export const unstable_settings = {
-//   anchor: '(tabs-user)',
-// };
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Redirect href="/(auth)/splash" />
       <Stack>
         <Stack.Screen name="(tabs-user)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs-host)" options={{ headerShown: false }} />
@@ -701,9 +1150,38 @@ export default function RootLayout() {
 }
 </file>
 
+<file path="src/app/(auth)/_layout.tsx">
+import { Stack } from "expo-router";
+
+export default function AuthLayout() {
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false, // hides the default "(auth)" header
+      }}
+    >
+      <Stack.Screen name="splash" />
+      <Stack.Screen name="intro" />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="signup" />
+      <Stack.Screen name="otp" />
+      <Stack.Screen name="basic-details" />
+    </Stack>
+  );
+}
+</file>
+
 <file path="src/app/(auth)/basic-details.tsx">
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 
@@ -718,218 +1196,257 @@ export default function BasicDetails() {
       Alert.alert("Error", "Please fill all details");
       return;
     }
-    await AsyncStorage.setItem("role", role);  // SAVE ROLE HERE
-    // ROLE WISE REDIRECT ✔
-    if (role === "driver"){
+    await AsyncStorage.setItem("role", role);
+    if (role === "driver") {
       router.push("/(tabs-user)/home");
-    }
-    else if(role==="host"){
+    } else if (role === "host") {
       router.push("/(tabs-host)/home-login");
-    }
-    else{
+    } else {
       Alert.alert("Error", "Invalid role selection!");
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Almost Done 🙌</Text>
-      <Text style={styles.subtitle}>Complete your profile</Text>
+    <KeyboardAvoidingView
+      className="flex-1 bg-white"
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <View className="flex-1 justify-center px-6">
+        {/* Header */}
+        <View className="mb-8">
+          <Text className="text-3xl font-bold text-center text-black">
+            Almost Done 🙌
+          </Text>
+          <Text className="text-center mt-2 text-gray-500">
+            Complete your profile
+          </Text>
+        </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Full Name"
-        placeholderTextColor="#b0bec5"
-        onChangeText={setFullname}
-      />
+        {/* Card container */}
+        <View className="bg-white border border-gray-700 rounded-2xl px-4 py-5">
+          {/* Full name */}
+          <View className="mb-4">
+            <Text className="text-xs text-gray-500 mb-1">Full name</Text>
+            <TextInput
+              className="bg-white px-3 py-3 rounded-xl border border-gray-700 text-black"
+              placeholder="Full Name"
+              placeholderTextColor="#b0bec5"
+              onChangeText={setFullname}
+            />
+          </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Age"
-        placeholderTextColor="#b0bec5"
-        keyboardType="numeric"
-        onChangeText={setAge}
-      />
+          {/* Age */}
+          <View className="mb-5">
+            <Text className="text-xs text-gray-500 mb-1">Age</Text>
+            <TextInput
+              className="bg-white px-3 py-3 rounded-xl border border-gray-700 text-black"
+              placeholder="Age"
+              placeholderTextColor="#b0bec5"
+              keyboardType="numeric"
+              onChangeText={setAge}
+            />
+          </View>
 
-      {/* ROLE CONFIRM  (Can Change Again) */}
-      <TouchableOpacity
-        style={[styles.roleBtn, role === "driver" && styles.active]}
-        onPress={() => setRole("driver")}
-      >
-        <Text style={[styles.roleText, role === "driver" && { color: "white" }]}>Driver</Text>
-      </TouchableOpacity>
+          {/* Role selector */}
+          <Text className="text-xs text-gray-500 mb-2">
+            Choose how you want to use ChargeLink
+          </Text>
+          <View className="flex-row gap-3 mb-5">
+            <TouchableOpacity
+              className={`flex-1 px-4 py-3 rounded-xl border-2 border-gray-700 items-center ${
+                role === "driver" ? "bg-black border-green-500" : "bg-white"
+              }`}
+              onPress={() => setRole("driver")}
+            >
+              <Text
+                className={`font-bold ${
+                  role === "driver" ? "text-white" : "text-black"
+                }`}
+              >
+                Driver
+              </Text>
+            </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.roleBtn, role === "host" && styles.active]}
-        onPress={() => setRole("host")}
-      >
-        <Text style={[styles.roleText, role === "host" && { color: "white" }]}>Host</Text>
-      </TouchableOpacity>
+            <TouchableOpacity
+              className={`flex-1 px-4 py-3 rounded-xl border-2 border-gray-700 items-center ${
+                role === "host" ? "bg-black border-green-500" : "bg-white"
+              }`}
+              onPress={() => setRole("host")}
+            >
+              <Text
+                className={`font-bold ${
+                  role === "host" ? "text-white" : "text-black"
+                }`}
+              >
+                Host
+              </Text>
+            </TouchableOpacity>
+          </View>
 
-      {/* SUBMIT */}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Continue ➜</Text>
-      </TouchableOpacity>
-    </View>
+          {/* Submit */}
+          <TouchableOpacity
+            className="bg-white px-4 py-3 rounded-xl items-center border-2 border-gray-700"
+            onPress={handleSubmit}
+          >
+            <Text className="text-black text-base font-bold">
+              Continue ➜
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "white", justifyContent: "center", padding: 25 },
-  title: { fontSize: 28, fontWeight: "bold", textAlign: "center", color: "black" },
-  subtitle: { textAlign: "center", marginBottom: 20, color: "#6F6F6F" },
-
-  input: {
-    backgroundColor: "white",
-    padding: 14,
-    borderRadius: 10,
-    borderWidth: 1.5,
-    borderColor: "#4A4A4A",
-    marginBottom: 15,
-    color: "black",
-  },
-
-  roleBtn: {
-    padding: 14, borderWidth: 1.5, borderColor: "#4A4A4A",
-    borderRadius: 10, marginBottom: 12, alignItems: "center",
-  },
-  active: { backgroundColor: "black", borderColor: "#4A9032" },
-  roleText: { color: "black", fontWeight: "bold" },
-
-  button: {
-    backgroundColor: "white",
-    padding: 14,
-    borderRadius: 10,
-    alignItems: "center",
-    borderWidth: 2,
-    borderColor: "#4A4A4A",
-  },
-  buttonText: { color: "black", fontSize: 16, fontWeight: "bold" },
-});
 </file>
 
 <file path="src/app/(auth)/intro.tsx">
 import React, { useRef, useState } from "react";
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
 const { width } = Dimensions.get("window");
+
 const slides = [
-    {
-        id: "1",
-        title: "Find Nearest EV Chargers",
-        description: "Locate and book charging stations in seconds.",
-        image: require("../../assets/images/ev-image.jpg"),
-    },
-    {
-        id: "2",
-        title: "Easy & Secure Payment",
-        description: "Pay smoothly using multiple payment options.",
-        image: require("../../assets/images/ev-image.jpg"),
-    },
-    {
-        id: "3",
-        title: "Grow as a Host",
-        description: "Add your charger & start earning with EV users.",
-        image: require("../../assets/images/ev-image.jpg"),
-    },
+  {
+    id: "1",
+    title: "Find Nearest EV Chargers",
+    description: "Locate and book charging stations in seconds.",
+    image: require("../../assets/images/ev-image.jpg"),
+  },
+  {
+    id: "2",
+    title: "Easy & Secure Payment",
+    description: "Pay smoothly using multiple payment options.",
+    image: require("../../assets/images/ev-image.jpg"),
+  },
+  {
+    id: "3",
+    title: "Grow as a Host",
+    description: "Add your charger & start earning with EV users.",
+    image: require("../../assets/images/ev-image.jpg"),
+  },
 ];
 
 export default function Intro() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const flatListRef = useRef<FlatList>(null);
-    const router = useRouter();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const flatListRef = useRef<FlatList>(null);
+  const router = useRouter();
 
-    const handleNext = () => {
-        if (currentIndex < slides.length - 1) {
-            flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
-        } else {
-            router.replace("/(auth)/login"); // After last slide → login page
-        }
-    };
+  const handleNext = () => {
+    if (currentIndex < slides.length - 1) {
+      flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
+    } else {
+      router.replace("/(auth)/login");
+    }
+  };
 
-    const handleSkip = () => {
-        router.replace("/(auth)/login");
-    };
+  const handleSkip = () => {
+    router.replace("/(auth)/login");
+  };
 
-    const onScroll = (e: any) => {
-        const index = Math.round(e.nativeEvent.contentOffset.x / width);
-        setCurrentIndex(index);
-    };
+  const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const index = Math.round(e.nativeEvent.contentOffset.x / width);
+    setCurrentIndex(index);
+  };
 
-    return (
-        <View style={styles.container}>
-            <FlatList
-                data={slides}
-                ref={flatListRef}
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={false}
-                onScroll={onScroll}
-                renderItem={({ item }) => (
-                    <View style={styles.slide}>
-                        <Image source={item.image} style={styles.image} resizeMode="contain" />
-                        <Text style={styles.title}>{item.title}</Text>
-                        <Text style={styles.description}>{item.description}</Text>
-                    </View>
-                )}
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="flex-1">
+        <FlatList
+          data={slides}
+          ref={flatListRef}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onScroll={onScroll}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View
+              style={{ width }}
+              className="items-center px-5 pt-6"
+            >
+              <Image
+                source={item.image}
+                resizeMode="contain"
+                className="w-4/5 h-64 mt-8"
+              />
+              <Text className="mt-8 text-2xl font-bold text-center text-black">
+                {item.title}
+              </Text>
+              <Text className="mt-3 text-base text-center text-gray-600">
+                {item.description}
+              </Text>
+            </View>
+          )}
+        />
+
+        {/* Dots - slightly above bottom */}
+        <View className="flex-row justify-center mb-6">
+          {slides.map((_, i) => (
+            <View
+              key={i}
+              className={`mx-1 rounded-full ${
+                currentIndex === i
+                  ? "w-2.5 h-2.5 bg-black"
+                  : "w-2 h-2 bg-gray-300"
+              }`}
             />
-
-            {/* DOT INDICATORS */}
-            <View style={styles.dotsContainer}>
-                {slides.map((_, i) => (
-                    <View key={i} style={[styles.dot, currentIndex === i && styles.activeDot]} />
-                ))}
-            </View>
-
-            {/* BUTTONS */}
-            <View style={styles.buttonContainer}>
-                {currentIndex < slides.length - 1 ? (
-                    <>
-                        <TouchableOpacity onPress={handleSkip}>
-                            <Text style={styles.skip}>Skip</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.nextBtn} onPress={handleNext}>
-                            <Text style={styles.nextText}>Next →</Text>
-                        </TouchableOpacity>
-                    </>
-                ) : (
-                    <TouchableOpacity style={styles.startBtn} onPress={handleNext}>
-                        <Text style={styles.startText}>Get Started ⚡</Text>
-                    </TouchableOpacity>
-                )}
-            </View>
+          ))}
         </View>
-    );
-}
 
-const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: "white" },
-    slide: { width, alignItems: "center", padding: 20 },
-    image: { width: "80%", height: 250, marginTop: 40 },
-    title: { fontSize: 24, fontWeight: "bold", marginTop: 30, textAlign: "center" },
-    description: { fontSize: 16, color: "#666", marginTop: 10, textAlign: "center" },
-    dotsContainer: { flexDirection: "row", justifyContent: "center", marginTop: 20 },
-    dot: {
-        width: 8, height: 8, borderRadius: 4, backgroundColor: "#ccc", marginHorizontal: 5,
-    },
-    activeDot: { backgroundColor: "black", width: 10, height: 10 },
-    buttonContainer: {
-        position: "absolute", bottom: 40, width: "100%", flexDirection: "row",
-        justifyContent: "space-between", paddingHorizontal: 30,
-    },
-    skip: { fontSize: 16, color: "#999" },
-    nextBtn: { backgroundColor: "black", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 },
-    nextText: { color: "white", fontSize: 16 },
-    startBtn: { backgroundColor: "black", paddingVertical: 14, borderRadius: 12, width: "70%", alignSelf: "center" },
-    startText: { color: "white", textAlign: "center", fontSize: 16, fontWeight: "bold" },
-});
+        {/* Buttons - just above safe-area bottom */}
+        <View className="pb-4 px-8 flex-row justify-between">
+          {currentIndex < slides.length - 1 ? (
+            <>
+              <TouchableOpacity onPress={handleSkip}>
+                <Text className="text-base text-gray-400">Skip</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={handleNext}
+                className="bg-black px-6 py-2.5 rounded-xl"
+              >
+                <Text className="text-base text-white">Next →</Text>
+              </TouchableOpacity>
+            </>
+          ) : (
+            <TouchableOpacity
+              onPress={handleNext}
+              className="bg-black py-3.5 rounded-xl w-7/12 self-center"
+            >
+              <Text className="text-base font-semibold text-center text-white">
+                Get Started ⚡
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
 </file>
 
 <file path="src/app/(auth)/login.tsx">
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { useRouter } from "expo-router";
 
 export default function Login() {
@@ -942,108 +1459,84 @@ export default function Login() {
       Alert.alert("Error", "Please fill all fields!");
       return;
     }
-    router.replace("/(auth)/otp"); // redirect to OTP before tabs
+    router.replace("/(auth)/otp");
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ChargeLink</Text>
-      <Text style={styles.subtitle}>Welcome Back ⚡</Text>
+    <KeyboardAvoidingView
+      className="flex-1 bg-white"
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <View className="flex-1 justify-center px-6">
+        <Text className="text-4xl font-bold text-black text-center">
+          ChargeLink
+        </Text>
+        <Text className="text-base text-gray-500 text-center mb-8">
+          Welcome Back ⚡
+        </Text>
 
-      {/* Email Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#b0bec5"
-        onChangeText={setEmail}
-      />
+        {/* Email Input */}
+        <TextInput
+          className="bg-white px-4 py-3 rounded-xl mb-4 border border-gray-700 text-black"
+          placeholder="Email"
+          placeholderTextColor="#b0bec5"
+          onChangeText={setEmail}
+        />
 
-      {/* Password Input */}
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#b0bec5"
-        secureTextEntry
-        onChangeText={setPassword}
-      />
+        {/* Password Input */}
+        <TextInput
+          className="bg-white px-4 py-3 rounded-xl mb-2 border border-gray-700 text-black"
+          placeholder="Password"
+          placeholderTextColor="#b0bec5"
+          secureTextEntry
+          onChangeText={setPassword}
+        />
 
-      {/* Forgot Password */}
-      <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity>
+        {/* Forgot Password */}
+        <TouchableOpacity>
+          <Text className="text-right mb-3 text-gray-700">
+            Forgot Password?
+          </Text>
+        </TouchableOpacity>
 
-      {/* Login Button */}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+        {/* Login Button */}
+        <TouchableOpacity
+          className="bg-white px-4 py-3 rounded-xl items-center border-2 border-gray-700"
+          onPress={handleLogin}
+        >
+          <Text className="text-black text-base font-bold">Login</Text>
+        </TouchableOpacity>
 
-      {/* Signup Link */}
-      <TouchableOpacity onPress={() => router.push("/(auth)/signup")}>
-        <Text style={styles.link}>Don't have an account? Sign up →</Text>
-      </TouchableOpacity>
-    </View>
+        {/* Signup Link */}
+        <TouchableOpacity onPress={() => router.push("/(auth)/signup")}>
+          <Text className="text-center mt-5 text-gray-300">
+            Don't have an account? Sign up →
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
-
-// 🎨 STYLE SAME THEME AS SIGNUP
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    justifyContent: "center",
-    padding: 25,
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "black",
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#6F6F6F",
-    textAlign: "center",
-    marginBottom: 30,
-  },
-  input: {
-    backgroundColor: "white",
-    padding: 14,
-    borderRadius: 10,
-    marginBottom: 15,
-    borderWidth: 1.5,
-    borderColor: "#4A4A4A",
-    color: "black",
-  },
-  forgot: {
-    textAlign: "right",
-    marginBottom: 10,
-    color: "#4A4A4A",
-  },
-  button: {
-    backgroundColor: "white",
-    padding: 14,
-    borderRadius: 10,
-    alignItems: "center",
-    borderWidth: 2,
-    borderColor: "#4A4A4A",
-  },
-  buttonText: { color: "black", fontSize: 16, fontWeight: "bold" },
-  link: { textAlign: "center", marginTop: 20, color: "#b0bec5" },
-});
 </file>
 
 <file path="src/app/(auth)/otp.tsx">
 import React, { useRef, useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { useRouter } from "expo-router";
 
 export default function OTP() {
   const router = useRouter();
-  const [timer, setTimer] = useState<number>(30); // 🔥 Now Type Fixed
-  const inputs = useRef<Array<TextInput | null>>([]);
+  const [timer, setTimer] = useState(30);
+  const inputs = useRef([]);
 
-  // Auto focus & next input
-  const handleChange = (text: string, index: number) => {
+  const handleChange = (text, index) => {
     if (text) {
       if (index < 3) {
         inputs.current[index + 1]?.focus();
@@ -1053,91 +1546,90 @@ export default function OTP() {
     }
   };
 
-  // Timer countdown
   useEffect(() => {
     if (timer === 0) return;
     const interval = setInterval(() => setTimer((t) => t - 1), 1000);
     return () => clearInterval(interval);
   }, [timer]);
 
-  // Optional: Clear all inputs when screen opens
   useEffect(() => {
     inputs.current.forEach((input) => input?.clear());
     inputs.current[0]?.focus();
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Verify OTP 🔐</Text>
-      <Text style={styles.subtitle}>Enter the 4-digit OTP sent to your phone</Text>
-
-      {/* OTP INPUTS */}
-      <View style={styles.otpRow}>
-        {[0, 1, 2, 3].map((i) => (
-          <TextInput
-            key={i}
-            style={styles.otpInput}
-            keyboardType="number-pad"   // 👈 More accurate for mobile
-            maxLength={1}
-            ref={(ref) => (inputs.current[i] = ref)}
-            onChangeText={(text) => handleChange(text, i)}
-          />
-        ))}
-      </View>
-
-      {/* RESEND TIMER */}
-      <TouchableOpacity disabled={timer !== 0} onPress={() => setTimer(30)}>
-        <Text style={[styles.resend, { color: timer === 0 ? "black" : "#b0bec5" }]}>
-          {timer === 0 ? "Resend OTP 🔁" : `Resend in ${timer}s`}
+    <KeyboardAvoidingView
+      className="flex-1 bg-white"
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <View className="flex-1 justify-center items-center px-6">
+        <Text className="text-2xl font-bold text-black mb-1">
+          Verify OTP 🔐
         </Text>
-      </TouchableOpacity>
+        <Text className="text-sm text-gray-500 mb-6 text-center px-5">
+          Enter the 4-digit OTP sent to your phone
+        </Text>
 
-      <TouchableOpacity
-        onPress={() => router.replace("/test-role")}
-        style={{ marginTop: 20 }}
-      >
-        <Text style={{ color: "blue", fontSize: 16 }}>🚀 Skip for testing</Text>
-      </TouchableOpacity>
+        {/* OTP INPUTS */}
+        <View className="flex-row space-x-3">
+          {[0, 1, 2, 3].map((i) => (
+            <TextInput
+              key={i}
+              className="w-14 h-14 bg-white border-2 border-gray-800 rounded-xl text-center text-2xl text-black pr-2"
+              keyboardType="number-pad"
+              maxLength={1}
+              ref={(ref) => (inputs.current[i] = ref)}
+              onChangeText={(text) => handleChange(text, i)}
+            />
+          ))}
+        </View>
 
-    </View>
+        {/* RESEND TIMER */}
+        <TouchableOpacity
+          disabled={timer !== 0}
+          onPress={() => setTimer(30)}
+        >
+          <Text
+            className={`mt-8 text-base ${
+              timer === 0 ? "text-black" : "text-gray-300"
+            }`}
+          >
+            {timer === 0 ? "Resend OTP 🔁" : `Resend in ${timer}s`}
+          </Text>
+        </TouchableOpacity>
+
+        {/* Skip for testing */}
+        <TouchableOpacity
+          onPress={() => router.replace("/test-role")}
+          className="mt-5"
+        >
+          <Text className="text-blue-600 text-base">🚀 Skip for testing</Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "white", justifyContent: "center", alignItems: "center" },
-  title: { fontSize: 28, fontWeight: "bold", color: "black" },
-  subtitle: { fontSize: 14, color: "#6F6F6F", marginBottom: 25, textAlign: "center", paddingHorizontal: 20 },
-
-  otpRow: { flexDirection: "row", gap: 12 },
-  otpInput: {
-    width: 55,
-    height: 55,
-    backgroundColor: "white",
-    borderWidth: 2,
-    borderColor: "#4A4A4A",
-    borderRadius: 10,
-    textAlign: "center",
-    fontSize: 22,
-    color: "black",
-  },
-
-  resend: { marginTop: 30, fontSize: 16 },
-});
 </file>
 
 <file path="src/app/(auth)/signup.tsx">
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useRouter } from "expo-router";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function SignUp() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("driver");
+  const [role, setRole] = useState<"driver" | "host">("driver");
   const [countryCode, setCountryCode] = useState("+91");
   const [phone, setPhone] = useState("");
 
@@ -1146,150 +1638,150 @@ export default function SignUp() {
       Alert.alert("Error", "Please fill all fields!");
       return;
     }
-
-    router.replace("/(auth)/otp");  // 🔁 OTP page after signup ✔
+    router.replace("/(auth)/otp");
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ChargeLink</Text>
+    <View className="flex-1 bg-white justify-center px-6">
+      {/* Logo / Title */}
+      <Text className="text-4xl font-bold text-black text-center mb-8">
+        ChargeLink
+      </Text>
 
       {/* NAME */}
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        placeholderTextColor="#b0bec5"
-        onChangeText={setName}
-      />
-
-      {/* EMAIL */}
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#b0bec5"
-        keyboardType="email-address"
-        onChangeText={setEmail}
-      />
-
-      {/* PASSWORD */}
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#b0bec5"
-        secureTextEntry
-        onChangeText={setPassword}
-      />
-
-      {/* PHONE + COUNTRY CODE */}
-      <View style={styles.phoneContainer}>
-        <Picker selectedValue={countryCode} onValueChange={setCountryCode} style={styles.picker}>
-          <Picker.Item label="+91 🇮🇳" value="+91" />
-          <Picker.Item label="+1 🇺🇸" value="+1" />
-          <Picker.Item label="+44 🇬🇧" value="+44" />
-        </Picker>
-
+      <View className="mb-4">
+        <Text className="text-xs text-gray-500 mb-1">Name</Text>
         <TextInput
-          style={styles.phoneInput}
-          placeholder="Phone Number"
+          className="bg-white px-4 py-3 rounded-xl border border-gray-700 text-black"
+          placeholder="Name"
           placeholderTextColor="#b0bec5"
-          keyboardType="phone-pad"
-          onChangeText={setPhone}
+          onChangeText={setName}
         />
       </View>
 
+      {/* EMAIL */}
+      <View className="mb-4">
+        <Text className="text-xs text-gray-500 mb-1">Email</Text>
+        <TextInput
+          className="bg-white px-4 py-3 rounded-xl border border-gray-700 text-black"
+          placeholder="Email"
+          placeholderTextColor="#b0bec5"
+          keyboardType="email-address"
+          onChangeText={setEmail}
+        />
+      </View>
+
+      {/* PASSWORD */}
+      <View className="mb-4">
+        <Text className="text-xs text-gray-500 mb-1">Password</Text>
+        <TextInput
+          className="bg-white px-4 py-3 rounded-xl border border-gray-700 text-black"
+          placeholder="Password"
+          placeholderTextColor="#b0bec5"
+          secureTextEntry
+          onChangeText={setPassword}
+        />
+      </View>
+
+      {/* PHONE + COUNTRY CODE */}
+      <View className="mb-5">
+        <Text className="text-xs text-gray-500 mb-1">Phone number</Text>
+        <View className="flex-row items-center">
+          <View className="flex-[0.35] bg-white rounded-xl border border-gray-700">
+            <Picker
+              selectedValue={countryCode}
+              onValueChange={(v) => setCountryCode(v)}
+              style={{ width: "100%", height: 48 }}
+            >
+              <Picker.Item label="+91 🇮🇳" value="+91" />
+              <Picker.Item label="+1 🇺🇸" value="+1" />
+              <Picker.Item label="+44 🇬🇧" value="+44" />
+            </Picker>
+          </View>
+
+          <TextInput
+            className="flex-[0.65] ml-2 px-3 py-3 rounded-xl border border-gray-700 bg-white text-black"
+            placeholder="Phone Number"
+            placeholderTextColor="#b0bec5"
+            keyboardType="phone-pad"
+            onChangeText={setPhone}
+          />
+        </View>
+      </View>
+
       {/* ROLE SELECTION */}
-      <View style={styles.roleContainer}>
-        <Text style={styles.roleLabel}>Signup As:</Text>
-        <View style={styles.roleButtons}>
-          
+      <View className="my-4">
+        <Text className="text-sm font-bold text-black mb-2">
+          Signup as
+        </Text>
+        <View className="flex-row">
           {/* DRIVER */}
           <TouchableOpacity
-            style={[styles.roleBtn, role === "driver" && styles.roleActive]}
+            className={`flex-1 px-3 py-3 rounded-xl border border-gray-700 mx-1 ${
+              role === "driver" ? "bg-black border-green-600" : "bg-white"
+            }`}
             onPress={() => setRole("driver")}
           >
-            <View style={styles.roleRow}>
-              <Ionicons name="car-sport-outline" size={20} color={role === "driver" ? "white" : "black"} />
-              <Text style={[styles.roleText, role === "driver" && { color: "white" }]}>Driver</Text>
+            <View className="flex-row items-center justify-center space-x-2">
+              <Ionicons
+                name="car-sport-outline"
+                size={20}
+                color={role === "driver" ? "white" : "black"}
+              />
+              <Text
+                className={`font-bold ${
+                  role === "driver" ? "text-white" : "text-black"
+                }`}
+              >
+                Driver
+              </Text>
             </View>
           </TouchableOpacity>
 
           {/* HOST */}
           <TouchableOpacity
-            style={[styles.roleBtn, role === "host" && styles.roleActive]}
+            className={`flex-1 px-3 py-3 rounded-xl border border-gray-700 mx-1 ${
+              role === "host" ? "bg-black border-green-600" : "bg-white"
+            }`}
             onPress={() => setRole("host")}
           >
-            <View style={styles.roleRow}>
-              <Ionicons name="flash-outline" size={20} color={role === "host" ? "white" : "black"} />
-              <Text style={[styles.roleText, role === "host" && { color: "white" }]}>Host</Text>
+            <View className="flex-row items-center justify-center space-x-2">
+              <Ionicons
+                name="flash-outline"
+                size={20}
+                color={role === "host" ? "white" : "black"}
+              />
+              <Text
+                className={`font-bold ${
+                  role === "host" ? "text-white" : "text-black"
+                }`}
+              >
+                Host
+              </Text>
             </View>
           </TouchableOpacity>
-
         </View>
       </View>
 
       {/* SIGNUP BUTTON */}
-      <TouchableOpacity style={styles.button} onPress={handleSignup}>
-        <Text style={styles.buttonText}>Create Account</Text>
+      <TouchableOpacity
+        className="bg-white px-4 py-3 rounded-xl items-center border-2 border-gray-700 mt-2"
+        onPress={handleSignup}
+      >
+        <Text className="text-black text-base font-bold">
+          Create Account
+        </Text>
       </TouchableOpacity>
 
       {/* LOGIN LINK */}
       <TouchableOpacity onPress={() => router.push("/(auth)/login")}>
-        <Text style={styles.link}>Already have an account? Login →</Text>
+        <Text className="text-center mt-5 text-gray-300">
+          Already have an account? Login →
+        </Text>
       </TouchableOpacity>
     </View>
   );
 }
-
-
-/* 🎨 SAME THEME — NO STYLE BROKEN */
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "white", justifyContent: "center", padding: 25 },
-  title: { fontSize: 40, fontWeight: "bold", color: "black", textAlign: "center", marginBottom: 30 },
-
-  input: {
-    backgroundColor: "white",
-    padding: 14,
-    borderRadius: 10,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: "#4A4A4A",
-    color: "black",
-  },
-  phoneContainer: { flexDirection: "row", alignItems: "center", marginBottom: 15 },
-  picker: { flex: 0.30, backgroundColor: "white" },
-  phoneInput: {
-    flex: 0.65,
-    padding: 12,
-    borderRadius: 10,
-    marginLeft: 8,
-    borderWidth: 1.3,
-    borderColor: "#4A4A4A",
-    backgroundColor: "white",
-    color: "black",
-  },
-
-  roleContainer: { marginVertical: 20 },
-  roleLabel: { color: "black", marginBottom: 10, fontSize: 14, fontWeight: "bold" },
-  roleButtons: { flexDirection: "row", justifyContent: "space-between" },
-
-  roleBtn: {
-    flex: 1,
-    padding: 12,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#4A4A4A",
-    backgroundColor: "white",
-    marginHorizontal: 5,
-  },
-  roleActive: { backgroundColor: "black", borderColor: "#4A9032" },
-  roleRow: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 6 },
-  roleText: { color: "black", fontWeight: "bold" },
-
-  button: { backgroundColor: "white", padding: 14, borderRadius: 10, alignItems: "center", borderWidth: 2, borderColor: "#4A4A4A" },
-  buttonText: { color: "black", fontSize: 16, fontWeight: "bold" },
-
-  link: { textAlign: "center", marginTop: 20, color: "#b0bec5" },
-});
 </file>
 
 <file path="src/app/(auth)/splash.tsx">
@@ -1341,7 +1833,7 @@ export default function SplashScreen() {
     // Step 3: Navigate to intro.tsx after 3 seconds
     const timeout = setTimeout(() => {
       router.replace("/(auth)/intro");  // 👈 NEW REDIRECT
-    }, 4000);
+    }, 3000);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -2068,55 +2560,46 @@ const styles = StyleSheet.create({
 </file>
 
 <file path="src/app/(tabs-user)/_layout.tsx">
-import { Tabs } from "expo-router";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function UserLayout() {
+export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
+        tabBarActiveTintColor: '#000',
+        tabBarLabelStyle: {
+          fontSize: 12,
+        },
         headerShown: false,
-        tabBarActiveTintColor: "black",
-        tabBarInactiveTintColor: "gray",
       }}
     >
       <Tabs.Screen
         name="home"
         options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
-          ),
+          title: 'Home',
+          tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
         }}
       />
-
-      <Tabs.Screen
-        name="search"
-        options={{
-          tabBarLabel: "Bookings",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" size={size} color={color} />
-          ),
-        }}
-      />
-
       <Tabs.Screen
         name="chargers"
         options={{
-          tabBarLabel: "Chargers",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="flash" size={size} color={color} />
-          ),
+          title: 'Chargers',
+          tabBarIcon: ({ color, size }) => <Ionicons name="flash" size={size} color={color} />,
         }}
       />
-
+      <Tabs.Screen
+        name="bookings"
+        options={{
+          title: 'Bookings',
+          tabBarIcon: ({ color, size }) => <Ionicons name="calendar" size={size} color={color} />,
+        }}
+      />
       <Tabs.Screen
         name="profile"
         options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" size={size} color={color} />
-          ),
+          title: 'Profile',
+          tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />,
         }}
       />
     </Tabs>
@@ -2125,7 +2608,7 @@ export default function UserLayout() {
 </file>
 
 <file path="src/app/(tabs-user)/bookings/cancelled.tsx">
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -2149,29 +2632,45 @@ export default function CancelledBookings() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Cancelled Bookings ❌</Text>
-        <Text style={styles.subtitle}>
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="flex-1 items-center px-6 py-6">
+        <Text className="text-[26px] font-bold mt-2 mb-1 text-[#222] text-center">
+          Cancelled Bookings ❌
+        </Text>
+        <Text className="text-[15px] text-[#777] mb-6 text-center">
           {cancelledData.length > 0
             ? "Here are your recently cancelled bookings"
             : "Nothing cancelled yet"}
         </Text>
 
         {cancelledData.length > 0 && (
-          <View style={styles.listCard}>
+          <View className="w-full bg-white rounded-2xl py-4 px-2 shadow-md">
             <FlatList
               data={cancelledData}
-              keyExtractor={item => item.id}
+              keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <View style={styles.bookingItem}>
-                  <View style={styles.iconCircle}>
-                    <Text style={styles.icon}>❌</Text>
+                <View className="flex-row items-center py-3 border-b border-[#f2f2f7]">
+                  <View className="w-9 h-9 rounded-full bg-[#ffeaea] mr-3 items-center justify-center">
+                    <Text className="text-[20px] text-[#e03232]">❌</Text>
                   </View>
-                  <View>
-                    <Text style={styles.station}>{item.station}</Text>
-                    <Text style={styles.date}>{item.date}</Text>
-                    <Text style={styles.reason}>{item.reason}</Text>
+
+                  <View className="flex-1">
+                    <Text className="text-[16px] font-bold text-[#222]">
+                      {item.station}
+                    </Text>
+                    <Text className="text-[14px] text-[#555] mt-0.5">
+                      {item.date}
+                    </Text>
+                    <Text className="text-[13px] text-[#b38181] mt-0.5">
+                      {item.reason}
+                    </Text>
+                  </View>
+
+                  {/* minimal status pill */}
+                  <View className="ml-2 px-2 py-1 rounded-full bg-[#ffeaea]">
+                    <Text className="text-[11px] font-bold text-[#e03232]">
+                      Cancelled
+                    </Text>
                   </View>
                 </View>
               )}
@@ -2180,106 +2679,21 @@ export default function CancelledBookings() {
         )}
 
         <TouchableOpacity
-          style={styles.backBtn}
+          className="mt-8 bg-[#4A4A4A] py-3 px-10 rounded-xl items-center"
           onPress={() => router.push("/(tabs-user)/bookings")}
         >
-          <Text style={styles.backBtnText}>Back to Bookings</Text>
+          <Text className="text-white text-[15px] font-bold tracking-[0.4px]">
+            Back to Bookings
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginTop: 8,
-    color: "#222",
-    marginBottom: 4,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#777",
-    marginBottom: 24,
-    textAlign: "center",
-  },
-  listCard: {
-    width: "100%",
-    backgroundColor: "#fff",
-    borderRadius: 18,
-    paddingVertical: 18,
-    paddingHorizontal: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 2,
-  },
-  bookingItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderColor: "#f2f2f7",
-  },
-  iconCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "#ffeaea",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 12,
-  },
-  icon: {
-    fontSize: 20,
-    color: "#e03232",
-  },
-  station: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#222",
-  },
-  date: {
-    fontSize: 14,
-    color: "#555",
-    marginTop: 2,
-  },
-  reason: {
-    fontSize: 13,
-    color: "#b38181",
-    marginTop: 2,
-  },
-  backBtn: {
-    marginTop: 30,
-    backgroundColor: "#4A4A4A",
-    paddingVertical: 12,
-    paddingHorizontal: 38,
-    borderRadius: 12,
-    alignItems: "center",
-  },
-  backBtnText: {
-    color: "#fff",
-    fontSize: 15,
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-});
 </file>
 
 <file path="src/app/(tabs-user)/bookings/charging-complete.tsx">
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -2293,160 +2707,83 @@ export default function ChargingCompleteScreen() {
   const amount = "₹384";
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>✅</Text>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center justify-center px-6">
+        <View className="w-16 h-16 rounded-full bg-[#e5ffe2] items-center justify-center mb-4">
+          <Text className="text-[36px] text-[#21a438]">✅</Text>
         </View>
-        <Text style={styles.success}>Charging Complete!</Text>
-        <Text style={styles.subtitle}>You have successfully finished charging your EV.</Text>
+
+        <Text className="text-2xl font-bold text-[#188832] mb-1">
+          Charging Complete!
+        </Text>
+        <Text className="text-base text-[#555] mb-5 text-center leading-6">
+          You have successfully finished charging your EV.
+        </Text>
 
         {/* Session Summary */}
-        <View style={styles.summaryCard}>
-          <Text style={styles.sessionLabel}>Station</Text>
-          <Text style={styles.sessionValue}>{station}</Text>
-          <Text style={styles.sessionLabel}>Session Time</Text>
-          <Text style={styles.sessionValue}>{sessionTime}</Text>
-          <Text style={styles.sessionLabel}>Energy Used</Text>
-          <Text style={styles.sessionValue}>{energy}</Text>
-          <Text style={styles.sessionLabel}>Amount Paid</Text>
-          <Text style={styles.sessionValue}>{amount}</Text>
+        <View className="w-11/12 bg-white rounded-2xl py-4 px-5 mb-7 shadow-md">
+          <Text className="text-xs font-semibold text-gray-400 mb-1">
+            Session summary
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-2">Station</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {station}
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-3">Session Time</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {sessionTime}
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-3">Energy Used</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {energy}
+          </Text>
+
+          <Text className="text-sm text-[#888] mt-3">Amount Paid</Text>
+          <Text className="text-base font-bold text-[#222] mt-0.5">
+            {amount}
+          </Text>
         </View>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.actionBtn}
+            className="w-full bg-[#188832] py-3.5 rounded-xl mb-3 items-center"
             onPress={() => router.push("/(tabs-user)/search/invoice")}
           >
-            <Text style={styles.actionText}>View Invoice</Text>
+            <Text className="text-base font-bold text-white tracking-[0.4px]">
+              View Invoice
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.actionBtnOutline}
+            className="w-full border-2 border-[#188832] py-3.5 rounded-xl mb-5 items-center"
             onPress={() => router.push("/(tabs-user)/search/rating")}
           >
-            <Text style={styles.actionTextOutline}>Rate Experience</Text>
+            <Text className="text-base font-bold text-[#188832] tracking-[0.4px]">
+              Rate Experience
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="mt-1 items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: "#e5ffe2",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  icon: {
-    fontSize: 36,
-    color: "#21a438",
-  },
-  success: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#188832",
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#555",
-    marginBottom: 18,
-    textAlign: "center",
-    lineHeight: 22,
-  },
-  summaryCard: {
-    width: "90%",
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    paddingVertical: 16,
-    paddingHorizontal: 18,
-    marginBottom: 26,
-    shadowColor: "#000",
-    shadowOpacity: 0.07,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  sessionLabel: {
-    fontSize: 14,
-    color: "#888",
-    marginTop: 11,
-  },
-  sessionValue: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: "#222",
-    marginTop: 2,
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  actionBtn: {
-    width: "100%",
-    backgroundColor: "#188832",
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 12,
-    alignItems: "center",
-  },
-  actionText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  actionBtnOutline: {
-    width: "100%",
-    borderColor: "#188832",
-    borderWidth: 2,
-    paddingVertical: 13,
-    borderRadius: 10,
-    marginBottom: 22,
-    alignItems: "center",
-  },
-  actionTextOutline: {
-    fontSize: 16,
-    color: "#188832",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    marginTop: 6,
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-  },
-});
 </file>
 
 <file path="src/app/(tabs-user)/bookings/charging-live.tsx">
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -2461,165 +2798,82 @@ export default function ChargingLiveScreen() {
   const percentComplete = 39; // Example: 39% complete
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center justify-center px-6">
         {/* Charging icon and title */}
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>⚡️</Text>
+        <View className="w-[54px] h-[54px] rounded-full bg-[#fff7ea] items-center justify-center mb-3.5">
+          <Text className="text-[28px] text-[#de9400]">⚡️</Text>
         </View>
-        <Text style={styles.title}>Charging Live</Text>
-        <Text style={styles.subtitle}>
+        <Text className="text-[23px] font-bold text-[#de9400] mb-1">
+          Charging Live
+        </Text>
+        <Text className="text-[15px] text-[#555] mb-5 text-center leading-6">
           Your session is now active at {station}
         </Text>
 
         {/* Live session stats */}
-        <View style={styles.liveCard}>
-          <Text style={styles.label}>Time Elapsed</Text>
-          <Text style={styles.value}>{elapsed}</Text>
-          <Text style={styles.label}>Energy Used</Text>
-          <Text style={styles.value}>{energySoFar}</Text>
-          <Text style={styles.label}>Estimated Amount</Text>
-          <Text style={styles.value}>{estimatedAmount}</Text>
+        <View className="w-11/12 bg-white rounded-2xl py-3 px-4 mb-6 shadow-md">
+          <Text className="text-[11px] font-semibold text-gray-400">
+            Live session
+          </Text>
+
+          <Text className="text-[13px] text-[#888] mt-2.5">Time Elapsed</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {elapsed}
+          </Text>
+
+          <Text className="text-[13px] text-[#888] mt-3">Energy Used</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {energySoFar}
+          </Text>
+
+          <Text className="text-[13px] text-[#888] mt-3">
+            Estimated Amount
+          </Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {estimatedAmount}
+          </Text>
         </View>
 
         {/* Progress bar */}
-        <View style={styles.progressBarBg}>
-          <View style={[styles.progressBarFill, { width: `${percentComplete}%` }]} />
+        <View className="w-11/12 h-3.5 bg-[#d6e2f0] rounded-full overflow-hidden mt-1 mb-2">
+          <View
+            className="h-full bg-[#de9400] rounded-full"
+            style={{ width: `${percentComplete}%` }}
+          />
         </View>
-        <Text style={styles.progressText}>{percentComplete}% complete</Text>
+        <Text className="text-[15px] text-[#555] mb-7 text-center">
+          {percentComplete}% complete
+        </Text>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.stopBtn}
+            className="w-full bg-[#de9400] py-3.5 rounded-xl mb-3.5 items-center"
             onPress={() => router.push("/(tabs-user)/bookings/charging-complete")}
           >
-            <Text style={styles.stopBtnText}>End Session</Text>
+            <Text className="text-[16px] text-white font-bold tracking-[0.4px]">
+              End Session
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
-    backgroundColor: "#fff7ea",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 14,
-  },
-  icon: {
-    fontSize: 28,
-    color: "#de9400",
-  },
-  title: {
-    fontSize: 23,
-    fontWeight: "bold",
-    color: "#de9400",
-    marginBottom: 5,
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#555",
-    marginBottom: 18,
-    textAlign: "center",
-    lineHeight: 22,
-  },
-  liveCard: {
-    width: "92%",
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    paddingVertical: 13,
-    paddingHorizontal: 16,
-    marginBottom: 24,
-    shadowColor: "#000",
-    shadowOpacity: 0.07,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 5,
-    elevation: 2,
-  },
-  label: {
-    fontSize: 13,
-    color: "#888",
-    marginTop: 10,
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#222",
-    marginTop: 2,
-  },
-  progressBarBg: {
-    width: "88%",
-    height: 18,
-    backgroundColor: "#d6e2f0",
-    borderRadius: 10,
-    overflow: "hidden",
-    marginBottom: 8,
-    marginTop: 4,
-  },
-  progressBarFill: {
-    height: "100%",
-    backgroundColor: "#de9400",
-    borderRadius: 10,
-  },
-  progressText: {
-    fontSize: 15,
-    color: "#555",
-    marginBottom: 28,
-    textAlign: "center",
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  stopBtn: {
-    width: "100%",
-    backgroundColor: "#de9400",
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 14,
-    alignItems: "center",
-  },
-  stopBtnText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-  },
-});
 </file>
 
 <file path="src/app/(tabs-user)/bookings/connect-cable.tsx">
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -2627,140 +2881,69 @@ export default function ConnectCableScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* Visual cue (can replace with an SVG or local asset) */}
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>🔌</Text>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center justify-center px-6">
+        {/* Visual cue */}
+        <View className="w-14 h-14 rounded-full bg-[#e5eaff] items-center justify-center mb-4">
+          <Text className="text-[32px] text-[#2660a7]">🔌</Text>
         </View>
-        <Text style={styles.title}>Connect the Cable</Text>
-        <Text style={styles.subtitle}>
-          Please connect your EV charging cable securely to the station and your vehicle.
+
+        <Text className="text-[22px] font-bold text-[#2660a7] mb-2">
+          Connect the Cable
+        </Text>
+        <Text className="text-[15px] text-[#555] text-center leading-6 mb-4">
+          Please connect your EV charging cable securely to the station and your
+          vehicle.
         </Text>
 
         {/* Steps or tips */}
-        <View style={styles.stepsCard}>
-          <Text style={styles.step}>1. Locate the charging port on your vehicle</Text>
-          <Text style={styles.step}>2. Plug the cable into your car and then the station</Text>
-          <Text style={styles.step}>3. Make sure all connections are firm</Text>
-          <Text style={styles.tip}>
-            Tip: If you have trouble, check for indicator lights and refer to station help.
+        <View className="w-[93%] bg-white rounded-xl py-4 px-4 mb-7 shadow-md">
+          <Text className="text-[11px] font-semibold text-gray-400 mb-2">
+            Steps
+          </Text>
+          <Text className="text-[15px] text-[#222] mb-1.5">
+            1. Locate the charging port on your vehicle
+          </Text>
+          <Text className="text-[15px] text-[#222] mb-1.5">
+            2. Plug the cable into your car and then the station
+          </Text>
+          <Text className="text-[15px] text-[#222] mb-1.5">
+            3. Make sure all connections are firm
+          </Text>
+          <Text className="mt-2 text-[14px] text-[#2660a7] italic">
+            Tip: If you have trouble, check for indicator lights and refer to
+            station help.
           </Text>
         </View>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.continueBtn}
+            className="w-full bg-[#2660a7] py-4 rounded-xl mb-3.5 items-center"
             onPress={() => router.push("/(tabs-user)/bookings/charging-live")}
           >
-            <Text style={styles.continueText}>Cable Connected</Text>
+            <Text className="text-[16px] text-white font-bold tracking-[0.4px]">
+              Cable Connected
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline mt-1">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: "#e5eaff",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  icon: {
-    fontSize: 32,
-    color: "#2660a7",
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#2660a7",
-    marginBottom: 9,
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#555",
-    textAlign: "center",
-    lineHeight: 22,
-    marginBottom: 16,
-  },
-  stepsCard: {
-    width: "93%",
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    paddingVertical: 18,
-    paddingHorizontal: 18,
-    marginBottom: 30,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  step: {
-    fontSize: 15,
-    color: "#222",
-    marginBottom: 7,
-  },
-  tip: {
-    marginTop: 10,
-    fontSize: 14,
-    color: "#2660a7",
-    fontStyle: "italic",
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  continueBtn: {
-    width: "100%",
-    backgroundColor: "#2660a7",
-    paddingVertical: 15,
-    borderRadius: 10,
-    marginBottom: 13,
-    alignItems: "center",
-  },
-  continueText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-    marginTop: 4,
-  },
-});
 </file>
 
 <file path="src/app/(tabs-user)/bookings/details.tsx">
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -2778,302 +2961,280 @@ export default function BookingDetailsScreen() {
     bookingId: "ABCD-1234",
   };
 
+  const statusIcon =
+    booking.status === "Completed"
+      ? "✅"
+      : booking.status === "Cancelled"
+      ? "❌"
+      : "📅";
+
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 px-6 items-center justify-center">
         {/* Title & status icon */}
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>
-            {booking.status === "Completed" ? "✅" : booking.status === "Cancelled" ? "❌" : "📅"}
-          </Text>
+        <View className="w-[52px] h-[52px] rounded-full bg-[#e5ffe2] items-center justify-center mb-4">
+          <Text className="text-[28px] text-[#188832]">{statusIcon}</Text>
         </View>
-        <Text style={styles.title}>Booking Details</Text>
-        <Text style={styles.idText}>Booking ID: {booking.bookingId}</Text>
+        <Text className="text-[22px] font-bold text-[#188832] mb-1 text-center">
+          Booking Details
+        </Text>
+        <Text className="text-[13px] text-[#777] mb-4">
+          Booking ID: {booking.bookingId}
+        </Text>
 
         {/* Booking info card */}
-        <View style={styles.card}>
-          <Text style={styles.label}>EV Station</Text>
-          <Text style={styles.value}>{booking.station}</Text>
-          <Text style={styles.label}>Date & Slot</Text>
-          <Text style={styles.value}>{booking.date}, {booking.timeSlot}</Text>
-          <Text style={styles.label}>Vehicle</Text>
-          <Text style={styles.value}>{booking.vehicle}</Text>
-          <Text style={styles.label}>Amount</Text>
-          <Text style={styles.value}>{booking.amount}</Text>
-          <Text style={styles.label}>Status</Text>
-          <Text style={styles.value}>{booking.status}</Text>
+        <View className="w-[94%] bg-white rounded-xl py-4 px-4 mb-9 shadow-md">
+          <Text className="text-[11px] font-semibold text-gray-400 mb-1">
+            Summary
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-2">EV Station</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.station}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Date &amp; Slot</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.date}, {booking.timeSlot}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Vehicle</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.vehicle}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Amount</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.amount}
+          </Text>
+
+          <Text className="text-[14px] text-[#999] mt-3">Status</Text>
+          <Text className="text-[16px] font-bold text-[#222] mt-0.5">
+            {booking.status}
+          </Text>
         </View>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.actionBtn}
+            className="w-full bg-[#188832] py-3.5 rounded-xl mb-4 items-center"
             onPress={() => router.push("/(tabs-user)/search/invoice")}
           >
-            <Text style={styles.actionText}>View Invoice</Text>
+            <Text className="text-[16px] text-white font-bold tracking-[0.4px]">
+              View Invoice
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    padding: 24,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: "#e5ffe2",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 15,
-  },
-  icon: {
-    fontSize: 28,
-    color: "#188832",
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#188832",
-    marginBottom: 3,
-    textAlign: "center",
-  },
-  idText: {
-    fontSize: 13,
-    color: "#777",
-    marginBottom: 14,
-  },
-  card: {
-    width: "94%",
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    paddingVertical: 18,
-    paddingHorizontal: 18,
-    marginBottom: 36,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  label: {
-    fontSize: 14,
-    color: "#999",
-    marginTop: 10,
-  },
-  value: {
-    fontSize: 16,
-    color: "#222",
-    fontWeight: "bold",
-    marginTop: 2,
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  actionBtn: {
-    width: "100%",
-    backgroundColor: "#188832",
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 16,
-    alignItems: "center",
-  },
-  actionText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-  },
-});
 </file>
 
 <file path="src/app/(tabs-user)/bookings/index.tsx">
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
+import { useRouter, router } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
 
 export default function BookingsScreen() {
-  const router = useRouter();
+  const routerHook = useRouter(); // if you also use router.push via import
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  // dummy handler – wire up search/filter later
+  const handleSearch = () => { };
+  const handleFilter = () => { };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        {/* Main Title */}
-        <Text style={styles.title}>My Bookings 📅</Text>
-        <Text style={styles.subtitle}>
-          Access all your charging sessions, past/upcoming/cancelled bookings, live status, invoice and reviews.
-        </Text>
+    <SafeAreaView className="flex-1 bg-white">
+      {/* Header */}
+      <View className="flex-row items-center px-4 py-3 border-b border-gray-200">
+        <TouchableOpacity
+          className="pr-3"
+          onPress={() => setMenuVisible(!menuVisible)}
+        >
+          <Ionicons name="menu" size={24} color="#111827" />
+        </TouchableOpacity>
+        <Text className="text-lg font-semibold text-gray-900">Bookings</Text>
+      </View>
 
-        <View style={styles.cardGrid}>
-          {/* Upcoming Bookings */}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push("/(tabs-user)/bookings/upcoming")}
-          >
-            <Text style={styles.cardIcon}>🚗</Text>
-            <Text style={styles.cardTitle}>Upcoming</Text>
-            <Text style={styles.cardDesc}>View bookings to be completed</Text>
-          </TouchableOpacity>
+      {/* Sidebar overlay */}
+      {menuVisible && (
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => setMenuVisible(false)}
+          className="absolute inset-0 bg-black/40 z-10"
+        >
+          <View className="absolute left-0 top-0 h-full w-64 bg-white pt-10 px-5 rounded-tr-3xl rounded-br-3xl shadow-lg">
+            {/* Header */}
+            <View className="flex-row items-center mb-5">
+              <View className="w-12 h-12 rounded-full border-2 border-black" />
+              <View className="ml-3">
+                <TouchableOpacity onPress={()=>{
+                  router.replace("/(tabs-user)/profile")
+                }}>
+                <Text className="text-sm font-semibold text-black">
+                  ABC
+                </Text>
+                <Text className="text-[11px] text-gray-500">
+                  abc12@gmail.com
+                </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
-          {/* Past Bookings */}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push("/(tabs-user)/bookings/past")}
-          >
-            <Text style={styles.cardIcon}>📜</Text>
-            <Text style={styles.cardTitle}>Past</Text>
-            <Text style={styles.cardDesc}>See completed charging sessions</Text>
-          </TouchableOpacity>
+            <View className="h-[1px] bg-black mb-6" />
 
-          {/* Cancelled Bookings */}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push("/(tabs-user)/bookings/cancelled")}
-          >
-            <Text style={styles.cardIcon}>❌</Text>
-            <Text style={styles.cardTitle}>Cancelled</Text>
-            <Text style={styles.cardDesc}>View cancelled bookings</Text>
-          </TouchableOpacity>
+            {/* Menu items */}
+            <View className="space-y-6">
+              <SidebarItem
+                icon="🏠"
+                label="Home"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/home");
+                }}
+              />
+              <SidebarItem
+                icon="⚡"
+                label="Chargers"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/chargers");
+                }}
+              />
+              <SidebarItem
+                icon="📅"
+                label="Bookings"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/bookings");
+                }}
+              />
+              <SidebarItem
+                icon="🚗"
+                label="Car Details"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/usage-management");
+                }}
+              />
+              <SidebarItem
+                icon="👛"
+                label="Wallet"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/wallet");
+                }}
+              />
+              <SidebarItem
+                icon="⚙️"
+                label="Settings"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/settings");
+                }}
+              />
+            </View>
+          </View>
+        </TouchableOpacity>
+      )}
 
-          {/* Charging Live */}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push("/(tabs-user)/bookings/charging-live")}
-          >
-            <Text style={styles.cardIcon}>⚡️</Text>
-            <Text style={styles.cardTitle}>Charging Live</Text>
-            <Text style={styles.cardDesc}>Track an ongoing charging session</Text>
-          </TouchableOpacity>
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 16, paddingBottom: 24 }}
+      >
+        {/* Top summary / big card */}
+        <View className="w-full bg-gray-100 rounded-2xl h-32 mb-4 justify-center px-4">
+          <Text className="text-base font-semibold text-gray-800 mb-1">
+            Your bookings overview
+          </Text>
+          <Text className="text-xs text-gray-500">
+            Quick snapshot of upcoming, active and past sessions.
+          </Text>
+        </View>
 
-          {/* Charging Complete */}
+        {/* Search + filter row */}
+        <View className="flex-row items-center mb-4">
+          <TextInput
+            className="flex-1 bg-gray-100 rounded-xl px-3 py-2 text-sm text-gray-800"
+            placeholder="Search bookings"
+            placeholderTextColor="#9ca3af"
+            onSubmitEditing={handleSearch}
+          />
           <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push("/(tabs-user)/bookings/charging-complete")}
+            className="ml-2 w-10 h-10 rounded-xl bg-gray-900 items-center justify-center"
+            onPress={handleFilter}
           >
-            <Text style={styles.cardIcon}>✅</Text>
-            <Text style={styles.cardTitle}>Charging Complete</Text>
-            <Text style={styles.cardDesc}>Review your latest finished session</Text>
-          </TouchableOpacity>
-
-          {/* Booking Details */}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push("/(tabs-user)/bookings/details")}
-          >
-            <Text style={styles.cardIcon}>📖</Text>
-            <Text style={styles.cardTitle}>Booking Details</Text>
-            <Text style={styles.cardDesc}>See detail for any booking</Text>
-          </TouchableOpacity>
-
-          {/* Invoice / Rating */}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push("/(tabs-user)/search/invoice")}
-          >
-            <Text style={styles.cardIcon}>🧾</Text>
-            <Text style={styles.cardTitle}>Invoice & Ratings</Text>
-            <Text style={styles.cardDesc}>View and rate your session</Text>
+            <Text className="text-white text-base">⌕</Text>
           </TouchableOpacity>
         </View>
-      </View>
+
+        {/* Booking card 1 */}
+        <TouchableOpacity
+          className="w-full bg-gray-100 rounded-2xl p-4 mb-4"
+          onPress={() => router.push("/(tabs-user)/bookings/details")}
+        >
+          <Text className="text-sm font-semibold text-gray-900 mb-1">
+            Booking details
+          </Text>
+          <Text className="text-xs text-gray-600">
+            Tap to view more information about this charging session.
+          </Text>
+        </TouchableOpacity>
+
+        {/* Booking card 2 */}
+        <TouchableOpacity
+          className="w-full bg-gray-100 rounded-2xl p-4 mb-4"
+          onPress={() => router.push("/(tabs-user)/bookings/details")}
+        >
+          <Text className="text-sm font-semibold text-gray-900 mb-1">
+            Booking details
+          </Text>
+          <Text className="text-xs text-gray-600">
+            Tap to view more information about this charging session.
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginTop: 12,
-    color: "#222",
-    marginBottom: 8,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#555",
-    marginBottom: 26,
-    textAlign: "center",
-    lineHeight: 22,
-  },
-  cardGrid: {
-    width: "100%",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
-  card: {
-    width: "48%",
-    backgroundColor: "white",
-    borderRadius: 18,
-    paddingVertical: 18,
-    paddingHorizontal: 8,
-    marginBottom: 15,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 7,
-    elevation: 3,
-  },
-  cardIcon: {
-    fontSize: 24,
-    marginBottom: 3,
-  },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#222",
-    marginBottom: 3,
-    textAlign: "center",
-  },
-  cardDesc: {
-    fontSize: 13,
-    color: "#666",
-    textAlign: "center",
-    marginBottom: 3,
-    lineHeight: 18,
-  },
-});
+// Sidebar item component reused from other screens
+function SidebarItem({
+  icon,
+  label,
+  onPress,
+}: {
+  icon?: string;
+  label: string;
+  onPress: () => void;
+}) {
+  return (
+    <TouchableOpacity onPress={onPress} className="flex-row items-center">
+      {icon ? (
+        <Text className="text-lg mr-3">{icon}</Text>
+      ) : (
+        <View className="w-5 h-5 rounded-[4px] border-[1.5px] border-black mr-3" />
+      )}
+      <Text className="text-sm text-black">{label}</Text>
+    </TouchableOpacity>
+  );
+}
 </file>
 
 <file path="src/app/(tabs-user)/bookings/past.tsx">
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -3083,13 +3244,13 @@ const pastData = [
     id: "1",
     station: "EV Plaza - Sector 17",
     date: "2025-10-04",
-    vehicle: "Tata Nexon EV"
+    vehicle: "Tata Nexon EV",
   },
   {
     id: "2",
     station: "GreenCharge Hub",
     date: "2025-09-14",
-    vehicle: "MG ZS EV"
+    vehicle: "MG ZS EV",
   },
 ];
 
@@ -3097,29 +3258,45 @@ export default function PastBookings() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Past Bookings 📜</Text>
-        <Text style={styles.subtitle}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center px-6 py-6">
+        <Text className="text-[26px] font-bold mt-2 mb-1 text-[#222] text-center">
+          Past Bookings 📜
+        </Text>
+        <Text className="text-[15px] text-[#777] mb-6 text-center">
           {pastData.length > 0
             ? "These are your completed charging sessions"
             : "No past bookings found"}
         </Text>
 
         {pastData.length > 0 && (
-          <View style={styles.listCard}>
+          <View className="w-full bg-white rounded-2xl py-4 px-2 shadow-md">
             <FlatList
               data={pastData}
-              keyExtractor={item => item.id}
+              keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <View style={styles.bookingItem}>
-                  <View style={styles.iconCircle}>
-                    <Text style={styles.icon}>✅</Text>
+                <View className="flex-row items-center py-3 border-b border-[#f2f2f7]">
+                  <View className="w-9 h-9 rounded-full bg-[#e5ffe2] mr-3 items-center justify-center">
+                    <Text className="text-[20px] text-[#188832]">✅</Text>
                   </View>
-                  <View>
-                    <Text style={styles.station}>{item.station}</Text>
-                    <Text style={styles.date}>{item.date}</Text>
-                    <Text style={styles.vehicle}>{item.vehicle}</Text>
+
+                  <View className="flex-1">
+                    <Text className="text-[16px] font-bold text-[#222]">
+                      {item.station}
+                    </Text>
+                    <Text className="text-[14px] text-[#555] mt-0.5">
+                      {item.date}
+                    </Text>
+                    <Text className="text-[13px] text-[#188832] mt-0.5">
+                      {item.vehicle}
+                    </Text>
+                  </View>
+
+                  {/* minimal status pill */}
+                  <View className="ml-2 px-2 py-1 rounded-full bg-[#e5ffe2]">
+                    <Text className="text-[11px] font-semibold text-[#188832]">
+                      Completed
+                    </Text>
                   </View>
                 </View>
               )}
@@ -3128,106 +3305,21 @@ export default function PastBookings() {
         )}
 
         <TouchableOpacity
-          style={styles.backBtn}
+          className="mt-8 bg-[#4A4A4A] py-3 px-10 rounded-xl items-center"
           onPress={() => router.push("/(tabs-user)/bookings")}
         >
-          <Text style={styles.backBtnText}>Back to Bookings</Text>
+          <Text className="text-white text-[15px] font-bold tracking-[0.4px]">
+            Back to Bookings
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginTop: 8,
-    color: "#222",
-    marginBottom: 4,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#777",
-    marginBottom: 24,
-    textAlign: "center",
-  },
-  listCard: {
-    width: "100%",
-    backgroundColor: "#fff",
-    borderRadius: 18,
-    paddingVertical: 18,
-    paddingHorizontal: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 2,
-  },
-  bookingItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderColor: "#f2f2f7",
-  },
-  iconCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "#e5ffe2",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 12,
-  },
-  icon: {
-    fontSize: 20,
-    color: "#188832",
-  },
-  station: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#222",
-  },
-  date: {
-    fontSize: 14,
-    color: "#555",
-    marginTop: 2,
-  },
-  vehicle: {
-    fontSize: 13,
-    color: "#188832",
-    marginTop: 2,
-  },
-  backBtn: {
-    marginTop: 30,
-    backgroundColor: "#4A4A4A",
-    paddingVertical: 12,
-    paddingHorizontal: 38,
-    borderRadius: 12,
-    alignItems: "center",
-  },
-  backBtnText: {
-    color: "#fff",
-    fontSize: 15,
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-});
 </file>
 
 <file path="src/app/(tabs-user)/bookings/scan-qr.tsx">
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -3235,128 +3327,59 @@ export default function ScanQRScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center justify-center px-6">
         {/* QR Code Icon */}
-        <View style={styles.iconCircle}>
-          <Text style={styles.icon}>📷</Text>
+        <View className="w-14 h-14 rounded-full bg-[#e6f3ff] items-center justify-center mb-4">
+          <Text className="text-[32px] text-[#277ddb]">📷</Text>
         </View>
-        <Text style={styles.title}>Scan Charging Station QR</Text>
-        <Text style={styles.subtitle}>
-          To start your charging session, please scan the QR code at your selected station using your phone's camera.
+
+        <Text className="text-[22px] font-bold text-[#277ddb] mb-1 text-center">
+          Scan Charging Station QR
+        </Text>
+        <Text className="text-[15px] text-[#555] text-center leading-6 mb-6">
+          To start your charging session, please scan the QR code at your
+          selected station using your phone&apos;s camera.
         </Text>
 
         {/* Placeholder QR box */}
-        <View style={styles.qrBox}>
-          <Text style={styles.qrText}>QR Camera View</Text>
+        <View className="w-52 h-52 bg-[#e6f3ff] rounded-2xl items-center justify-center mb-9 border-2 border-[#277ddb]">
+          <Text className="text-[17px] font-bold text-[#277ddb] mb-1">
+            QR Camera View
+          </Text>
+          <Text className="text-[11px] text-[#277ddb]">
+            (Camera preview here)
+          </Text>
         </View>
 
         {/* Actions */}
-        <View style={styles.actions}>
+        <View className="w-full items-center">
           <TouchableOpacity
-            style={styles.scanBtn}
+            className="w-full bg-[#277ddb] py-4 rounded-xl mb-3.5 items-center"
             onPress={() => router.push("/(tabs-user)/bookings/connect-cable")}
           >
-            <Text style={styles.scanText}>Simulate Scan</Text>
+            <Text className="text-[16px] text-white font-bold tracking-[0.4px]">
+              Simulate Scan
+            </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
-            style={styles.homeBtn}
+            className="items-center"
             onPress={() => router.push("/(tabs-user)/home")}
           >
-            <Text style={styles.homeBtnText}>Return Home</Text>
+            <Text className="text-[15px] text-[#222] underline mt-1">
+              Return Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
-    justifyContent: "center",
-  },
-  iconCircle: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: "#e6f3ff",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 15,
-  },
-  icon: {
-    fontSize: 32,
-    color: "#277ddb",
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#277ddb",
-    marginBottom: 4,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 15,
-    color: "#555",
-    textAlign: "center",
-    lineHeight: 22,
-    marginBottom: 22,
-  },
-  qrBox: {
-    width: 200,
-    height: 200,
-    backgroundColor: "#e6f3ff",
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 38,
-    borderWidth: 2,
-    borderColor: "#277ddb",
-  },
-  qrText: {
-    fontSize: 17,
-    color: "#277ddb",
-    fontWeight: "bold",
-  },
-  actions: {
-    width: "100%",
-    alignItems: "center",
-  },
-  scanBtn: {
-    width: "100%",
-    backgroundColor: "#277ddb",
-    paddingVertical: 15,
-    borderRadius: 10,
-    marginBottom: 13,
-    alignItems: "center",
-  },
-  scanText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-  homeBtn: {
-    alignItems: "center",
-  },
-  homeBtnText: {
-    fontSize: 15,
-    color: "#222",
-    textDecorationLine: "underline",
-    marginTop: 4,
-  },
-});
 </file>
 
 <file path="src/app/(tabs-user)/bookings/upcoming.tsx">
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -3382,31 +3405,45 @@ export default function UpcomingBookings() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Upcoming Bookings 🚗</Text>
-        <Text style={styles.subtitle}>
+    <SafeAreaView className="flex-1 bg-[#f6f7fb]">
+      <View className="flex-1 items-center px-6 py-6">
+        <Text className="text-[26px] font-bold mt-2 mb-1 text-[#222] text-center">
+          Upcoming Bookings 🚗
+        </Text>
+        <Text className="text-[15px] text-[#777] mb-6 text-center">
           {upcomingData.length > 0
             ? "Here are your scheduled charging sessions"
             : "No bookings yet"}
         </Text>
 
         {upcomingData.length > 0 && (
-          <View style={styles.listCard}>
+          <View className="w-full bg-white rounded-2xl py-4 px-2 shadow-md">
             <FlatList
               data={upcomingData}
-              keyExtractor={item => item.id}
+              keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <View style={styles.bookingItem}>
-                  <View style={styles.iconCircle}>
-                    <Text style={styles.icon}>📅</Text>
+                <View className="flex-row items-center py-3 border-b border-[#f2f2f7]">
+                  <View className="w-9 h-9 rounded-full bg-[#eaf7ff] mr-3 items-center justify-center">
+                    <Text className="text-[20px] text-[#2686d9]">📅</Text>
                   </View>
-                  <View>
-                    <Text style={styles.station}>{item.station}</Text>
-                    <Text style={styles.date}>
+
+                  <View className="flex-1">
+                    <Text className="text-[16px] font-bold text-[#222]">
+                      {item.station}
+                    </Text>
+                    <Text className="text-[14px] text-[#555] mt-0.5">
                       {item.date}, {item.time}
                     </Text>
-                    <Text style={styles.vehicle}>{item.vehicle}</Text>
+                    <Text className="text-[13px] text-[#2686d9] mt-0.5">
+                      {item.vehicle}
+                    </Text>
+                  </View>
+
+                  {/* minimal status pill */}
+                  <View className="ml-2 px-2 py-1 rounded-full bg-[#eaf7ff]">
+                    <Text className="text-[11px] font-semibold text-[#2686d9]">
+                      Scheduled
+                    </Text>
                   </View>
                 </View>
               )}
@@ -3415,102 +3452,223 @@ export default function UpcomingBookings() {
         )}
 
         <TouchableOpacity
-          style={styles.backBtn}
+          className="mt-8 bg-[#4A4A4A] py-3 px-10 rounded-xl items-center"
           onPress={() => router.push("/(tabs-user)/bookings")}
         >
-          <Text style={styles.backBtnText}>Back to Bookings</Text>
+          <Text className="text-white text-[15px] font-bold tracking-[0.4px]">
+            Back to Bookings
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
+</file>
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#f6f7fb",
+<file path="src/app/(tabs-user)/chargers/index.tsx">
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+
+const chargers = [
+  {
+    id: "1",
+    name: "EV Plaza - Sector 17",
+    distance: "0.8 km",
+    slots: "2 / 4 free",
+    price: "₹18/kWh",
   },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 24,
+  {
+    id: "2",
+    name: "FastCharge Station",
+    distance: "1.4 km",
+    slots: "1 / 6 free",
+    price: "₹20/kWh",
   },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginTop: 8,
-    color: "#222",
-    marginBottom: 4,
-    textAlign: "center",
+  {
+    id: "3",
+    name: "GreenCharge Hub",
+    distance: "2.1 km",
+    slots: "3 / 5 free",
+    price: "₹17/kWh",
   },
-  subtitle: {
-    fontSize: 15,
-    color: "#777",
-    marginBottom: 24,
-    textAlign: "center",
-  },
-  listCard: {
-    width: "100%",
-    backgroundColor: "#fff",
-    borderRadius: 18,
-    paddingVertical: 18,
-    paddingHorizontal: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.06,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 2,
-  },
-  bookingItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderColor: "#f2f2f7",
-  },
-  iconCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: "#eaf7ff",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 12,
-  },
-  icon: {
-    fontSize: 20,
-    color: "#2686d9",
-  },
-  station: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#222",
-  },
-  date: {
-    fontSize: 14,
-    color: "#555",
-    marginTop: 2,
-  },
-  vehicle: {
-    fontSize: 13,
-    color: "#2686d9",
-    marginTop: 2,
-  },
-  backBtn: {
-    marginTop: 30,
-    backgroundColor: "#4A4A4A",
-    paddingVertical: 12,
-    paddingHorizontal: 38,
-    borderRadius: 12,
-    alignItems: "center",
-  },
-  backBtnText: {
-    color: "#fff",
-    fontSize: 15,
-    fontWeight: "bold",
-    letterSpacing: 0.4,
-  },
-});
+];
+
+export default function ChargersScreen() {
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  return (
+    <SafeAreaView className="flex-1 bg-[#f2f2f7]">
+      {/* Top bar */}
+      <View className="flex-row items-center px-4 pt-2 pb-3">
+        <TouchableOpacity
+          onPress={() => setMenuVisible(!menuVisible)}
+          className="mr-3"
+        >
+          <Ionicons name="menu" size={26} color="#111827" />
+        </TouchableOpacity>
+        <Text className="text-lg font-semibold text-[#111827]">
+          Chargers
+        </Text>
+      </View>
+
+      {/* Menu overlay + sidebar */}
+      {menuVisible && (
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => setMenuVisible(false)}
+          className="absolute inset-0 bg-black/40 z-10"
+        >
+          <View className="absolute left-0 top-0 h-full w-64 bg-white pt-10 px-5 rounded-tr-3xl rounded-br-3xl shadow-lg">
+            {/* Header */}
+            <View className="flex-row items-center mb-5">
+              <View className="w-12 h-12 rounded-full border-2 border-black" />
+              <View className="ml-3">
+                <Text className="text-sm font-semibold text-black">
+                  Ronak Paul
+                </Text>
+                <Text className="text-[11px] text-gray-500">
+                  ronakpaul832@gmail.com
+                </Text>
+              </View>
+            </View>
+
+            <View className="h-[1px] bg-black mb-6" />
+
+            {/* Menu items */}
+            <View className="space-y-6">
+              <SidebarItem
+                icon="🏠"
+                label="Home"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/home");
+                }}
+              />
+              <SidebarItem
+                icon="📅"
+                label="Bookings"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/bookings");
+                }}
+              />
+              <SidebarItem
+                icon="🚗"
+                label="Car Details"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/usage-management");
+                }}
+              />
+              <SidebarItem
+                icon="👛"
+                label="Wallet"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/wallet");
+                }}
+              />
+              <SidebarItem
+                icon="🔔"
+                label="Notifications"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/notifications");
+                }}
+              />
+              <SidebarItem
+                icon="⚙️"
+                label="Settings"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/settings");
+                }}
+              />
+            </View>
+          </View>
+        </TouchableOpacity>
+      )}
+
+      {/* List */}
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 20 }}
+        showsVerticalScrollIndicator={false}
+      >
+        {chargers.map((item) => (
+          <TouchableOpacity
+            key={item.id}
+            onPress={() =>
+              router.push({
+                pathname: "/(tabs-user)/search/charger",
+                params: {
+                  id: item.id,
+                  name: item.name,
+                  distance: item.distance,
+                  price: item.price,
+                },
+              })
+            }
+            className="mb-3 w-full rounded-2xl bg-white px-4 py-3 shadow-sm flex-row items-center justify-between"
+          >
+            <View className="flex-1 pr-3">
+              <Text className="text-base font-semibold text-[#111827]">
+                {item.name}
+              </Text>
+              <Text className="mt-1 text-sm text-[#6b7280]">
+                {item.distance} • {item.slots}
+              </Text>
+              <Text className="mt-1 text-xs font-medium text-[#111827]">
+                {item.price}
+              </Text>
+            </View>
+
+            <View className="items-end">
+              <View className="mb-2 rounded-full bg-emerald-100 px-2 py-1">
+                <Text className="text-[10px] font-semibold text-emerald-700">
+                  Available
+                </Text>
+              </View>
+              <Ionicons
+                name="chevron-forward"
+                size={18}
+                color="#9ca3af"
+              />
+            </View>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+// Small helper component for sidebar rows
+function SidebarItem({
+  icon,
+  label,
+  onPress,
+}: {
+  icon?: string;
+  label: string;
+  onPress: () => void;
+}) {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      className="flex-row items-center"
+    >
+      {icon ? (
+        <Text className="text-lg mr-3">{icon}</Text>
+      ) : (
+        <View className="w-5 h-5 rounded-[4px] border-[1.5px] border-black mr-3" />
+      )}
+      <Text className="text-sm text-black">{label}</Text>
+    </TouchableOpacity>
+  );
+}
 </file>
 
 <file path="src/app/(tabs-user)/home/index.tsx">
@@ -3531,7 +3689,7 @@ export default function HomeScreen() {
   const [menuVisible, setMenuVisible] = useState(false);
 
   return (
-    <SafeAreaView className="flex-1 bg-[#f2f2f7]">
+    <SafeAreaView className="mt-4 mb-6 flex-1 bg-[#f2f2f7]">
       {/* Top bar */}
       <View className="flex-row items-center px-4 pt-2 pb-3">
         <TouchableOpacity
@@ -3545,43 +3703,84 @@ export default function HomeScreen() {
         </Text>
       </View>
 
-      {/* Menu overlay + drawer */}
+      {/* Menu overlay + sidebar */}
       {menuVisible && (
         <TouchableOpacity
           activeOpacity={1}
           onPress={() => setMenuVisible(false)}
           className="absolute inset-0 bg-black/40 z-10"
         >
-          <View className="absolute left-0 top-0 h-full w-56 bg-white pt-16 px-5 rounded-tr-2xl rounded-br-2xl shadow-lg">
-            <TouchableOpacity
-              onPress={() => {
-                setMenuVisible(false);
-                router.push("/(tabs-user)/profile");
-              }}
-              className="py-3"
-            >
-              <Text className="text-base">👤 Profile</Text>
-            </TouchableOpacity>
+          <View className="absolute left-0 top-0 h-full w-64 bg-white pt-10 px-5 rounded-tr-3xl rounded-br-3xl shadow-lg">
+            {/* Header */}
+            <View className="flex-row items-center mb-5">
+              <View className="w-12 h-12 rounded-full border-2 border-black" />
+              <View className="ml-3">
+                <TouchableOpacity onPress={()=>{
+                  router.replace("/(tabs-user)/profile")
+                }}>
+                <Text className="text-sm font-semibold text-black">
+                  ABC
+                </Text>
+                <Text className="text-[11px] text-gray-500">
+                  abc12@gmail.com
+                </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
-            <TouchableOpacity
-              onPress={() => {
-                setMenuVisible(false);
-                router.push("/(tabs-user)/profile/settings");
-              }}
-              className="py-3"
-            >
-              <Text className="text-base">⚙️ Settings</Text>
-            </TouchableOpacity>
+            <View className="h-[1px] bg-black mb-6" />
 
-            <TouchableOpacity
-              onPress={() => {
-                setMenuVisible(false);
-                router.push("/(tabs-user)/profile/support");
-              }}
-              className="py-3"
-            >
-              <Text className="text-base">Support</Text>
-            </TouchableOpacity>
+            {/* Menu items */}
+            <View className="space-y-6">
+              <SidebarItem
+                icon="⚡"
+                label="Chargers"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/chargers");
+                }}
+              />
+              <SidebarItem
+                icon="📅"
+                label="Bookings"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/bookings");
+                }}
+              />
+              <SidebarItem
+                icon="🚗"
+                label="Car Details"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/usage-management");
+                }}
+              />
+              <SidebarItem
+                icon="👛"
+                label="Wallet"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/wallet");
+                }}
+              />
+              <SidebarItem
+                icon="🔔"
+                label="Notifications"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/notifications");
+                }}
+              />
+              <SidebarItem
+                icon="⚙️"
+                label="Settings"
+                onPress={() => {
+                  setMenuVisible(false);
+                  router.push("/(tabs-user)/profile/settings");
+                }}
+              />
+            </View>
           </View>
         </TouchableOpacity>
       )}
@@ -3594,27 +3793,27 @@ export default function HomeScreen() {
         {/* Battery low banner */}
         <TouchableOpacity
           onPress={() => router.push("/(tabs-user)/search")}
-          className="w-full bg-white rounded-2xl px-4 py-4 mb-4 shadow-sm flex-row items-center justify-between"
+          className="w-full bg-white rounded-3xl px-4 py-4 mb-4 shadow-sm flex-row items-center justify-between"
         >
           <View>
-            <Text className="text-base font-semibold text-[#111827]">
+            <Text className="text-2xl font-semibold text-[#111827]">
               Battery low?
             </Text>
-            <Text className="text-xs text-[#6b7280] mt-1">
+            <Text className="text-s text-[#6b7280] mt-1">
               Find the nearest charger in one tap
             </Text>
           </View>
-          <Ionicons name="flash-outline" size={26} color="#f59e0b" />
+          <Ionicons name="flash-outline" size={30} color="#f59e0b" />
         </TouchableOpacity>
 
         {/* Quick actions grid (2 x 2) */}
         <View className="mb-5">
           <View className="flex-row justify-between mb-3">
             <TouchableOpacity
-              onPress={() => router.push("/(tabs-user)/search")}
+              onPress={() => router.push("/search")}
               className="w-[48%] bg-white rounded-2xl px-4 py-4 shadow-sm"
             >
-              <Text className="text-sm font-semibold text-[#111827] mb-1">
+              <Text className="text-base font-semibold text-[#111827] mb-1">
                 🔍 Search
               </Text>
               <Text className="text-xs text-[#6b7280]">
@@ -3626,7 +3825,7 @@ export default function HomeScreen() {
               onPress={() => router.push("/(tabs-user)/map")}
               className="w-[48%] bg-white rounded-2xl px-4 py-4 shadow-sm"
             >
-              <Text className="text-sm font-semibold text-[#111827] mb-1">
+              <Text className="text-base font-semibold text-[#111827] mb-1">
                 🗺️ Map
               </Text>
               <Text className="text-xs text-[#6b7280]">
@@ -3640,7 +3839,7 @@ export default function HomeScreen() {
               onPress={() => router.push("/(tabs-user)/bookings")}
               className="w-[48%] bg-white rounded-2xl px-4 py-4 shadow-sm"
             >
-              <Text className="text-sm font-semibold text-[#111827] mb-1">
+              <Text className="text-base font-semibold text-[#111827] mb-1">
                 📖 Bookings
               </Text>
               <Text className="text-xs text-[#6b7280]">
@@ -3652,7 +3851,7 @@ export default function HomeScreen() {
               onPress={() => router.push("/(tabs-user)/wallet")}
               className="w-[48%] bg-white rounded-2xl px-4 py-4 shadow-sm"
             >
-              <Text className="text-sm font-semibold text-[#111827] mb-1">
+              <Text className="text-base font-semibold text-[#111827] mb-1">
                 💼 Wallet
               </Text>
               <Text className="text-xs text-[#6b7280]">
@@ -3664,20 +3863,20 @@ export default function HomeScreen() {
 
         {/* Nearby chargers list */}
         <View>
-          <View className="flex-row items-center justify-between mb-2">
+          <View className="flex-row items-center justify-between mb-4 mt-4">
             <Text className="text-base font-semibold text-[#111827]">
               Nearby chargers
             </Text>
             <TouchableOpacity
               onPress={() => router.push("/(tabs-user)/search")}
             >
-              <Text className="text-xs font-medium text-[#2563eb]">
+              <Text className="text-sm font-medium text-[#2563eb]">
                 See all
               </Text>
             </TouchableOpacity>
           </View>
 
-          <View className="space-y-3">
+          <View className="space-y-8">
             {nearbyChargers.map((item) => (
               <TouchableOpacity
                 key={item.id}
@@ -3687,13 +3886,13 @@ export default function HomeScreen() {
                     params: { id: item.id, name: item.name },
                   })
                 }
-                className="w-full bg-white rounded-xl px-4 py-3 flex-row items-center justify-between shadow-sm"
+                className="mb-3 w-full bg-white rounded-2xl px-4 py-7 flex-row items-center justify-between shadow-sm"
               >
                 <View className="flex-1 pr-3">
-                  <Text className="text-sm font-semibold text-[#111827]">
+                  <Text className="text-base font-semibold text-[#111827]">
                     {item.name}
                   </Text>
-                  <Text className="text-xs text-[#6b7280] mt-1">
+                  <Text className="text-sm text-[#6b7280] mt-1">
                     {item.distance} • {item.slots}
                   </Text>
                 </View>
@@ -3708,6 +3907,31 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+// Small helper component for sidebar rows
+function SidebarItem({
+  icon,
+  label,
+  onPress,
+}: {
+  icon?: string;
+  label: string;
+  onPress: () => void;
+}) {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      className="flex-row items-center"
+    >
+      {icon ? (
+        <Text className="text-lg mr-3">{icon}</Text>
+      ) : (
+        <View className="w-5 h-5 rounded-[4px] border-[1.5px] border-black mr-3" />
+      )}
+      <Text className="text-sm text-black">{label}</Text>
+    </TouchableOpacity>
   );
 }
 </file>
@@ -4135,90 +4359,93 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#f2f2f7" }}>
-    <ScrollView style={styles.container}>
-      {/* Profile Card */}
-      <View style={styles.card}>
-        <View style={styles.avatar}>
-          <Ionicons name="person" size={50} color="#555" />
+      <ScrollView style={styles.container}>
+        {/* Profile Card */}
+        <View style={styles.card}>
+          <View style={styles.avatar}>
+            <Ionicons name="person" size={50} color="#555" />
+          </View>
+
+          <Text style={styles.name}>{user.name}</Text>
+          <Text style={styles.info}>{user.email}</Text>
+          <Text style={styles.info}>{user.phone}</Text>
         </View>
 
-        <Text style={styles.name}>{user.name}</Text>
-        <Text style={styles.info}>{user.email}</Text>
-        <Text style={styles.info}>{user.phone}</Text>
-      </View>
+        {/* ACCOUNT SECTION */}
+        <Text style={styles.sectionTitle}>Account</Text>
 
-      {/* ACCOUNT SECTION */}
-      <Text style={styles.sectionTitle}>Account</Text>
+        <View style={styles.sectionCard}>
+          <ProfileItem
+            icon="create-outline"
+            label="Edit Profile"
+            onPress={() => router.push("/(tabs-user)/profile/edit-profile")}
+          />
 
-      <View style={styles.sectionCard}>
-        <ProfileItem
-          icon="create-outline"
-          label="Edit Profile"
-          onPress={() => router.push("/(tabs-user)/profile/edit-profile")}
-        />
+          <ProfileItem
+            icon="key-outline"
+            label="Change Password"
+            onPress={() => router.push("/(tabs-user)/profile/change-password")}
+          />
 
-        <ProfileItem
-          icon="key-outline"
-          label="Change Password"
-          onPress={() => router.push("/(tabs-user)/profile/change-password")}
-        />
+          <ProfileItem
+            icon="shield-checkmark-outline"
+            label="KYC Verification"
+            onPress={() => router.push("/(tabs-user)/profile/kyc")}
+          />
 
-        <ProfileItem
-          icon="shield-checkmark-outline"
-          label="KYC Verification"
-          onPress={() => router.push("/(tabs-user)/profile/kyc")}
-        />
+          <ProfileItem
+            icon="car-sport-outline"
+            label="Vehicle Management"
+            onPress={() => router.push("/(tabs-user)/profile/usage-management")}
+          />
 
-        <ProfileItem
-          icon="car-sport-outline"
-          label="Vehicle Management"
-          onPress={() => router.push("/(tabs-user)/profile/usage-management")}
-        />
+          <ProfileItem
+            icon="gift-outline"
+            label="Refer & Earn"
+            onPress={() => router.push("/(tabs-user)/profile/refer-and-earn")}
+          />
+        </View>
 
-        <ProfileItem
-          icon="gift-outline"
-          label="Refer & Earn"
-          onPress={() => router.push("/(tabs-user)/profile/refer-and-earn")}
-        />
-      </View>
+        {/* APP SETTINGS */}
+        <Text style={styles.sectionTitle}>App Settings</Text>
 
-      {/* APP SETTINGS */}
-      <Text style={styles.sectionTitle}>App Settings</Text>
+        <View style={styles.sectionCard}>
+          <ProfileItem
+            icon="notifications-outline"
+            label="Notifications"
+            onPress={() => router.push("/(tabs-user)/profile/notifications")}
+          />
 
-      <View style={styles.sectionCard}>
-        <ProfileItem
-          icon="notifications-outline"
-          label="Notifications"
-          onPress={() => router.push("/(tabs-user)/profile/notifications")}
-        />
+          <ProfileItem
+            icon="settings-outline"
+            label="Settings"
+            onPress={() => router.push("/(tabs-user)/profile/settings")}
+          />
 
-        <ProfileItem
-          icon="settings-outline"
-          label="Settings"
-          onPress={() => router.push("/(tabs-user)/profile/settings")}
-        />
+          <ProfileItem
+            icon="help-circle-outline"
+            label="Support"
+            onPress={() => router.push("/(tabs-user)/profile/support")}
+          />
+        </View>
 
-        <ProfileItem
-          icon="help-circle-outline"
-          label="Support"
-          onPress={() => router.push("/(tabs-user)/profile/support")}
-        />
-      </View>
+        {/* LOGOUT */}
+        <TouchableOpacity
+          style={styles.logoutBtn}
+          onPress={async () => {
+            await AsyncStorage.removeItem("userData");
+            router.replace("/(auth)/login");
+          }}
+        >
+          <Ionicons name="log-out-outline" size={22} color="white" />
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.back} onPress={() => router.push("/(tabs-user)/home")}>
+          <Text style={styles.backText}>← Back</Text>
+        </TouchableOpacity>
 
-      {/* LOGOUT */}
-      <TouchableOpacity
-        style={styles.logoutBtn}
-        onPress={async () => {
-          await AsyncStorage.removeItem("userData");
-          router.replace("/(auth)/login");
-        }}
-      >
-        <Ionicons name="log-out-outline" size={22} color="white" />
-        <Text style={styles.logoutText}>Logout</Text>
-      </TouchableOpacity>
-
-      <View style={{ height: 40 }} />
-    </ScrollView>
+        <View style={{ height: 40 }} />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -4315,6 +4542,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginLeft: 10,
   },
+  back: { marginTop: 20, alignItems: "center" },
+  backText: { color: "blue", fontSize: 16, fontWeight: "500" },
 });
 </file>
 
@@ -5592,7 +5821,7 @@ export default function SearchScreen() {
   ];
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100">
+    <SafeAreaView className="mt-4 mb-6 flex-1 bg-gray-100">
       <View className="flex-1 p-4">
 
         {/* 🟢 SEARCH BAR */}
@@ -8351,17 +8580,15 @@ export async function removeItem(key: string) {
 
 <file path="tailwind.config.js">
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  presets: [require("nativewind/preset")],
-  theme: {
-    extend: {},
-  },
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
-  plugins: [],
+export const content = ["./src/**/*.{js,jsx,ts,tsx}"];
+export const presets = [require("nativewind/preset")];
+export const theme = {
+  extend: {},
 };
+export const future = {
+  hoverOnlyWhenSupported: true,
+};
+export const plugins = [];
 </file>
 
 <file path="tsconfig.json">
@@ -8383,465 +8610,6 @@ module.exports = {
     "nativewind-env.d.ts"
   ]
 }
-</file>
-
-<file path=".gitignore">
-.github/workflows
-node_modules/
-# @generated expo-cli sync-2b81b286409207a5da26e14c78851eb30d8ccbdb
-# The following patterns were generated by expo-cli
-
-expo-env.d.ts
-# @end expo-cli
-</file>
-
-<file path="README.md">
-# ⚡ EV Charging Station Platform
-
-A comprehensive EV charging station booking platform with web and mobile applications. Find, book, and pay for charging stations in real-time.
-
-## 📁 Project Structure
-
-```
-├── web/          # React web application
-├── app/          # React Native mobile app (Expo)
-├── server/       # Express backend server
-└── README.md
-```
-
-## 🛠️ Tech Stack
-
-### Web (`/web`)
-- React + TypeScript
-- Redux
-- Tailwind CSS
-- Material UI
-- Google Maps SDK
-
-### Mobile App (`/app`)
-- React Native + TypeScript
-- Expo Go
-- NativeWind
-- Google Maps React Native SDK
-
-### Server (`/server`)
-- Express + TypeScript
-- MongoDB / PostgreSQL
-- JWT Authentication
-- Payment Gateway Integration
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- npm or yarn
-- MongoDB or PostgreSQL
-- Expo CLI (for mobile development)
-
-### Environment Variables
-
-Create `.env` files in each directory:
-
-#### `/server/.env`
-```env
-PORT=8000
-NODE_ENV=development
-MONGO_URI=your_mongo_uri
-ACCESS_TOKEN_SECRET=your_access_token_secret
-REFRESH_TOKEN_SECRET=your_refresh_token_secret
-
-GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-PAYMENT_GATEWAY_KEY=your_payment_gateway_key
-PAYMENT_GATEWAY_SECRET=your_payment_gateway_secret
-
-ELEVEN_LABS_API_KEY=your_elevenlabs_key
-GCP_PROJECT_ID=your_gcp_project_id
-```
-
-#### `/web/.env`
-```env
-VITE_BACKEND_BASE_URL=http://localhost:8000/api/v1
-VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-VITE_PAYMENT_GATEWAY_KEY=your_payment_gateway_key
-```
-
-#### `/app/.env`
-```env
-EXPO_PUBLIC_API_URL=http://localhost:8000/api/v1
-EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-EXPO_PUBLIC_PAYMENT_GATEWAY_KEY=your_payment_gateway_key
-```
-
-## 📦 Installation
-
-### Install all dependencies
-
-```bash
-# Install server dependencies
-cd server
-npm install
-
-# Install web dependencies
-cd ../web
-npm install
-
-# Install mobile app dependencies
-cd ../app
-npm install
-```
-
-## 🏃‍♂️ Running the Application
-
-### Start Backend Server
-
-```bash
-cd server
-npm run dev
-```
-
-Server will run on `http://localhost:5000`
-
-### Start Web Application
-
-```bash
-cd web
-npm start
-```
-
-Web app will run on `http://localhost:3000`
-
-### Start Mobile Application
-
-```bash
-cd app
-npx expo start
-```
-
-Scan QR code with Expo Go app on your phone or press:
-- `a` - Open on Android emulator
-- `i` - Open on iOS simulator
-- `w` - Open in web browser
-
-## 📝 Available Scripts
-
-### Server (`/server`)
-
-```bash
-npm run dev          # Start development server with hot reload
-npm run build        # Build TypeScript to JavaScript
-npm start            # Start production server
-npm run test         # Run tests
-npm run lint         # Run ESLint
-```
-
-### Web (`/web`)
-
-```bash
-npm start            # Start development server
-npm run build        # Build for production
-npm run test         # Run tests
-npm run lint         # Run ESLint
-```
-
-### App (`/app`)
-
-```bash
-npx expo start       # Start Expo development server
-npm run android      # Start on Android
-npm run ios          # Start on iOS
-npm run web          # Start on web
-npm run test         # Run tests
-```
-
-
-## 🚀 Deployment
-
-### Backend (Server)
-
-```bash
-cd server
-npm run build
-npm start
-```
-
-Deploy to: GCP, AWS, Heroku, Railway, etc.
-
-### Web Application
-
-```bash
-cd web
-npm run build
-```
-
-Deploy `build/` folder to: Vercel, Netlify, AWS S3, etc.
-
-### Mobile Application
-
-```bash
-cd app
-eas build --platform android
-eas build --platform ios
-```
-
-Follow Expo EAS Build documentation for app store deployment.
-</file>
-
-<file path="server/src/db/connect.db.ts">
-import mongoose from "mongoose";
-import { config } from "../env.config";
-
-let db = null;
-
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(config.MONGO_URI as string);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(`Error: ${error.message}`);
-    } else {
-      console.error(`Unexpected error: ${error}`);
-    }
-
-    process.exit(1);
-  }
-};
-
-export default connectDB;
-</file>
-
-<file path="server/src/middlewares/errorHandler.middleware.ts">
-import { StatusCodes } from "http-status-codes";
-import AppError from "../utils/appError";
-
-const errorHandlerMiddleware = (
-  err: any,
-  req: any,
-  res: any,
-  next: () => void
-) => {
-  console.log("---errorHandlerMiddleware---");
-  console.log(err);
-  let error: AppError;
-
-  if (err instanceof AppError) {
-    error = err;
-  } else {
-    error = new AppError(
-      err.message || "Something went wrong, try again later",
-      err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR
-    );
-  }
-
-  if (err.name === "ValidationError") {
-    const message = Object.values(err.errors)
-      .map((item: any) => item.message)
-      .join(",");
-    error = new AppError(message, StatusCodes.BAD_REQUEST);
-  }
-
-  if (err.code && err.code === 11000) {
-    error = new AppError(
-      `${Object.keys(err.keyValue)} field must be unique`,
-      StatusCodes.BAD_REQUEST
-    );
-  }
-
-  res.status(error.statusCode).json({
-    status: error.status,
-    message: error.message,
-  });
-};
-
-export default errorHandlerMiddleware;
-</file>
-
-<file path="server/src/middlewares/notFound.middleware.ts">
-import { Request, Response, NextFunction } from 'express';
-
-const notFoundMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  console.log("---notFoundMiddleware---");
-  const error = new Error(`Not Found - ${req.originalUrl}`);
-  res.status(404);
-  next(error);
-};
-
-export default notFoundMiddleware;
-</file>
-
-<file path="server/src/models/provider.model.ts">
-import { Document, Model, Schema, model } from "mongoose";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import dotenv from "dotenv";
-import { config } from "../env.config";
-import { AUTH_ROLES } from "../types/role.type";
-
-dotenv.config();
-
-export interface IProvider extends Document {
-  _id: Schema.Types.ObjectId;
-  name: string;
-  email: string;
-  isEmailVerified: boolean;
-  password: string;
-  otp: number;
-  refreshToken: string;
-  isPasswordCorrect(password: string): Promise<boolean>;
-  generateAccessToken(): string;
-  generateRefreshToken(rememberMe: boolean): string;
-}
-
-// Schema for the provider database
-const providerSchema: Schema<IProvider> = new Schema<IProvider>({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  otp: {
-    type: Number,
-  },
-  isEmailVerified: Boolean,
-  password: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-
-  refreshToken: {
-    type: String,
-    trim: true,
-  },
-} as const);
-
-providerSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-  try {
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
-  } catch (error: any) {
-    next(error);
-  }
-});
-
-providerSchema.methods.isPasswordCorrect = async function (password: string) {
-  return await bcrypt.compare(password, this.password);
-};
-
-// schema method to generate a access token
-providerSchema.methods.generateAccessToken = function () {
-  return jwt.sign(
-    {
-      _id: this._id,
-      email: this.email,
-      role: AUTH_ROLES.PROVIDER,
-    },
-    config.ACCESS_TOKEN_SECRET as string,
-    {
-      expiresIn: "1h",
-    }
-  );
-};
-
-// schema method to generate a refresh token
-providerSchema.methods.generateRefreshToken = function (rememberMe: boolean) {
-  return jwt.sign(
-    {
-      _id: this._id,
-      role: AUTH_ROLES.PROVIDER,
-    },
-    config.REFRESH_TOKEN_SECRET as string,
-    {
-      expiresIn: rememberMe ? "20d" : "7d",
-    }
-  );
-};
-
-// Model for the provider
-export const ProviderModel: Model<IProvider> = model<IProvider>("provider", providerSchema);
-</file>
-
-<file path="server/src/routes/v1/provider/index.ts">
-import { Router } from "express";
-
-const router = Router();
-
-
-
-export default router;
-</file>
-
-<file path="server/src/services/email/controllers/resend.controller.ts">
-import { Request, Response } from "express";
-import { render } from "@react-email/components";
-import OtpTemplate from "../templates/otp.template";
-import React from "react";
-import asyncHandler from "../../../utils/async.handler";
-
-export const resendOTPTemplate = asyncHandler(async (req: Request, res: Response) => {
-  const html = await render(
-    React.createElement(OtpTemplate, {
-      otp: "123456",
-      description: "Your OTP is 123456",
-      email: "ronakpaul1@gmail.com",
-      name: "Ronak",
-    })
-  );
-
-
-  res.set("Content-Type", "text/html");
-  res.send(html);
-});
-</file>
-
-<file path="server/src/types/role.type.ts">
-export enum AUTH_ROLES {
-  ADMIN = "ADMIN",
-  USER = "USER",
-  PROVIDER = "PROVIDER",
-}
-</file>
-
-<file path="server/src/utils/appError.ts">
-export default class AppError extends Error {
-    statusCode: number;
-    status: string;
-    isOperational: boolean;
-
-    constructor(message: string, statusCode: number) {
-        super(message);
-        this.statusCode = statusCode;
-        this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
-        this.isOperational = true;
-
-        Error.captureStackTrace(this, this.constructor);
-    }
-}
-</file>
-
-<file path="server/src/utils/async.handler.ts">
-import { Request, Response, NextFunction } from 'express';
-
-const asyncHandler = (fn: (req: Request, res: Response, next: NextFunction) => Promise<any>) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    fn(req, res, next).catch(next);
-  };
-};
-
-export default asyncHandler;
-</file>
-
-<file path="server/src/utils/otp.util.ts">
-export const generateOtp = () => {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-};
 </file>
 
 <file path="web/.env.example">
@@ -10736,6 +10504,16 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 })
+</file>
+
+<file path=".gitignore">
+.github/workflows
+node_modules/
+# @generated expo-cli sync-2b81b286409207a5da26e14c78851eb30d8ccbdb
+# The following patterns were generated by expo-cli
+
+expo-env.d.ts
+# @end expo-cli
 </file>
 
 <file path="server/.env.example">
