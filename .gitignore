@@ -1,1 +1,2 @@
-.github/workflows/deploy-server.yml
+# .github/workflows/deploy-server.yml
+.github/workflows/deploy-client.yml
