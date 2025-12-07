@@ -188,3 +188,4 @@ eas build --platform ios
 
 ### Frontend deployment commits for vercel
 - readme updated & deploy server
+- readme updated for client deploy
