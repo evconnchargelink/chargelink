@@ -186,4 +186,5 @@ eas build --platform android
 eas build --platform ios
 ```
 
-Follow Expo EAS Build documentation for app store deployment.
+### Frontend deployment commits for vercel
+- readme updated & deploy server
