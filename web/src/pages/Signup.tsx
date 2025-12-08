@@ -4,6 +4,8 @@ import logo from "/logo.png";
 import { useState } from "react";
 import HostAuthService from "../services/host/auth.service";
 import DriverAuthService from "../services/driver/auth.service";
+import { IoEye, IoEyeOff } from "react-icons/io5";
+import useToast from "../hooks/toast.hook";
 
 const hostAuthService = new HostAuthService();
 const driverAuthService = new DriverAuthService();
@@ -14,12 +16,14 @@ const Signup = () => {
   const [number, setNumber] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isPasswordShowing, setIsPasswordShowing] = useState<boolean>(false);
 
   const navigate = useNavigate();
+  const { openToast } = useToast();
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!name || !number || !email || !password) {
       return;
     }
@@ -32,11 +36,14 @@ const Signup = () => {
       }
 
       if (roleType === "driver") {
-        await driverAuthService.signup(name, email, password);
+        await driverAuthService.signup(name, email, password, number);
 
         navigate("/driver/dashboard");
       }
-    } catch (error) {
+
+      openToast("Signup successful!", "SUCCESS");
+    } catch (error: any) {
+      openToast(error.response?.data?.message || error.message || "Signup failed. Please try again.", "ERROR");
       console.log(error);
     }
   };
@@ -115,18 +122,28 @@ const Signup = () => {
               />
             </div>
 
-            <div>
+            <div className="flex items-center h-[45px] rounded-md border-[0.8px] border-slate-500 px-4 py-1">
               <input
-                type="password"
+                type={isPasswordShowing ? "text" : "password"}
                 placeholder="Password"
-                className="w-full h-[45px] rounded-md border-[0.8px] border-slate-500 px-4 py-1 outline-black"
+                className="w-full outline-none"
                 onChange={(e) => setPassword(e.target.value)}
               />
+
+              {isPasswordShowing ? (
+                <IoEye
+                  className="ml-2 text-xl text-gray-500 cursor-pointer"
+                  onClick={() => setIsPasswordShowing(!isPasswordShowing)}
+                />
+              ) : (
+                <IoEyeOff
+                  className="ml-2 text-xl text-gray-500 cursor-pointer"
+                  onClick={() => setIsPasswordShowing(!isPasswordShowing)}
+                />
+              )}
             </div>
 
-            <button
-              className="w-full h-[45px] rounded-md bg-black text-white font-medium cursor-pointer"
-            >
+            <button className="w-full h-[45px] rounded-md bg-black text-white font-medium cursor-pointer">
               Sign up as {roleType}
             </button>
           </form>

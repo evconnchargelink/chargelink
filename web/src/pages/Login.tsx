@@ -4,11 +4,15 @@ import logo from "/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import driverApi from "../apis/driver.api";
+import { IoEye, IoEyeOff } from "react-icons/io5";
+import useToast from "../hooks/toast.hook";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isPasswordShowing, setIsPasswordShowing] = useState<boolean>(false);
+  const { openToast } = useToast();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,8 +28,13 @@ const Login = () => {
         navigate("/driver/dashboard");
       } else if (response.data.role === "host") {
         navigate("/host/dashboard");
+      } else if (response.data.role === "admin") {
+        navigate("/admin/dashboard");
       }
-    } catch (error) {
+
+      openToast("Login successful", "SUCCESS");
+    } catch (error:any) {
+      openToast(error.response?.data?.message || error.message || "Error in logging in", "ERROR");
       console.log(error);
     }
   };
@@ -62,13 +71,26 @@ const Login = () => {
               />
             </div>
 
-            <div>
+            <div className="flex items-center border-[0.8px] border-slate-500 px-4 h-[45px] py-1 rounded-md outline-black">
               <input
-                type="password"
+                type={isPasswordShowing ? "text" : "password"}
                 placeholder="Password"
-                className="w-full h-[45px] rounded-md border-[0.8px] border-slate-500 px-4 py-1 outline-black"
+                className="w-full outline-none "
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+
+              {isPasswordShowing ? (
+                <IoEye
+                  className="ml-2 text-xl text-gray-500 cursor-pointer"
+                  onClick={() => setIsPasswordShowing(!isPasswordShowing)}
+                />
+              ) : (
+                <IoEyeOff
+                  className="ml-2 text-xl text-gray-500 cursor-pointer"
+                  onClick={() => setIsPasswordShowing(!isPasswordShowing)}
+                />
+              )}
             </div>
 
             <button className="w-full h-[45px] rounded-md bg-black text-white font-medium cursor-pointer">
