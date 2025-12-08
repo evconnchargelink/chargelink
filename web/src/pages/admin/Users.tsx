@@ -5,39 +5,46 @@ import {
 } from "react-icons/io";
 import { LuFilter, LuSearch } from "react-icons/lu";
 import Modal from "../../components/Modal";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import UserService from "../../services/admin/user.service";
 
-const statsInfo = [
-  {
-    title: "Total Bookings",
-    value: "4",
-    Icon: IoIosCheckmarkCircleOutline,
-    iconBG: "#F3F4F6",
-    iconColor: "#1900A9",
-  },
-  {
-    title: "Total Charged",
-    value: "100 kWh",
-    Icon: IoIosCheckmarkCircleOutline,
-    iconBG: "#D1FAE5",
-    iconColor: "#10B981",
-  },
-  {
-    title: "Paid",
-    value: "100",
-    Icon: IoIosCloseCircleOutline,
-    iconBG: "#FEE2E2",
-    iconColor: "#EF4444",
-    percentageIncrease: "",
-  },
-  {
-    title: "Stations Visited",
-    value: "120",
-    Icon: IoIosInformationCircleOutline,
-    iconBG: "#F3F4F6",
-    iconColor: "#6B7280",
-  },
-];
+const userService = new UserService();
+
+const getStatsInfo = ({totalDrivers, totalHosts}:{totalDrivers: number, totalHosts: number}) => {
+  const statsInfo = [
+    {
+      title: "Total Users",
+      value: (totalDrivers + totalHosts)?.toString() || "0",
+      Icon: IoIosCheckmarkCircleOutline,
+      iconBG: "#F3F4F6",
+      iconColor: "#1900A9",
+    },
+    {
+      title: "Total Drivers",
+      value: totalDrivers?.toString() || "0",
+      Icon: IoIosCheckmarkCircleOutline,
+      iconBG: "#D1FAE5",
+      iconColor: "#10B981",
+    },
+    {
+      title: "Total Hosts",
+      value: totalHosts?.toString() || "0",
+      Icon: IoIosCloseCircleOutline,
+      iconBG: "#FEE2E2",
+      iconColor: "#EF4444",
+      percentageIncrease: "",
+    },
+    {
+      title: "Stations Visited",
+      value: "120",
+      Icon: IoIosInformationCircleOutline,
+      iconBG: "#F3F4F6",
+      iconColor: "#6B7280",
+    },
+  ];
+
+  return statsInfo;
+};
 
 const users = [
   {
@@ -98,6 +105,98 @@ const users = [
   },
 ];
 
+const DriversTab = ({
+  setIsUserModalOpen,
+  drivers,
+}: {
+  setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  drivers: UserType[];
+}) => {
+  return (
+    <div className="w-full">
+      <table className="w-full">
+        <thead className="[&>tr>*]:text-start [&>tr>*]:pb-3 border-b border-slate-300">
+          <tr className="[&>*]:text-sm [&>*]:text-slate-900 [&>*]:font-normal">
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Total Bookings</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody className="[&>tr>*]:text-start [&>tr>*]:py-5 [&>tr]:border-b [&>tr]:border-slate-300 [&>tr>*]:text-xs">
+          {drivers.map((user, index) => (
+            <tr key={index}>
+              <td>{user._id}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td className="text-green-700">{user.number}</td>
+              <td>{0}</td>
+              <td>
+                <button
+                  onClick={() => {
+                    setIsUserModalOpen(true);
+                  }}
+                  className="px-3 py-1 border border-black rounded-xl opacity-50 hover:opacity-100 cursor-pointer"
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const HostsTab = ({
+  setIsUserModalOpen,
+  hosts
+}: {
+  setIsUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  hosts: UserType[];
+}) => {
+  return (
+    <div className="w-full">
+      <table className="w-full">
+        <thead className="[&>tr>*]:text-start [&>tr>*]:pb-3 border-b border-slate-300">
+          <tr className="[&>*]:text-sm [&>*]:text-slate-900 [&>*]:font-normal">
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Total Bookings</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody className="[&>tr>*]:text-start [&>tr>*]:py-5 [&>tr]:border-b [&>tr]:border-slate-300 [&>tr>*]:text-xs">
+          {hosts.map((user, index) => (
+            <tr key={index}>
+              <td>{user._id}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td className="text-green-700">{user.number}</td>
+              <td>{0}</td>
+              <td>
+                <button
+                  onClick={() => {
+                    setIsUserModalOpen(true);
+                  }}
+                  className="px-3 py-1 border border-black rounded-xl opacity-50 hover:opacity-100 cursor-pointer"
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
 const UserModal = ({
   open,
   onClose,
@@ -119,8 +218,31 @@ const UserModal = ({
   );
 };
 
+type UserType = {
+  _id: string;
+  name: string;
+  email: string;
+  number: string;
+};
+
 const AdminUsers = () => {
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [drivers, setDrivers] = useState<UserType[]>([]);
+  const [hosts, setHosts] = useState<UserType[]>([]);
+  const [currentTab, setCurrentTab] = useState<"drivers" | "hosts">("drivers");
+
+  const fetchUsers = async () => {
+    try {
+      const response = await userService.getAll();
+
+      setDrivers(response.data.drivers);
+      setHosts(response.data.hosts);
+    } catch (e) {}
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <>
@@ -141,7 +263,7 @@ const AdminUsers = () => {
 
         {/* stats */}
         <div className="my-8 grid grid-cols-4 gap-10 px-8">
-          {statsInfo.map((item, index) => (
+          {getStatsInfo({totalDrivers: drivers.length, totalHosts: hosts.length}).map((item, index) => (
             <div
               key={index}
               className="space-x-2 bg-white rounded-xl py-2 px-4 flex justify-between shadow-[0px_1px_3px_0px_#0000001A] "
@@ -179,7 +301,7 @@ const AdminUsers = () => {
           ))}
         </div>
 
-        <div className="my-14 space-y-14 px-8">
+        <div className="my-6 space-y-14 px-8">
           <div className=" flex items-center justify-between sticky top-0 bg-[#F8F9FC] py-5">
             <div className="flex items-center space-x-5">
               <div className="flex items-center space-x-2 border w-[400px] border-slate-400 px-4 py-2 rounded-lg">
@@ -197,43 +319,47 @@ const AdminUsers = () => {
               </div>
             </div>
           </div>
-
-          <div className="w-full">
-            <table className="w-full">
-              <thead className="[&>tr>*]:text-start [&>tr>*]:pb-3 border-b border-slate-300">
-                <tr className="[&>*]:text-sm [&>*]:text-slate-900 [&>*]:font-normal">
-                  <th>User ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Total Bookings</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody className="[&>tr>*]:text-start [&>tr>*]:py-5 [&>tr]:border-b [&>tr]:border-slate-300 [&>tr>*]:text-xs">
-                {users.map((user, index) => (
-                  <tr key={index}>
-                    <td>{user.id}</td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td className="text-green-700">{user.phone}</td>
-                    <td>{user.bookings}</td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          setIsUserModalOpen(true);
-                        }}
-                        className="px-3 py-1 border border-black rounded-xl opacity-50 hover:opacity-100 cursor-pointer"
-                      >
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </div>
+
+          <div className="my-4 w-full px-8">
+            <div className="py-6 sticky top-0 z-10 bg-[#F8F9FC]">
+              <div className="flex items-center space-x-5 border-b border-b-slate-200 ">
+                <div
+                  onClick={() => {
+                    setCurrentTab("drivers");
+                  }}
+                  className={`pb-1 px-5 border-b  cursor-pointer ${
+                    currentTab === "drivers"
+                      ? "border-b-black"
+                      : "border-b-transparent text-neutral-500"
+                  }`}
+                >
+                  <p className="text-sm">Drivers</p>
+                </div>
+
+                <div
+                  onClick={() => {
+                    setCurrentTab("hosts");
+                  }}
+                  className={`pb-1 px-5 border-b cursor-pointer ${
+                    currentTab === "hosts"
+                      ? "border-b-black"
+                      : "border-b-transparent text-neutral-500"
+                  }`}
+                >
+                  <p className="text-sm">Hosts</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pb-16">
+              {currentTab === "drivers" ? (
+                <DriversTab setIsUserModalOpen={setIsUserModalOpen} drivers={drivers}/>
+              ) : (
+                <HostsTab setIsUserModalOpen={setIsUserModalOpen} hosts={hosts}/>
+              )}
+            </div>
+          </div>
       </div>
     </>
   );

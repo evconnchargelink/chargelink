@@ -1,7 +1,11 @@
+import adminApi from "../../apis/admin.api";
+
 class ChargerService {
   constructor() {}
 
-  // TODO: Implement charger management methods
+  getAll(){
+    return adminApi.get("/chargers");
+  }
 }
 
 export default ChargerService;

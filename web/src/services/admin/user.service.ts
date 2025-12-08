@@ -1,7 +1,11 @@
+import adminApi from "../../apis/admin.api";
+
 class UserService {
   constructor() {}
 
-  // TODO: Implement user management methods
+  async getAll() {
+    return adminApi.get("/users");
+  }
 }
 
 export default UserService;

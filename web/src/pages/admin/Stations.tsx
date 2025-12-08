@@ -4,41 +4,50 @@ import {
   IoIosInformationCircleOutline,
 } from "react-icons/io";
 import StationCard from "../../components/StationCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import { IoCloseCircle } from "react-icons/io5";
+import ChargerService from "../../services/admin/charger.service";
+import type { ChargerType } from "../../services/host/charger.service";
+import ChargerCard from "../../components/StationCard";
 
-const statsInfo = [
-  {
-    title: "Total Bookings",
-    value: "4",
-    Icon: IoIosCheckmarkCircleOutline,
-    iconBG: "#F3F4F6",
-    iconColor: "#1900A9",
-  },
-  {
-    title: "Total Charged",
-    value: "100 kWh",
-    Icon: IoIosCheckmarkCircleOutline,
-    iconBG: "#D1FAE5",
-    iconColor: "#10B981",
-  },
-  {
-    title: "Paid",
-    value: "100",
-    Icon: IoIosCloseCircleOutline,
-    iconBG: "#FEE2E2",
-    iconColor: "#EF4444",
-    percentageIncrease: "",
-  },
-  {
-    title: "Stations Visited",
-    value: "120",
-    Icon: IoIosInformationCircleOutline,
-    iconBG: "#F3F4F6",
-    iconColor: "#6B7280",
-  },
-];
+const chargerService = new ChargerService();
+
+const getStatsInfo = ({totalBookings}: { totalBookings: number }) => {
+  const statsInfo = [
+    {
+      title: "Total Bookings",
+      value: totalBookings.toString() || "0",
+      Icon: IoIosCheckmarkCircleOutline,
+      iconBG: "#F3F4F6",
+      iconColor: "#1900A9",
+    },
+    {
+      title: "Total Charged",
+      value: "100 kWh",
+      Icon: IoIosCheckmarkCircleOutline,
+      iconBG: "#D1FAE5",
+      iconColor: "#10B981",
+    },
+    {
+      title: "Paid",
+      value: "100",
+      Icon: IoIosCloseCircleOutline,
+      iconBG: "#FEE2E2",
+      iconColor: "#EF4444",
+      percentageIncrease: "",
+    },
+    {
+      title: "Stations Visited",
+      value: "120",
+      Icon: IoIosInformationCircleOutline,
+      iconBG: "#F3F4F6",
+      iconColor: "#6B7280",
+    },
+  ];
+
+  return statsInfo;
+};
 
 const MapView = ({ onClose }: { onClose: () => void }) => {
   return (
@@ -52,13 +61,13 @@ const MapView = ({ onClose }: { onClose: () => void }) => {
           disableDefaultUI
         />
       </APIProvider>
-{/* what si thw enig of this  */}
+      {/* what si thw enig of this  */}
 
       <button
         onClick={onClose}
         className=" cursor-pointer absolute top-2 right-2 z-50 bg-white rounded-full"
       >
-        <IoCloseCircle className="text-4xl"/>
+        <IoCloseCircle className="text-4xl" />
       </button>
     </div>
   );
@@ -70,6 +79,21 @@ const AdminStations = () => {
   if (isMapViewOpen) {
     return <MapView onClose={() => setIsMapViewOpen(false)} />;
   }
+
+  const [stations, setStations] = useState<ChargerType[]>([]);
+
+  const fetchStations = async () => {
+    try {
+      const response = await chargerService.getAll();
+      setStations(response.data.chargers);
+    } catch (error) {
+      console.error("Failed to fetch stations:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchStations();
+  }, []);
 
   return (
     <>
@@ -95,7 +119,7 @@ const AdminStations = () => {
 
         {/* stats */}
         <div className="my-8 grid grid-cols-4 gap-10">
-          {statsInfo.map((item, index) => (
+          {getStatsInfo({ totalBookings: stations.length }).map((item, index) => (
             <div
               key={index}
               className="space-x-2 bg-white rounded-xl py-2 px-4 flex justify-between shadow-[0px_1px_3px_0px_#0000001A] "
@@ -135,11 +159,9 @@ const AdminStations = () => {
 
         {/* stations listing */}
         <div className="w-full my-8 grid grid-cols-3 gap-6">
-          <StationCard />
-          <StationCard />
-          <StationCard />
-          <StationCard />
-          <StationCard />
+          {stations.map((station, index) => (
+            <ChargerCard key={index} info={station} />
+          ))}
         </div>
       </div>
     </>

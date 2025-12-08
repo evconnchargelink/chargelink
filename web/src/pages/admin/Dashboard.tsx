@@ -1,3 +1,4 @@
+import { BarChart, LineChart, PieChart } from "@mui/x-charts";
 import {
   IoIosCheckmarkCircleOutline,
   IoIosCloseCircleOutline,
@@ -34,6 +35,31 @@ const statsInfo = [
     iconBG: "#F3F4F6",
     iconColor: "#6B7280",
   },
+];
+
+const margin = { right: 24 };
+const uData = [
+  4000, 3000, 2000, 2780, 1890, 2390, 3490, 3200, 3500, 3800, 4200, 4100,
+];
+const pData = [
+  2400, 1398, 9800, 3908, 4800, 3800, 4300, 4100, 4500, 4700, 5200, 5100,
+];
+const bData = [
+  1200, 800, 500, 1200, 900, 1100, 1400, 1300, 1500, 1600, 1800, 1700,
+];
+const xLabels = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 const AdminDashboard = () => {
@@ -85,17 +111,71 @@ const AdminDashboard = () => {
         ))}
       </div>
 
-
-        {/*  */}
+      {/*  */}
       <div className="w-full flex-1 h-full flex items-center gap-8 overflow-y-hidden">
+        <div className="flex-[0.4] w-full h-full bg-white shadow-[0px_1px_3px_0px_#0000001A] rounded-xl p-4 space-y-8 flex flex-col">
+           <div className="w-full flex items-center justify-between border-b border-slate-200 pb-4">
+            <p className="text-lg font-semibold">Customer Review</p>
+          </div>
 
-        <div className="flex-[0.4] w-full h-full bg-white shadow-[0px_1px_3px_0px_#0000001A] rounded-xl p-4 space-y-8">
+          <div className="py-4">
+            <PieChart
+              series={[
+                {
+                  data: [
+                    { id: 0, value: 10, color: "#f26060" },
+                    { id: 1, value: 15, color: "#5a93ee" },
+                    { id: 2, value: 20, color: "#4fdc24" },
+                  ],
+                },
+              ]}
+              width={200}
+              height={200}
+            />
+          </div>
 
+          <div className="flex flex-col space-y-2">
+            <div className="w-full flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-[10px] h-[10px] bg-[#4fdc24] rounded-xs"></div>
+                <p className="text-sm font-medium">Positive</p>
+              </div>
+
+              <p className="text-sm font-semibold">20%</p>
+            </div>
+
+            <div className="w-full flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-[10px] h-[10px] bg-[#f26060] rounded-xs"></div>
+                <p className="text-sm font-medium">Negative</p>
+              </div>
+
+              <p className="text-sm font-semibold">10%</p>
+            </div>
+
+            <div className="w-full flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-[10px] h-[10px] bg-[#5a93ee] rounded-xs"></div>
+                <p className="text-sm font-medium">Neutral</p>
+              </div>
+
+              <p className="text-sm font-semibold">15%</p>
+            </div>
+          </div>
         </div>
 
-
         <div className="flex-[0.6] w-full h-full bg-white shadow-[0px_1px_3px_0px_#0000001A] rounded-xl p-4 space-y-8">
-
+          <LineChart
+            series={[
+              { data: pData, label: "Earning" },
+              { data: uData, label: "Users" },
+              { data: bData, label: "Bookings" },
+            ]}
+            xAxis={[{ scaleType: "point", data: xLabels }]}
+            yAxis={[{ width: 50 }]}
+            margin={margin}
+            height={400}
+          />
         </div>
       </div>
     </div>
