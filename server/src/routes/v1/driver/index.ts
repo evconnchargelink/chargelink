@@ -4,6 +4,7 @@ import { handleLogout } from "../../../controllers/logout.controller";
 import { signup } from "../../../controllers/driver/auth.controller";
 import { AUTH_ROLES } from "../../../types/role.type";
 import { authMiddleware } from "../../../middlewares/auth.middleware";
+import { planTrip } from "../../../controllers/driver/plan.controller";
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.post(
   authMiddleware(AUTH_ROLES.DRIVER),
   handleLogout(AUTH_ROLES.DRIVER)
 );
+router.post("/plan-trip", planTrip);
 
 export default router;

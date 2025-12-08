@@ -70,12 +70,6 @@ const userSidebarContent = [
     redirect: "/driver/planner",
     size: "22",
   },
-  {
-    title: "Test",
-    icon: IoMapOutline,
-    redirect: "/driver/test",
-    size: "22",
-  },
   // {
   //   title: "Wallet",
   //   icon: LuWallet,

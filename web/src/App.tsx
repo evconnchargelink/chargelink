@@ -36,83 +36,86 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import IdentityLayout from "./IdentityLayout";
 import TripPlanner from "./pages/driver/TripPlanner";
-import Test from "./pages/driver/Test";
+import { APIProvider } from "@vis.gl/react-google-maps";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route index element={<Home />} />
-            </Route>
-
-            <Route element={<IdentityLayout />}>
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-
-              <Route element={<AuthLayout />}>
-                {/* driver routes */}
-                <Route
-                  path="/driver"
-                  element={<Navigate to="/driver/dashboard" />}
-                />
-                <Route path="/driver/dashboard" element={<Dashboard />} />
-                <Route path="/driver/find" element={<FinderCharger />} />
-                <Route path="/driver/find/book" element={<BookCharger />} />
-                <Route path="/driver/bookings" element={<Bookings />} />
-                <Route path="/driver/bookings/:id/track" element={<Track />} />
-                <Route path="/driver/history" element={<History />} />
-                <Route path="/driver/profile" element={<Profile />} />
-                <Route path="/driver/wallet" element={<Wallet />} />
-                <Route path="/driver/settings" element={<Settings />} />
-                <Route path="/driver/car-details" element={<CarDetails />} />
-                <Route
-                  path="/driver/notifications"
-                  element={<Notifications />}
-                />
-
-                <Route path="/driver/planner" element={<TripPlanner />} />
-                <Route path="/driver/test" element={<Test />} />
-
-
-                {/* host routes */}
-                <Route
-                  path="/host"
-                  element={<Navigate to="/host/dashboard" />}
-                />
-                <Route path="/host/dashboard" element={<HostDashboard />} />
-                <Route path="/host/reservations" element={<Reservations />} />
-                <Route path="/host/earnings" element={<Earnings />} />
-                <Route
-                  path="/host/notifications"
-                  element={<HostNotifications />}
-                />
-                <Route path="/host/settings" element={<HostSettings />} />
-                <Route path="/host/analytics" element={<HostAnalytics />} />
-                <Route path="/host/profile" element={<HostProfile />} />
-                <Route path="/host/chargers" element={<HostChargers />} />
-
-                {/* admin routes */}
-                <Route
-                  path="/admin"
-                  element={<Navigate to="/admin/dashboard" />}
-                />
-                <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                <Route path="/admin/earnings" element={<AdminEarnings />} />
-                <Route path="/admin/users" element={<AdminUsers />} />
-                <Route
-                  path="/admin/notifications"
-                  element={<AdminNotifications />}
-                />
-                <Route path="/admin/analytics" element={<AdminAnalytics />} />
-                <Route path="/admin/stations" element={<AdminStations />} />
-                <Route path="/admin/settings" element={<AdminSettings />} />
+        <APIProvider apiKey={import.meta.env.VITE_MAPS_API_KEY}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route index element={<Home />} />
               </Route>
-            </Route>
-          </Routes>
-        </LocalizationProvider>
+
+              <Route element={<IdentityLayout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+
+                <Route element={<AuthLayout />}>
+                  {/* driver routes */}
+                  <Route
+                    path="/driver"
+                    element={<Navigate to="/driver/dashboard" />}
+                  />
+                  <Route path="/driver/dashboard" element={<Dashboard />} />
+                  <Route path="/driver/find" element={<FinderCharger />} />
+                  <Route path="/driver/find/book" element={<BookCharger />} />
+                  <Route path="/driver/bookings" element={<Bookings />} />
+                  <Route
+                    path="/driver/bookings/:id/track"
+                    element={<Track />}
+                  />
+                  <Route path="/driver/history" element={<History />} />
+                  <Route path="/driver/profile" element={<Profile />} />
+                  <Route path="/driver/wallet" element={<Wallet />} />
+                  <Route path="/driver/settings" element={<Settings />} />
+                  <Route path="/driver/car-details" element={<CarDetails />} />
+                  <Route
+                    path="/driver/notifications"
+                    element={<Notifications />}
+                  />
+
+                  <Route path="/driver/planner" element={<TripPlanner />} />
+
+                  {/* host routes */}
+                  <Route
+                    path="/host"
+                    element={<Navigate to="/host/dashboard" />}
+                  />
+                  <Route path="/host/dashboard" element={<HostDashboard />} />
+                  <Route path="/host/reservations" element={<Reservations />} />
+                  <Route path="/host/earnings" element={<Earnings />} />
+                  <Route
+                    path="/host/notifications"
+                    element={<HostNotifications />}
+                  />
+                  <Route path="/host/settings" element={<HostSettings />} />
+                  <Route path="/host/analytics" element={<HostAnalytics />} />
+                  <Route path="/host/profile" element={<HostProfile />} />
+                  <Route path="/host/chargers" element={<HostChargers />} />
+
+                  {/* admin routes */}
+                  <Route
+                    path="/admin"
+                    element={<Navigate to="/admin/dashboard" />}
+                  />
+                  <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                  <Route path="/admin/earnings" element={<AdminEarnings />} />
+                  <Route path="/admin/users" element={<AdminUsers />} />
+                  <Route
+                    path="/admin/notifications"
+                    element={<AdminNotifications />}
+                  />
+                  <Route path="/admin/analytics" element={<AdminAnalytics />} />
+                  <Route path="/admin/stations" element={<AdminStations />} />
+                  <Route path="/admin/settings" element={<AdminSettings />} />
+                </Route>
+              </Route>
+            </Routes>
+          </LocalizationProvider>
+        </APIProvider>
       </Provider>
     </BrowserRouter>
   );
