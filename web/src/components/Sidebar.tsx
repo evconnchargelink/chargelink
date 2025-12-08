@@ -3,6 +3,7 @@ import {
   IoAnalytics,
   IoCarSportOutline,
   IoExitOutline,
+  IoMapOutline,
   IoTicketOutline,
 } from "react-icons/io5";
 import {
@@ -61,6 +62,18 @@ const userSidebarContent = [
     title: "Profile",
     icon: CgProfile,
     redirect: "/driver/profile",
+    size: "22",
+  },
+  {
+    title: "Trip Planner",
+    icon: IoMapOutline,
+    redirect: "/driver/planner",
+    size: "22",
+  },
+  {
+    title: "Test",
+    icon: IoMapOutline,
+    redirect: "/driver/test",
     size: "22",
   },
   // {

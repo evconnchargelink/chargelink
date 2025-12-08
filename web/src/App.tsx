@@ -36,6 +36,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import IdentityLayout from "./IdentityLayout";
 import TripPlanner from "./pages/driver/TripPlanner";
+import Test from "./pages/driver/Test";
 
 const App = () => {
   return (
@@ -73,6 +74,8 @@ const App = () => {
                 />
 
                 <Route path="/driver/planner" element={<TripPlanner />} />
+                <Route path="/driver/test" element={<Test />} />
+
 
                 {/* host routes */}
                 <Route

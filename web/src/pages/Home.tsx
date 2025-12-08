@@ -8,11 +8,15 @@ import realtimeImg from "../assets/realtime.jpeg";
 import hostprogramImg from "../assets/hostprogram.jpeg";
 import Footer from "../components/Footer";
 import section11Img from "../assets/section1-1-img.jpeg";
+import section12Img from "../assets/section-1-2.webp";
+import section23Img from "../assets/section-2-3.webp";
+import section41Img from "../assets/section-4-1.jpeg";
+import section42Img from "../assets/section-4-2.webp";
+import section43Img from "../assets/section-4-3.webp";
 import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 import Slider from "../components/Slider";
 import { cn } from "../utils/cn.util";
-import { useNavigate } from "react-router-dom";
 
 const currencyData = {
   USD: { symbol: "$", rate: 1, max: 20, step: 0.5 },
@@ -34,8 +38,7 @@ const Section1Contents = [
     title: "Charging Solutions that scale",
     description: "Fleet and corporate charging solutions that scale",
     button: "Explore",
-    image:
-      "https://swtchenergy.com/uploads/2024/10/20230612_172050-e1729019199635.jpg",
+    image: section12Img,
   },
   {
     tag: "Quick link",
@@ -76,8 +79,7 @@ const Section2Contents: CardType[] = [
     title: "Station owners get full control",
     description: "Manage bookings, revenue, and maintenance easily",
     button: "Manage",
-    image:
-      "https://swtchenergy.com/uploads/2024/10/20230612_172050-e1729019199635.jpg",
+    image: section23Img,
   },
   {
     icon: CiBookmark,
@@ -106,24 +108,21 @@ const Section4Contents = [
     title: "Plug in to the nearest charger",
     description: "Connect your vehical and get started",
     button: "Learn",
-    image:
-      "https://swtchenergy.com/uploads/2024/10/20230612_172050-e1729019199635.jpg",
+    image: section41Img,
   },
   {
     tag: "Second",
     title: "Start charging via app or card",
     description: "Book your slot and begin the charge",
     button: "Book",
-    image:
-      "https://swtchenergy.com/uploads/2024/10/20230612_172050-e1729019199635.jpg",
+    image: section42Img,
   },
   {
     tag: "Third",
     title: "Pay and drive away",
     description: "Finish charging and continue your journey",
     button: "Drive",
-    image:
-      "https://swtchenergy.com/uploads/2024/10/20230612_172050-e1729019199635.jpg",
+    image: section43Img,
   },
 ];
 
@@ -186,7 +185,7 @@ const Home = () => {
   const prevCurrencyRef = useRef("INR"); // Initial previous currency set to INR
 
   const currentCurrency = currencyData[currency as keyof typeof currencyData];
-  
+
   // Corrected logic: Price in the slider is ALWAYS in the selected currency.
   const monthlyEarnings = hours[0] * days[0] * price[0] * 4.33;
 
@@ -536,7 +535,9 @@ const Home = () => {
                   </div>
 
                   <div className="mt-12">
-                    <button className="bg-black text-white px-5 py-3 rounded-xl">Start Earning Now</button>
+                    <button className="bg-black text-white px-5 py-3 rounded-xl">
+                      Start Earning Now
+                    </button>
                   </div>
                 </div>
               </motion.div>
@@ -544,103 +545,109 @@ const Home = () => {
           </div>
         </div>
 
-      {/* reviews section*/}
-      <div className="flex flex-col items-center justify-center space-y-12 py-20">
-        <div className="flex flex-col items-center justify-center space-y-8">
-          <p className="text-4xl font-semibold">
-            Drivers and hosts love ChargeLink
-          </p>
-
-          <p className="text-base font-light">
-            Real stories from real people using network
-          </p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-14">
-          <div className="flex flex-col items-center justify-center space-y-10">
-            <p className="text-center text-lg font-semibold">
-              "I found a charger in minutes and was back on the road. No stress,
-              no surprises."
+        {/* reviews section*/}
+        <div className="flex flex-col items-center justify-center space-y-12 py-20">
+          <div className="flex flex-col items-center justify-center space-y-8">
+            <p className="text-4xl font-semibold">
+              Drivers and hosts love ChargeLink
             </p>
 
-            <div className="flex flex-col space-y-6 items-center justify-center">
-              <div className="w-[50px] h-[50px] bg-slate-400 rounded-full"></div>
+            <p className="text-base font-light">
+              Real stories from real people using network
+            </p>
+          </div>
 
-              <div className="flex flex-col space-y-1 items-center justify-center">
-                <p>Rajesh kumar</p>
-                <p className="text-xs font-light">Driver, Jaipur</p>
+          <div className="grid grid-cols-3 gap-14">
+            <div className="flex flex-col items-center justify-center space-y-10">
+              <p className="text-center text-lg font-semibold">
+                "I found a charger in minutes and was back on the road. No
+                stress, no surprises."
+              </p>
+
+              <div className="flex flex-col space-y-6 items-center justify-center">
+                <div className="w-[50px] h-[50px] bg-slate-400 rounded-full">
+                  <img src="https://img.freepik.com/free-photo/medium-shot-smiley-man-posing_23-2149915905.jpg?semt=ais_hybrid&w=740&q=80" className="w-[50px] h-[50px] rounded-full object-cover"/>
+                </div>
+
+                <div className="flex flex-col space-y-1 items-center justify-center">
+                  <p>Aditya Rao</p>
+                  <p className="text-xs font-light">Driver, Jaipur</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center justify-center space-y-10">
+              <p className="text-center text-lg font-semibold">
+                "I found a charger in minutes and was back on the road. No
+                stress, no surprises."
+              </p>
+
+              <div className="flex flex-col space-y-6 items-center justify-center">
+                <div className="w-[50px] h-[50px] bg-slate-400 rounded-full">
+                  <img src="https://img.freepik.com/free-photo/medium-shot-teen-holding-match_23-2149604102.jpg?semt=ais_hybrid&w=740&q=80" className="w-[50px] h-[50px] rounded-full object-cover"/>
+                </div>
+
+                <div className="flex flex-col space-y-1 items-center justify-center">
+                  <p>Shubham Awasthi</p>
+                  <p className="text-xs font-light">Driver, Jaipur</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center justify-center space-y-10">
+              <p className="text-center text-lg font-semibold">
+                "I found a charger in minutes and was back on the road. No
+                stress, no surprises."
+              </p>
+
+              <div className="flex flex-col space-y-6 items-center justify-center">
+                <div className="w-[50px] h-[50px] bg-slate-400 rounded-full">
+                  <img src="https://img.freepik.com/free-photo/smiling-female-student-doing-homework-desk_1262-5768.jpg?semt=ais_hybrid&w=740&q=80" className="w-[50px] h-[50px] rounded-full object-cover"/>
+                </div>
+
+                <div className="flex flex-col space-y-1 items-center justify-center">
+                  <p>Sakshi Rani</p>
+                  <p className="text-xs font-light">Driver, Gurgaon</p>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="flex flex-col items-center justify-center space-y-10">
-            <p className="text-center text-lg font-semibold">
-              "I found a charger in minutes and was back on the road. No stress,
-              no surprises."
-            </p>
-
-            <div className="flex flex-col space-y-6 items-center justify-center">
-              <div className="w-[50px] h-[50px] bg-slate-400 rounded-full"></div>
-
-              <div className="flex flex-col space-y-1 items-center justify-center">
-                <p>Rajesh kumar</p>
-                <p className="text-xs font-light">Driver, Jaipur</p>
-              </div>
+        {/* newsletter section */}
+        <div className="flex flex-col items-center justify-center space-y-12 py-20">
+          <div className="flex flex-col items-center justify-center space-y-8">
+            <div className="space-y-2">
+              <p className="text-4xl font-semibold text-center">Stay</p>
+              <p className="text-4xl font-semibold text-center"> in the loop</p>
             </div>
-          </div>
 
-          <div className="flex flex-col items-center justify-center space-y-10">
-            <p className="text-center text-lg font-semibold">
-              "I found a charger in minutes and was back on the road. No stress,
-              no surprises."
+            <p className="text-sm font-light text-center">
+              Get updates on new stations, special offers, and charging tips
+              delivered to your inbox
             </p>
+          </div>
 
-            <div className="flex flex-col space-y-6 items-center justify-center">
-              <div className="w-[50px] h-[50px] bg-slate-400 rounded-full"></div>
+          <div className="space-y-5">
+            <div className="flex items-center space-x-4">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="py-3 px-4 border border-black w-[300px] text-sm"
+              />
 
-              <div className="flex flex-col space-y-1 items-center justify-center">
-                <p>Rajesh kumar</p>
-                <p className="text-xs font-light">Driver, Jaipur</p>
-              </div>
+              <button className="py-3 px-4 bg-black text-white text-sm">
+                Subscribe
+              </button>
             </div>
+
+            <p className="text-xs text-center font-light">
+              We respect your inbox. Unsubscribe at any time.
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* newsletter section */}
-      <div className="flex flex-col items-center justify-center space-y-12 py-20">
-        <div className="flex flex-col items-center justify-center space-y-8">
-          <div className="space-y-2">
-            <p className="text-4xl font-semibold text-center">Stay</p>
-            <p className="text-4xl font-semibold text-center"> in the loop</p>
-          </div>
-
-          <p className="text-sm font-light text-center">
-            Get updates on new stations, special offers, and charging tips
-            delivered to your inbox
-          </p>
-        </div>
-
-        <div className="space-y-5">
-          <div className="flex items-center space-x-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="py-3 px-4 border border-black w-[300px] text-sm"
-            />
-
-            <button className="py-3 px-4 bg-black text-white text-sm">
-              Subscribe
-            </button>
-          </div>
-
-          <p className="text-xs text-center font-light">
-            We respect your inbox. Unsubscribe at any time.
-          </p>
-        </div>
-      </div>
-
-      <Footer />
+        <Footer />
       </div>
     </div>
   );
