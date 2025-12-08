@@ -37,6 +37,7 @@ import { store } from "./store";
 import IdentityLayout from "./IdentityLayout";
 import TripPlanner from "./pages/driver/TripPlanner";
 import { APIProvider } from "@vis.gl/react-google-maps";
+import Entertainment from "./pages/driver/Entertainment";
 
 const App = () => {
   return (
@@ -78,6 +79,7 @@ const App = () => {
                   />
 
                   <Route path="/driver/planner" element={<TripPlanner />} />
+                  <Route path="/driver/entertainment" element={<Entertainment />} />
 
                   {/* host routes */}
                   <Route

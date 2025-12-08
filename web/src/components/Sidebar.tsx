@@ -22,6 +22,7 @@ import Modal from "./Modal";
 import AdminAuthService from "../services/admin/auth.service";
 import HostAuthService from "../services/host/auth.service";
 import DriverAuthService from "../services/driver/auth.service";
+import { HiOutlineBookOpen } from "react-icons/hi2";
 
 const adminAuthService = new AdminAuthService();
 const hostAuthService = new HostAuthService();
@@ -70,12 +71,18 @@ const userSidebarContent = [
     redirect: "/driver/planner",
     size: "22",
   },
-  // {
-  //   title: "Wallet",
-  //   icon: LuWallet,
-  //   redirect: "/driver/wallet",
-  //   size: "22",
-  // },
+  {
+    title: "Wallet",
+    icon: LuWallet,
+    redirect: "/driver/wallet",
+    size: "22",
+  },
+   {
+    title: "Entertainment",
+    icon: HiOutlineBookOpen,
+    redirect: "/driver/entertainment",
+    size: "22",
+  },
   // {
   //   title: "Notifications",
   //   icon: IoMdNotificationsOutline,

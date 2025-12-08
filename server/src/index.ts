@@ -18,7 +18,7 @@ if (config.ENV === "development") {
 connectDB();
 
 const corsOptions = {
-  origin: config.FRONTEND_URL,
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
