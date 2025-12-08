@@ -99,7 +99,7 @@ const Wallet = () => {
           <div className="w-full h-[300px]">
             <CardSection
               user={{
-                name: "John Doe",
+                card_name: "John Doe",
                 card_number: "1234 5678 9012 3456",
                 created_date: new Date(),
               }}

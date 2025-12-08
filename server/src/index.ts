@@ -21,7 +21,7 @@ const corsOptions = {
   origin: config.FRONTEND_URL,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "Referer", "User-Agent"],
 };
 
 app.use(cors(corsOptions));
