@@ -1,0 +1,47 @@
+{
+  "scheme": "acme",
+  "userInterfaceStyle": "light",
+  "orientation": "portrait",
+  "android": {
+    "edgeToEdgeEnabled": false,
+    "package": "com.factfinder.myapp",
+    "versionCode": 1,
+    "statusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#FFFFFF",
+      "translucent": false
+    }
+  },
+  "web": {
+    "output": "static"
+  },
+  "plugins": [
+    [
+      "expo-router",
+      {
+        "origin": "https://n"
+      }
+    ],
+    "expo-font",
+    [
+      "expo-camera",
+      {
+        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+        "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+        "recordAudioAndroid": false
+      }
+    ],
+    "expo-secure-store"
+  ],
+  "name": "fact-finder",
+  "slug": "fact-finder",
+  "version": "1.0.0",
+  "extra": {
+    "router": {
+      "origin": "https://n"
+    },
+    "eas": {
+      "projectId": "4d172ffb-eab1-4f48-9429-0354c975f525"
+    }
+  }
+}
