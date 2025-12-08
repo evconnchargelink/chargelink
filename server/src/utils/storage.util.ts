@@ -1,39 +1,36 @@
-import { Storage } from "@google-cloud/storage";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { config } from "../env.config";
 
-const storage = new Storage({
-  projectId: config.GCP_PROJECT_ID,
+const s3 = new S3Client({
+  region: config.AWS_REGION,
   credentials: {
-    client_email: config.GCP_CLIENT_EMAIL,
-    private_key: config.GCP_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    accessKeyId: config.AWS_ACCESS_KEY_ID!,
+    secretAccessKey: config.AWS_SECRET_ACCESS_KEY!,
   },
 });
 
-export const uploadFileToGCS = async (
+export const uploadFileToS3 = async (
   file: Buffer,
   fileName: string,
   contentType: string
 ): Promise<{ url: string }> => {
   try {
-    const bucket = storage.bucket(config.GCS_BUCKET_NAME!);
-    const blob = bucket.file(fileName);
+    const params = {
+      Bucket: config.AWS_BUCKET_NAME!,
+      Key: fileName,
+      Body: file,
+      ContentType: contentType,
+    };
 
-    await blob.save(file, {
-      contentType: contentType,
-      metadata: {
-        cacheControl: "public, max-age=31536000",
-      },
-    });
+    await s3.send(new PutObjectCommand(params));
 
-    await blob.makePublic();
-
-    const publicUrl = `https://storage.googleapis.com/${config.GCS_BUCKET_NAME}/${fileName}`;
+    const location = `https://${config.AWS_BUCKET_NAME}.s3.${config.AWS_REGION}.amazonaws.com/${fileName}`;
 
     return {
-      url: publicUrl,
+      url: location,
     };
   } catch (error) {
-    console.error("Error uploading file to GCS:", error);
+    console.error("Error uploading file to S3:", error);
     throw error;
   }
 };

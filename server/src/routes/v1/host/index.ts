@@ -9,19 +9,29 @@ import {
   getChargers,
 } from "../../../controllers/host/charger.controller";
 import { fileUpload } from "../../../utils/multer.util";
+import { authMiddleware } from "../../../middlewares/auth.middleware";
 
 const router = Router();
 
 // Auth Routes
 router.post("/refresh-token", handleRefreshAccessToken(AUTH_ROLES.HOST));
 router.post("/signup", signup);
-router.post("/logout", handleLogout(AUTH_ROLES.HOST));
+router.post(
+  "/logout",
+  authMiddleware(AUTH_ROLES.HOST),
+  handleLogout(AUTH_ROLES.HOST)
+);
 
 // Dashboard Routes
 router.get("/dashboard", getDashboardData);
 
 // Charger Routes
-router.get("/chargers", getChargers);
-router.post("/charger", fileUpload.single("file"), addCharger);
+router.get("/chargers", authMiddleware(AUTH_ROLES.HOST), getChargers);
+router.post(
+  "/charger",
+  authMiddleware(AUTH_ROLES.HOST),
+  fileUpload.single("file"),
+  addCharger
+);
 
 export default router;

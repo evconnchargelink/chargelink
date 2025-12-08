@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "../../utils/async.handler";
 import { StationModel } from "../../models/station.model";
-import { uploadFileToGCS } from "../../utils/storage.util";
+import { uploadFileToS3 } from "../../utils/storage.util";
 
 export const getChargers = asyncHandler(async (req: Request, res: Response) => {
   try {
@@ -27,20 +27,20 @@ export const getChargers = asyncHandler(async (req: Request, res: Response) => {
 export const addCharger = asyncHandler(async (req: Request, res: Response) => {
   const hostId = req.provider.id;
 
-  const { title, location, type, power, amenities, price } = req.body;
+  const { title, location, type, power, price } = req.body;
 
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
 
-  if (!title || !location || !type || !power || !amenities || !price) {
+  if (!title || !location || !type || !power || !price) {
     return res.status(400).json({
       message: "Title, location, type, power, amenities and price are required",
     });
   }
 
   try {
-    const thumbnail = await uploadFileToGCS(
+    const thumbnail = await uploadFileToS3(
       req.file.buffer,
       req.file.originalname,
       req.file.mimetype
@@ -48,10 +48,13 @@ export const addCharger = asyncHandler(async (req: Request, res: Response) => {
 
     const charger = new StationModel({
       title,
-      location,
+      description: "",
+      location: {
+        lat: JSON.parse(location).lat,
+        lng: JSON.parse(location).lng,
+      },
       chargerType: type,
       power,
-      amenities,
       price,
       hostId,
       thumbnail: thumbnail.url,

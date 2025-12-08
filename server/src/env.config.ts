@@ -19,4 +19,8 @@ export const config = {
   GCP_CLIENT_EMAIL: process.env.GCP_CLIENT_EMAIL,
   GCP_PRIVATE_KEY: process.env.GCP_PRIVATE_KEY,
   GCS_BUCKET_NAME: process.env.GCS_BUCKET_NAME,
+  AWS_REGION: process.env.AWS_REGION,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  AWS_BUCKET_NAME: process.env.AWS_BUCKET_NAME,
 };

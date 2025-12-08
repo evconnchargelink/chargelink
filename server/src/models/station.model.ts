@@ -29,7 +29,6 @@ const stationSchema: Schema<IStation> = new Schema<IStation>({
   },
   description: {
     type: String,
-    required: true,
     trim: true,
   },
   thumbnail: {
@@ -49,7 +48,6 @@ const stationSchema: Schema<IStation> = new Schema<IStation>({
   },
   amenities: {
     type: [String],
-    required: true,
   },
   chargerType: {
     type: String,
