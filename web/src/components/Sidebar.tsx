@@ -45,12 +45,12 @@ const userSidebarContent = [
     redirect: "/driver/bookings",
     size: "22",
   },
-  {
-    title: "History",
-    icon: LuHistory,
-    redirect: "/driver/history",
-    size: "22",
-  },
+  // {
+  //   title: "History",
+  //   icon: LuHistory,
+  //   redirect: "/driver/history",
+  //   size: "22",
+  // },
   {
     title: "Car Details",
     icon: IoCarSportOutline,
@@ -63,12 +63,12 @@ const userSidebarContent = [
     redirect: "/driver/profile",
     size: "22",
   },
-  {
-    title: "Wallet",
-    icon: LuWallet,
-    redirect: "/driver/wallet",
-    size: "22",
-  },
+  // {
+  //   title: "Wallet",
+  //   icon: LuWallet,
+  //   redirect: "/driver/wallet",
+  //   size: "22",
+  // },
   // {
   //   title: "Notifications",
   //   icon: IoMdNotificationsOutline,

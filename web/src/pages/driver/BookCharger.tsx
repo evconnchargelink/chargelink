@@ -19,18 +19,48 @@ interface RazorpayResponse {
   razorpay_signature?: string;
 }
 
-
 const calculateEnergyNeeded = (carPower: number, chargeNeeded: number) => {
+  return (carPower * chargeNeeded) / 100;
+};
 
-  return (carPower * chargeNeeded)/100;
-
-}
-
-const calculateChargingTime = (carEstimatedTimeTaken: number, currentChargeLevel: number, targetChargeLevel: number ) => {
+const calculateChargingTime = (
+  carEstimatedTimeTaken: number,
+  currentChargeLevel: number,
+  targetChargeLevel: number
+) => {
   const chargeNeeded = targetChargeLevel - currentChargeLevel;
 
-  return (carEstimatedTimeTaken / 100) * chargeNeeded;
-}
+  const hours = (carEstimatedTimeTaken / 100) * chargeNeeded;
+  const totalMinutes = hours * 60;
+  const hrs = Math.floor(totalMinutes / 60);
+  const mins = Math.floor(totalMinutes % 60);
+
+  return `${hrs}h ${mins}m`;
+};
+
+const calculateEndTime = (startTime: Date, chargingTime: string) => {
+  const parts = chargingTime.split(" "); // Split by space: ["2h", "30m"]
+  
+  let hours = 0;
+  let minutes = 0;
+  
+  parts.forEach(part => {
+    if (part.includes("h")) {
+      hours = parseFloat(part.replace("h", ""));
+    }
+    if (part.includes("m")) {
+      minutes = parseFloat(part.replace("m", ""));
+    }
+  });
+  
+  const totalMinutes = hours * 60 + minutes;
+  return new Date(startTime.getTime() + totalMinutes * 60000);
+};
+
+const vehicals = [
+  { name: "Tata Tiago EV", power: 24, estimatedTime: 3.6 },
+  { name: "Tata Nexon EV", power: 40, estimatedTime: 3.0 },
+];
 
 const BookCharger = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,6 +73,15 @@ const BookCharger = () => {
 
   const [currentChargeLevel, setCurrentChargeLevel] = useState<number>(15);
   const [targetChargeLevel, setTargetChargeLevel] = useState<number>(100);
+  const [selectedVehical, setSelectedVehical] = useState<{
+    name: string;
+    power: number;
+    estimatedTime: number;
+  }>({
+    name: "Tata Tiago EV",
+    power: 24,
+    estimatedTime: 2.5,
+  });
 
   const navigate = useNavigate();
 
@@ -149,15 +188,14 @@ const BookCharger = () => {
             <h3 className="text-2xl font-semibold text-[#1E1E1E]">
               Complete your booking
             </h3>
-            <p className="text-sm text-slate-600">
-              Reserve your charging session
-            </p>
           </div>
 
-          <div className="w-full flex flex-1 gap-6">
+          <div className="w-full flex flex-1 gap-1">
             {/* start section */}
             <div className="flex-1 space-y-3">
-              <p className="text-base text-[#1E1E1E] font-semibold">Arrival Time*</p>
+              <p className="text-base text-[#1E1E1E] font-semibold">
+                Arrival Time*
+              </p>
               <DatePickerWithTime date={startDate} setDate={setStartDate} />
             </div>
 
@@ -168,14 +206,44 @@ const BookCharger = () => {
             </div> */}
           </div>
 
+          <div className="-mt-6">
+            <p className="text-xs text-slate-500">
+              Your departure time will be{" "}
+              {calculateEndTime(
+                startDate,
+                calculateChargingTime(
+                  selectedVehical.estimatedTime,
+                  currentChargeLevel,
+                  targetChargeLevel
+                )
+              ).toLocaleTimeString("en-US", {
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            </p>
+          </div>
+
           <div className="w-full flex flex-col space-y-5">
             <p className="text-base text-[#1E1E1E] font-semibold">Vehical</p>
 
-            <select className="border border-gray-300  text-sm rounded-md px-3 py-2 outline-none w-full">
-              <option>Type 1</option>
-              <option>Type 2</option>
-              <option>Type 3</option>
-              <option>Type 4</option>
+            <select
+              value={selectedVehical.name}
+              onChange={(e) => {
+                const selected = vehicals.find(
+                  (v) => v.name === e.target.value
+                );
+                if (selected) {
+                  setSelectedVehical(selected);
+                }
+              }}
+              className="border border-gray-300  text-sm rounded-md px-3 py-2 outline-none w-full"
+            >
+              {vehicals.map((vehical) => (
+                <option key={vehical.name} value={vehical.name}>
+                  {vehical.name} ({vehical.power} kWh)
+                </option>
+              ))}
             </select>
           </div>
 
@@ -241,13 +309,28 @@ const BookCharger = () => {
 
           <div className="w-full flex flex-col space-y-5">
             <button
-              onClick={() => handlePayment(parseInt((calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel) * 16).toFixed(2)))}
+              onClick={() =>
+                handlePayment(
+                  parseInt(
+                    (
+                      calculateEnergyNeeded(
+                        60,
+                        targetChargeLevel - currentChargeLevel
+                      ) * 16
+                    ).toFixed(2)
+                  )
+                )
+              }
               className="bg-black text-white px-4 py-3 font-semibold rounded-lg transition-colors"
             >
               {loading
                 ? "Processing..."
-                : `Pay ₹${(calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel) * 16).toFixed(2)}`}
-                
+                : `Pay ₹${(
+                    calculateEnergyNeeded(
+                      selectedVehical.power,
+                      targetChargeLevel - currentChargeLevel
+                    ) * 16
+                  ).toFixed(2)}`}
             </button>
           </div>
         </div>
@@ -262,7 +345,7 @@ const BookCharger = () => {
 
             <div className="p-4 space-y-6">
               <div className="w-full flex items-center justify-between">
-                <p className="text-xl font-semibold">Jaipur Place</p>
+                <p className="text-xl font-semibold">F-50 Prem Nagar 2nd, Mansarovar</p>
                 <div className="flex items-center space-x-3 border border-slate-300 text-slate-800 px-2 py-1 rounded-lg text-xs">
                   <IoStar className="text-orange-400" />
                   <p>4.3</p>
@@ -278,35 +361,59 @@ const BookCharger = () => {
                 <div className="flex items-center space-x-7 text-sm">
                   <div className="flex items-center space-x-2">
                     <MdElectricBolt />
-                    <p className="font-semibold">33 kW</p>
+                    <p className="font-semibold">7.4 kW</p>
                   </div>
 
-                  <div className="flex items-center bg-amber-100 py-1 px-2 rounded-md text-xs">
+                  {/* <div className="flex items-center bg-amber-100 py-1 px-2 rounded-md text-xs">
                     <p>Type 2</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
               <div className="flex flex-col border-y border-slate-200 bg-white/95 rounded-b-lg py-4 space-y-4">
-                <div className="w-full flex items-center justify-between">
-                  <p className="font-medium text-base">Charging Time</p>
+                <div className="w-full py-4 bg-gray-200 text-black flex flex-col items-center justify-center rounded-xl space-y-3">
+                  <p className="text-3xl font-semibold">
+                    {calculateChargingTime(
+                      selectedVehical.estimatedTime,
+                      currentChargeLevel,
+                      targetChargeLevel
+                    )}
+                  </p>
 
-                  <p className=" text-sm">{calculateChargingTime(4, currentChargeLevel, targetChargeLevel)} hr</p>
-                </div>
-
-
-                 <div className="w-full flex items-center justify-between">
-                  <p className="font-medium text-base">Engery Needed</p>
-
-                  <p className="text-sm">
-                   {calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel)} kWh
+                  <p className="text-xs text-slate-600">
+                    Estimated charging time
                   </p>
                 </div>
 
                 <div className="w-full flex items-center justify-between">
-                  <p className="font-medium text-base">Rate</p>
+                  <p className="text-sm">Arrival Time</p>
+                  {/* in 9:12 AM format */}
+                  <p className="text-base font-semibold ">
+                    {" "}
+                    {startDate.toLocaleTimeString("en-US", {
+                      hour: "numeric",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
+                  </p>
+                </div>
 
-                  <p className="text-sm">
+                <div className="w-full flex items-center justify-between">
+                  <p className="text-sm">Energy Needed</p>
+
+                  <p className="text-base font-semibold">
+                    {calculateEnergyNeeded(
+                      selectedVehical.power,
+                      targetChargeLevel - currentChargeLevel
+                    )}{" "}
+                    kWh
+                  </p>
+                </div>
+
+                <div className="w-full flex items-center justify-between">
+                  <p className="text-sm">Rate</p>
+
+                  <p className="text-base font-semibold">
                     <span>₹16</span>
                     <span className="text-xs">/unit</span>
                   </p>
@@ -314,10 +421,16 @@ const BookCharger = () => {
               </div>
 
               <div className="w-full flex items-center justify-between">
-                <p className="font-medium text-base">Total</p>
+                <p className="font-medium text-lg">Total</p>
 
-                <p className="text-sm font-medium">
-                  ₹{(calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel) * 16).toFixed(2)}
+                <p className="text-lg font-semibold">
+                  ₹
+                  {(
+                    calculateEnergyNeeded(
+                      selectedVehical.power,
+                      targetChargeLevel - currentChargeLevel
+                    ) * 16
+                  ).toFixed(2)}
                 </p>
               </div>
             </div>

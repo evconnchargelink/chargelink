@@ -31,17 +31,17 @@ const StationCard = () => {
         <div className="flex items-center space-x-7 text-sm px-4">
             <div className="flex items-center space-x-2">
                 <MdElectricBolt />
-                <p className="font-semibold">33 kW</p>
+                <p className="font-semibold">7.4 kW</p>
             </div>
-
+{/* 
             <div className="flex items-center bg-amber-100 px-4 py-1 rounded-md text-xs">
                 <p>Type 2</p>
-            </div>
+            </div> */}
         </div>
 
         <div className="flex items-center justify-between border-t border-slate-200 p-4 bg-white/95 rounded-b-lg">
                 <div className="text-sm">
-                    <p><span className="font-bold text-lg">₹230</span>/hr</p>
+                    <p><span className="font-bold text-lg">₹16</span>/unit</p>
                 </div>
 
                 <div>

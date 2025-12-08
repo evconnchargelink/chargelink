@@ -45,9 +45,9 @@ const CarCard = () => {
             <p className="font-semibold">33 kW</p>
           </div>
 
-          <div className="flex items-center bg-amber-100 px-4 py-1 rounded-md text-xs">
+          {/* <div className="flex items-center bg-amber-100 px-4 py-1 rounded-md text-xs">
             <p>Type 2</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
@@ -83,8 +83,6 @@ const CarDetails = () => {
 
       {/* car list */}
       <div className="my-8 grid grid-cols-3 gap-5">
-        <CarCard />
-        <CarCard />
         <CarCard />
         <CarCard />
       </div>
