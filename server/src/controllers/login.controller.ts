@@ -4,6 +4,7 @@ import { HostModel } from "../models/host.model";
 import { DriverModel } from "../models/driver.model";
 import { AUTH_ROLES } from "../types/role.type";
 import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken";
+import { AdminModel } from "../models/admin.model";
 
 // Login Controller
 export const login = asyncHandler(async (req: Request, res: Response) => {
@@ -22,8 +23,9 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     // Check if employee with the given email exists
     const host = await HostModel.findOne({ email });
     const driver = await DriverModel.findOne({ email });
+    const admin = await AdminModel.findOne({ email });
 
-    if (!host && !driver) {
+    if (!host && !driver && !admin) {
       return res.status(404).json({ message: "User not found." });
     }
 
@@ -94,6 +96,41 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
         .json({
           message: "Login successful.",
           role: "driver",
+        });
+    }
+
+    if (admin) {
+      // Verify the password
+      const isPasswordValid = await admin.isPasswordCorrect(password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: "Invalid password." });
+      }
+
+      // Generate JWT token
+      const { accessToken, refreshToken } =
+        await generateAccessAndRefreshTokens(
+          AUTH_ROLES.ADMIN,
+          admin._id,
+          rememberMe
+        );
+
+      const cookieOptions = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // Send cookies only over HTTPS in production
+        // sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+      };
+
+      res
+        .status(200)
+        .cookie("accessToken", accessToken, cookieOptions)
+        .cookie("refreshToken", refreshToken, {
+          ...cookieOptions,
+          maxAge: 7 * 24 * 60 * 60 * 1000,
+        })
+        .json({
+          message: "Login successful.",
+          role: "admin",
         });
     }
   } catch (e) {
