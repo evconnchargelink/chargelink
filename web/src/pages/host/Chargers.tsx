@@ -1,30 +1,103 @@
 import { IoIosAdd } from "react-icons/io";
 import Modal from "../../components/Modal";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoLocationOutline, IoStar } from "react-icons/io5";
 import { MdElectricBolt } from "react-icons/md";
 import { FiUploadCloud } from "react-icons/fi";
 import useToast from "../../hooks/toast.hook";
-import ChargerService from "../../services/host/charger.service";
+import ChargerService, {
+  type ChargerType,
+} from "../../services/host/charger.service";
 
 const chargerService = new ChargerService();
 
-const ChargerCard = () => {
+const AddThumbnailComponent = ({
+  imgFile,
+  setImgFile,
+}: {
+  imgFile: File | null;
+  setImgFile: React.Dispatch<React.SetStateAction<File | null>>;
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const openFileSelector = () => {
+    inputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    console.log("clicked");
+    if (file) {
+      setImgFile(file);
+
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+        console.log("Preview URL:", reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  if (preview) {
+    return (
+      <div className="w-full border border-slate-500 rounded-xl">
+        <input
+          ref={inputRef}
+          type="file"
+          className="hidden"
+          accept="image/*"
+          onChange={handleFileChange}
+        />
+        <img
+          onClick={openFileSelector}
+          src={preview}
+          alt="Preview"
+          className="w-full h-[200px] object-cover rounded-xl cursor-pointer"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full">
+      <input
+        ref={inputRef}
+        type="file"
+        className="hidden"
+        accept="image/*"
+        onChange={handleFileChange}
+      />
+      <div
+        onClick={openFileSelector}
+        className="w-full h-[200px] border border-dotted rounded-xl flex flex-col items-center justify-center space-y-3 cursor-pointer"
+      >
+        <FiUploadCloud className="text-4xl text-gray-400" />
+
+        <p className="text-sm text-gray-400">Upload image of the place</p>
+      </div>
+    </div>
+  );
+};
+
+const ChargerCard = ({info}:{info: ChargerType}) => {
   return (
     <div className="w-full hover:shadow-lg hover:scale-95 transition-all duration-300 cursor-pointer rounded-lg">
       <div className="w-full h-[150px] bg-blue-400 rounded-t-lg">
         <img
-          src="https://www.tripsavvy.com/thmb/1ztDauQqtdmijA8Gr3OfDpogmWs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-688926064-9b7d564a6387451bbe511184b54377a1.jpg"
+          src={info.thumbnail}
           className="w-full h-full object-cover object-center rounded-t-lg"
         />
       </div>
 
       <div className="w-full h-fit bg-white rounded-b-lg pt-4 space-y-5">
         <div className="w-full flex items-center justify-between px-4">
-          <p className="text-base font-semibold">Jaipur Place</p>
+          <p className="text-base font-semibold">{info.title}</p>
           <div className="flex items-center space-x-3 border border-slate-300 text-slate-800 px-2 py-1 rounded-lg text-xs">
             <IoStar className="text-orange-400" />
-            <p>4.3</p>
+            <p>{4.3}</p>
           </div>
         </div>
 
@@ -37,17 +110,17 @@ const ChargerCard = () => {
           <div className="flex items-center space-x-7 text-sm ">
             <div className="flex items-center space-x-2">
               <MdElectricBolt />
-              <p className="font-semibold">33 kW</p>
+              <p className="font-semibold">{info.power}</p>
             </div>
 
             <div className="flex items-center bg-amber-100 px-4 py-1 rounded-md text-xs">
-              <p>Type 2</p>
+              <p>{info.type}</p>
             </div>
           </div>
 
           <div className="text-sm">
             <p>
-              <span className="font-bold text-lg">₹230</span>/hr
+              <span className="font-bold text-lg">₹{info.price}</span>/hr
             </p>
           </div>
         </div>
@@ -64,7 +137,6 @@ const AddChargerModal = ({
   onClose: () => void;
 }) => {
   const [imgFile, setImgFile] = useState<File | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const [title, setTitle] = useState<string>("");
 
@@ -78,21 +150,9 @@ const AddChargerModal = ({
 
   const [type, setType] = useState<string>("");
   const [power, setPower] = useState<number>(0);
-  const [amenities, setAmenities] = useState<string[]>(["ahah"]);
   const [price, setPrice] = useState<number>(0);
 
   const { openToast } = useToast();
-
-  const openFileSelector = () => {
-    if (!inputRef) return;
-
-    inputRef.current?.click();
-
-    const file = inputRef.current?.files?.[0];
-    if (!file) return;
-
-    setImgFile(file);
-  };
 
   const fetchCurrentLocation = () => {
     if (!navigator.geolocation) {
@@ -110,15 +170,7 @@ const AddChargerModal = ({
   };
 
   const checkFormValidity = () => {
-    if (
-      !title ||
-      !location ||
-      !type ||
-      !power ||
-      !amenities ||
-      !price ||
-      !imgFile
-    ) {
+    if (!title || !location || !type || !power || !price || !imgFile) {
       return false;
     }
     return true;
@@ -136,7 +188,6 @@ const AddChargerModal = ({
         location,
         type,
         power,
-        amenities,
         price,
         imgFile,
       });
@@ -164,7 +215,9 @@ const AddChargerModal = ({
           <button
             onClick={addCharger}
             disabled={!checkFormValidity()}
-            className={`bg-black rounded-lg px-3 py-2 cursor-pointer ${checkFormValidity()?"opacity-100":"opacity-40"}`}
+            className={`bg-black rounded-lg px-3 py-2 cursor-pointer ${
+              checkFormValidity() ? "opacity-100" : "opacity-40"
+            }`}
           >
             <p className="text-sm text-white font-medium">Add Charger</p>
           </button>
@@ -173,15 +226,7 @@ const AddChargerModal = ({
         <div className="my-8 w-full flex flex-1 gap-x-6 justify-between">
           {/* left section */}
           <div className="flex-[0.4]">
-            <input ref={inputRef} type="file" className="hidden" />
-            <div
-              onClick={openFileSelector}
-              className="w-full h-[200px] border border-dotted rounded-xl flex flex-col items-center justify-center space-y-3 cursor-pointer"
-            >
-              <FiUploadCloud className="text-4xl text-gray-400" />
-
-              <p className="text-sm text-gray-400">Upload image of the place</p>
-            </div>
+            <AddThumbnailComponent imgFile={imgFile} setImgFile={setImgFile} />
           </div>
 
           {/* right section */}
@@ -258,6 +303,20 @@ const AddChargerModal = ({
 
 const HostChargers = () => {
   const [isChargerModalOpen, setIsChargerModalOpen] = useState(false);
+  const [chargers, setChargers] = useState<ChargerType[]>([]);
+
+  const fetchChargers = async () => {
+    try {
+      const response = await chargerService.getAll();
+      setChargers(response);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchChargers();
+  }, []);
 
   return (
     <>
@@ -287,9 +346,9 @@ const HostChargers = () => {
         </div>
 
         <div className="w-full my-8 grid grid-cols-3 gap-6">
-          <ChargerCard />
-          <ChargerCard />
-          <ChargerCard />
+          {chargers.map((charger, index) => (
+            <ChargerCard key={index} info={charger} />
+          ))}
         </div>
       </div>
     </>

@@ -12,11 +12,20 @@ class AuthService {
   }
 
   async signup(name: string, email: string, password: string, number: string) {
-    const response = await hostApi.post("/signup", { name, email, password, number });
+    const response = await hostApi.post("/signup", {
+      name,
+      email,
+      password,
+      number,
+    });
 
     return {
       hostId: response.data.hostId,
     };
+  }
+
+  async logout() {
+    return await hostApi.post("/logout");
   }
 }
 

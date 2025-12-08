@@ -18,6 +18,13 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { GiMoneyStack } from "react-icons/gi";
 import { FiUsers } from "react-icons/fi";
 import Modal from "./Modal";
+import AdminAuthService from "../services/admin/auth.service";
+import HostAuthService from "../services/host/auth.service";
+import DriverAuthService from "../services/driver/auth.service";
+
+const adminAuthService = new AdminAuthService();
+const hostAuthService = new HostAuthService();
+const driverAuthService = new DriverAuthService();
 
 const userSidebarContent = [
   {
@@ -62,18 +69,18 @@ const userSidebarContent = [
     redirect: "/driver/wallet",
     size: "22",
   },
-  {
-    title: "Notifications",
-    icon: IoMdNotificationsOutline,
-    redirect: "/driver/notifications",
-    size: "22",
-  },
-  {
-    title: "Settings",
-    icon: LuSettings,
-    redirect: "/driver/settings",
-    size: "22",
-  },
+  // {
+  //   title: "Notifications",
+  //   icon: IoMdNotificationsOutline,
+  //   redirect: "/driver/notifications",
+  //   size: "22",
+  // },
+  // {
+  //   title: "Settings",
+  //   icon: LuSettings,
+  //   redirect: "/driver/settings",
+  //   size: "22",
+  // },
 ];
 
 const providerSidebarContent = [
@@ -113,18 +120,18 @@ const providerSidebarContent = [
     redirect: "/host/profile",
     size: "22",
   },
-  {
-    title: "Notifications",
-    icon: IoMdNotificationsOutline,
-    redirect: "/host/notifications",
-    size: "22",
-  },
-  {
-    title: "Settings",
-    icon: LuSettings,
-    redirect: "/host/settings",
-    size: "22",
-  },
+  // {
+  //   title: "Notifications",
+  //   icon: IoMdNotificationsOutline,
+  //   redirect: "/host/notifications",
+  //   size: "22",
+  // },
+  // {
+  //   title: "Settings",
+  //   icon: LuSettings,
+  //   redirect: "/host/settings",
+  //   size: "22",
+  // },
 ];
 
 const adminSidebarContent = [
@@ -158,18 +165,18 @@ const adminSidebarContent = [
     redirect: "/admin/analytics",
     size: "22",
   },
-  {
-    title: "Notifications",
-    icon: IoMdNotificationsOutline,
-    redirect: "/admin/notifications",
-    size: "22",
-  },
-  {
-    title: "Settings",
-    icon: LuSettings,
-    redirect: "/admin/settings",
-    size: "22",
-  },
+  // {
+  //   title: "Notifications",
+  //   icon: IoMdNotificationsOutline,
+  //   redirect: "/admin/notifications",
+  //   size: "22",
+  // },
+  // {
+  //   title: "Settings",
+  //   icon: LuSettings,
+  //   redirect: "/admin/settings",
+  //   size: "22",
+  // },
 ];
 
 // type SidebarRowWithChildProps = {
@@ -186,10 +193,31 @@ const adminSidebarContent = [
 const LogoutModal = ({
   open,
   onClose,
+  role,
 }: {
   open: boolean;
   onClose: () => void;
+  role: string;
 }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      if (role === "admin") {
+        await adminAuthService.logout();
+      } else if (role === "host") {
+        await hostAuthService.logout();
+      } else if (role === "driver") {
+        await driverAuthService.logout();
+      }
+
+      navigate("/login");
+      onClose()
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <Modal open={open} onClose={onClose}>
       <div
@@ -198,9 +226,7 @@ const LogoutModal = ({
           e.stopPropagation();
         }}
       >
-        <p className="text-lg font-medium">
-          Are you sure you want to logout?
-        </p>
+        <p className="text-lg font-medium">Are you sure you want to logout?</p>
         <div className="flex items-center space-x-3">
           <button
             onClick={onClose}
@@ -208,7 +234,7 @@ const LogoutModal = ({
           >
             Cancel
           </button>
-          <button className="border border-red-500 text-white bg-red-500 px-8 py-2 rounded-lg text-sm cursor-pointer">
+          <button onClick={handleLogout} className="border border-red-500 text-white bg-red-500 px-8 py-2 rounded-lg text-sm cursor-pointer">
             Logout
           </button>
         </div>
@@ -241,6 +267,7 @@ const Sidebar = () => {
       <LogoutModal
         open={logoutModalOpen}
         onClose={() => setLogoutModalOpen(false)}
+        role={location.pathname.split("/")[1]}
       />
       <div className="h-full px-3 py-4 flex flex-col justify-between">
         <div>

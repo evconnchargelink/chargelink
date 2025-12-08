@@ -19,6 +19,19 @@ interface RazorpayResponse {
   razorpay_signature?: string;
 }
 
+
+const calculateEnergyNeeded = (carPower: number, chargeNeeded: number) => {
+
+  return (carPower * chargeNeeded)/100;
+
+}
+
+const calculateChargingTime = (carEstimatedTimeTaken: number, currentChargeLevel: number, targetChargeLevel: number ) => {
+  const chargeNeeded = targetChargeLevel - currentChargeLevel;
+
+  return (carEstimatedTimeTaken / 100) * chargeNeeded;
+}
+
 const BookCharger = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<Date>(new Date());
@@ -27,6 +40,9 @@ const BookCharger = () => {
   );
 
   const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
+
+  const [currentChargeLevel, setCurrentChargeLevel] = useState<number>(15);
+  const [targetChargeLevel, setTargetChargeLevel] = useState<number>(100);
 
   const navigate = useNavigate();
 
@@ -93,7 +109,7 @@ const BookCharger = () => {
   };
 
   return (
-    <div className=" w-full h-full relative">
+    <div className=" w-full h-full relative overflow-y-scroll">
       {isMapOpen && (
         <>
           <button
@@ -140,16 +156,16 @@ const BookCharger = () => {
 
           <div className="w-full flex flex-1 gap-6">
             {/* start section */}
-            <div className="flex-[0.5] space-y-3">
-              <p className="text-base text-[#1E1E1E] font-semibold">Start</p>
+            <div className="flex-1 space-y-3">
+              <p className="text-base text-[#1E1E1E] font-semibold">Arrival Time*</p>
               <DatePickerWithTime date={startDate} setDate={setStartDate} />
             </div>
 
             {/* end section */}
-            <div className="flex-[0.5] space-y-3">
+            {/* <div className="flex-[0.5] space-y-3">
               <p className="text-base text-[#1E1E1E] font-semibold">End</p>
               <DatePickerWithTime date={endDate} setDate={setEndDate} />
-            </div>
+            </div> */}
           </div>
 
           <div className="w-full flex flex-col space-y-5">
@@ -161,6 +177,54 @@ const BookCharger = () => {
               <option>Type 3</option>
               <option>Type 4</option>
             </select>
+          </div>
+
+          <div className="w-full flex flex-col space-y-5">
+            <p className="text-base text-[#1E1E1E] font-semibold">
+              Current Charge Level
+            </p>
+
+            <div className="flex gap-x-3">
+              {[15, 25, 50, 75, 100].map((level) => (
+                <div
+                  key={level}
+                  onClick={() => {
+                    setCurrentChargeLevel(level);
+                  }}
+                  className={`px-4 py-3 w-full  rounded-lg flex items-center justify-center cursor-pointer ${
+                    currentChargeLevel == level
+                      ? "bg-black text-white"
+                      : "bg-gray-300 text-black"
+                  }`}
+                >
+                  <p className="text-sm font-medium">{level}%</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col space-y-5">
+            <p className="text-base text-[#1E1E1E] font-semibold">
+              Target Charge Level
+            </p>
+
+            <div className="flex gap-x-3">
+              {[15, 25, 50, 75, 100].map((level) => (
+                <div
+                  key={level}
+                  onClick={() => {
+                    setTargetChargeLevel(level);
+                  }}
+                  className={`px-4 py-3 w-full rounded-lg flex items-center justify-center cursor-pointer ${
+                    targetChargeLevel == level
+                      ? "bg-black text-white"
+                      : "bg-gray-300 text-black"
+                  }`}
+                >
+                  <p className="text-sm font-medium">{level}%</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="w-full flex flex-col space-y-5">
@@ -177,12 +241,13 @@ const BookCharger = () => {
 
           <div className="w-full flex flex-col space-y-5">
             <button
-              onClick={() => handlePayment(timeDiff(startDate, endDate) * 100)}
+              onClick={() => handlePayment(parseInt((calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel) * 16).toFixed(2)))}
               className="bg-black text-white px-4 py-3 font-semibold rounded-lg transition-colors"
             >
               {loading
                 ? "Processing..."
-                : `Pay ₹${timeDiff(startDate, endDate) * 100}`}
+                : `Pay ₹${(calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel) * 16).toFixed(2)}`}
+                
             </button>
           </div>
         </div>
@@ -224,17 +289,26 @@ const BookCharger = () => {
 
               <div className="flex flex-col border-y border-slate-200 bg-white/95 rounded-b-lg py-4 space-y-4">
                 <div className="w-full flex items-center justify-between">
-                  <p className="font-medium text-base">Duration</p>
+                  <p className="font-medium text-base">Charging Time</p>
 
-                  <p className=" text-sm">{timeDiff(startDate, endDate)} hr</p>
+                  <p className=" text-sm">{calculateChargingTime(4, currentChargeLevel, targetChargeLevel)} hr</p>
+                </div>
+
+
+                 <div className="w-full flex items-center justify-between">
+                  <p className="font-medium text-base">Engery Needed</p>
+
+                  <p className="text-sm">
+                   {calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel)} kWh
+                  </p>
                 </div>
 
                 <div className="w-full flex items-center justify-between">
                   <p className="font-medium text-base">Rate</p>
 
                   <p className="text-sm">
-                    <span>₹100</span>
-                    <span className="text-xs">/hr</span>
+                    <span>₹16</span>
+                    <span className="text-xs">/unit</span>
                   </p>
                 </div>
               </div>
@@ -243,7 +317,7 @@ const BookCharger = () => {
                 <p className="font-medium text-base">Total</p>
 
                 <p className="text-sm font-medium">
-                  ₹{timeDiff(startDate, endDate) * 100}
+                  ₹{(calculateEnergyNeeded(60, targetChargeLevel - currentChargeLevel) * 16).toFixed(2)}
                 </p>
               </div>
             </div>

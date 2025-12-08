@@ -1,10 +1,28 @@
 import hostApi from "../../apis/host.api";
 
+
+export type ChargerType = {
+  _id: string;
+  title: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  type: string;
+  power: number;
+  price: number;
+  thumbnail: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+
 class ChargerService {
   constructor() {}
 
-  async getAll() {
-    return hostApi.get("/chargers");
+  async getAll(): Promise<ChargerType[]> {
+    const response = await hostApi.get("/chargers");
+    return response.data.chargers;
   }
 
   async addCharger({
@@ -12,7 +30,6 @@ class ChargerService {
     location,
     type,
     power,
-    amenities,
     price,
     imgFile,
   }: {
@@ -23,7 +40,6 @@ class ChargerService {
     };
     type: string;
     power: number;
-    amenities: string[];
     price: number;
     imgFile: File;
   }) {
@@ -32,7 +48,6 @@ class ChargerService {
     formData.append("location", JSON.stringify(location));
     formData.append("type", type);
     formData.append("power", power.toString());
-    formData.append("amenities", JSON.stringify(amenities));
     formData.append("price", price.toString());
     formData.append("file", imgFile);
 
