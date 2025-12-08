@@ -8,10 +8,11 @@ import {
   InfoWindow,
   useMap,
 } from "@vis.gl/react-google-maps";
-import { cars } from "../../sample/car.data";
 import PlannerService from "../../services/driver/planner.service";
+import CarService, { type CarType } from "../../services/driver/car.service";
 
 const plannerService = new PlannerService();
+const carService = new CarService();
 
 /* -------------------------------------------------------------------------- */
 /*                               Type Definitions                             */
@@ -81,6 +82,7 @@ const TripPlanner: React.FC = () => {
   const [error, setError] = useState("");
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [mapReady, setMapReady] = useState(false);
+  const [vehicals, setVehicals] = useState<CarType[]>([]);
 
   const [mapCenter, setMapCenter] = useState<MapCenter>({
     lat: 20.5937,
@@ -104,11 +106,21 @@ const TripPlanner: React.FC = () => {
     }));
   }, [selectedVehical]);
 
-  const vehicals = cars.map((car) => ({
-    name: car.name,
-    power: car.power,
-    estimatedTime: car.estimatedTime,
-  }));
+
+   const fetchCars = async () => {
+      try {
+  
+        const response = await carService.getAll();
+        setVehicals(response.data.cars);
+  
+      }catch(e){
+        console.error("Error fetching cars:", e);
+      }
+    }
+  
+    useEffect(() => {
+      fetchCars();
+    }, []);
 
   const getMarkerColor = (index: number, total: number) => {
     if (index === 0) return "#22c55e";

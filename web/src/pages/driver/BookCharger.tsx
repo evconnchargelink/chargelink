@@ -1,11 +1,15 @@
 import { MdElectricBolt } from "react-icons/md";
 import { IoLocationOutline, IoStar } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DatePickerWithTime } from "../../components/DatePicker";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import MapWithRouting from "../../components/Map";
-import { cars } from "../../sample/car.data";
 import { stations } from "../../sample/station.data";
+import type { CarType } from "../../services/driver/car.service";
+import CarService from "../../services/driver/car.service";
+
+
+const carService = new CarService();
 
 // Declare Razorpay type for TypeScript
 declare global {
@@ -61,18 +65,13 @@ const calculateEndTime = (startTime: Date, chargingTime: string) => {
 const BookCharger = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<Date>(new Date());
-  const [endDate, setEndDate] = useState<Date>(
-    new Date(new Date().getTime() + 4 * 60 * 60 * 1000)
-  );
+
+  const [vehicals, setVehicals] = useState<CarType[]>([]);
 
   const [searchParams] = useSearchParams();
   const stationid = searchParams.get("stationid");
 
-  const vehicals = cars.map((car) => ({
-    name: car.name,
-    power: car.power,
-    estimatedTime: car.estimatedTime,
-  }));
+  
 
   const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
 
@@ -151,6 +150,22 @@ const BookCharger = () => {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };
+
+
+  const fetchCars = async () => {
+    try {
+
+      const response = await carService.getAll();
+      setVehicals(response.data.cars);
+
+    }catch(e){
+      console.error("Error fetching cars:", e);
+    }
+  }
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
 
   return (
     <div className=" w-full h-full relative overflow-y-scroll">
