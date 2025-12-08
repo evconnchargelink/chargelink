@@ -35,6 +35,7 @@ import Track from "./pages/driver/Track";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import IdentityLayout from "./IdentityLayout";
+import TripPlanner from "./pages/driver/TripPlanner";
 
 const App = () => {
   return (
@@ -42,13 +43,13 @@ const App = () => {
       <Provider store={store}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Routes>
+            <Route element={<Layout />}>
+              <Route index element={<Home />} />
+            </Route>
+
             <Route element={<IdentityLayout />}>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-
-              <Route element={<Layout />}>
-                <Route index element={<Home />} />
-              </Route>
 
               <Route element={<AuthLayout />}>
                 {/* driver routes */}
@@ -70,6 +71,8 @@ const App = () => {
                   path="/driver/notifications"
                   element={<Notifications />}
                 />
+
+                <Route path="/driver/planner" element={<TripPlanner />} />
 
                 {/* host routes */}
                 <Route

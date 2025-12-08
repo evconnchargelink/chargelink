@@ -13,7 +13,7 @@ export const stations = [
   },
   {
     title: "ChargePlus Connaught Place",
-    power: "50 kW",
+    power: "7.2 kW",
     location: "Connaught Place, New Delhi",
     latitude: 28.6314512,
     longitude: 77.2166672,
@@ -25,7 +25,7 @@ export const stations = [
   },
   {
     title: "EcoCharge Bandra West",
-    power: "120 kW",
+    power: "7.2 kW",
     location: "Linking Road, Bandra West, Mumbai, Maharashtra",
     latitude: 19.0594784,
     longitude: 72.8368149,
@@ -37,7 +37,7 @@ export const stations = [
   },
   {
     title: "VoltStation Koramangala",
-    power: "22 kW",
+    power: "7.2 kW",
     location: "5th Block, Koramangala, Bengaluru, Karnataka",
     latitude: 12.934533,
     longitude: 77.626579,
