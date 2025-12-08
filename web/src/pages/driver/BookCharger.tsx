@@ -2,9 +2,10 @@ import { MdElectricBolt } from "react-icons/md";
 import { IoLocationOutline, IoStar } from "react-icons/io5";
 import { useState } from "react";
 import { DatePickerWithTime } from "../../components/DatePicker";
-import { timeDiff } from "../../utils/time.util";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import MapWithRouting from "../../components/Map";
+import { cars } from "../../sample/car.data";
+import { stations } from "../../sample/station.data";
 
 // Declare Razorpay type for TypeScript
 declare global {
@@ -40,11 +41,11 @@ const calculateChargingTime = (
 
 const calculateEndTime = (startTime: Date, chargingTime: string) => {
   const parts = chargingTime.split(" "); // Split by space: ["2h", "30m"]
-  
+
   let hours = 0;
   let minutes = 0;
-  
-  parts.forEach(part => {
+
+  parts.forEach((part) => {
     if (part.includes("h")) {
       hours = parseFloat(part.replace("h", ""));
     }
@@ -52,15 +53,10 @@ const calculateEndTime = (startTime: Date, chargingTime: string) => {
       minutes = parseFloat(part.replace("m", ""));
     }
   });
-  
+
   const totalMinutes = hours * 60 + minutes;
   return new Date(startTime.getTime() + totalMinutes * 60000);
 };
-
-const vehicals = [
-  { name: "Tata Tiago EV", power: 24, estimatedTime: 3.6 },
-  { name: "Tata Nexon EV", power: 40, estimatedTime: 3.0 },
-];
 
 const BookCharger = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -68,6 +64,15 @@ const BookCharger = () => {
   const [endDate, setEndDate] = useState<Date>(
     new Date(new Date().getTime() + 4 * 60 * 60 * 1000)
   );
+
+  const [searchParams] = useSearchParams();
+  const stationid = searchParams.get("stationid");
+
+  const vehicals = cars.map((car) => ({
+    name: car.name,
+    power: car.power,
+    estimatedTime: car.estimatedTime,
+  }));
 
   const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
 
@@ -257,12 +262,18 @@ const BookCharger = () => {
                 <div
                   key={level}
                   onClick={() => {
+                    if (level >= targetChargeLevel) return;
+
                     setCurrentChargeLevel(level);
                   }}
-                  className={`px-4 py-3 w-full  rounded-lg flex items-center justify-center cursor-pointer ${
+                  className={`px-4 py-3 w-full  rounded-lg flex items-center justify-center  ${
                     currentChargeLevel == level
                       ? "bg-black text-white"
                       : "bg-gray-300 text-black"
+                  } ${
+                    level >= targetChargeLevel
+                      ? "opacity-30 cursor-not-allowed"
+                      : "opacity-100 cursor-pointer"
                   }`}
                 >
                   <p className="text-sm font-medium">{level}%</p>
@@ -281,12 +292,17 @@ const BookCharger = () => {
                 <div
                   key={level}
                   onClick={() => {
+                    if (level <= currentChargeLevel) return;
                     setTargetChargeLevel(level);
                   }}
                   className={`px-4 py-3 w-full rounded-lg flex items-center justify-center cursor-pointer ${
                     targetChargeLevel == level
                       ? "bg-black text-white"
                       : "bg-gray-300 text-black"
+                  } ${
+                    level <= currentChargeLevel
+                      ? "opacity-30 cursor-not-allowed"
+                      : "opacity-100 cursor-pointer"
                   }`}
                 >
                   <p className="text-sm font-medium">{level}%</p>
@@ -345,23 +361,30 @@ const BookCharger = () => {
 
             <div className="p-4 space-y-6">
               <div className="w-full flex items-center justify-between">
-                <p className="text-xl font-semibold">F-50 Prem Nagar 2nd, Mansarovar</p>
+                <p className="text-xl font-semibold">
+                  {stations[parseInt(stationid!)]?.title || "Unknown Station"}
+                </p>
                 <div className="flex items-center space-x-3 border border-slate-300 text-slate-800 px-2 py-1 rounded-lg text-xs">
                   <IoStar className="text-orange-400" />
-                  <p>4.3</p>
+                  <p>{stations[parseInt(stationid!)]?.rating || "4.2"}</p>
                 </div>
               </div>
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2 text-slate-500 text-sm">
                   <IoLocationOutline />
-                  <p>Jaipur, Rajasthan</p>
+                  <p>
+                    {stations[parseInt(stationid!)]?.location ||
+                      "Jaipur, Rajasthan"}
+                  </p>
                 </div>
 
                 <div className="flex items-center space-x-7 text-sm">
                   <div className="flex items-center space-x-2">
                     <MdElectricBolt />
-                    <p className="font-semibold">7.4 kW</p>
+                    <p className="font-semibold">
+                      {stations[parseInt(stationid!)]?.power || "7.4"}
+                    </p>
                   </div>
 
                   {/* <div className="flex items-center bg-amber-100 py-1 px-2 rounded-md text-xs">

@@ -2,8 +2,75 @@ import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import { FaExpand } from "react-icons/fa";
 import { useState } from "react";
 import { LuFilter, LuSearch } from "react-icons/lu";
-import StationCard from "../../components/StationCard";
 import { FaMinimize } from "react-icons/fa6";
+import { stations } from "../../sample/station.data";
+import { IoLocationOutline, IoStar } from "react-icons/io5";
+import { MdElectricBolt } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
+const StationCard = ({
+  id,
+  info,
+}: {
+  id: number;
+  info: (typeof stations)[0];
+}) => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="w-full hover:shadow-lg hover:scale-95 transition-all duration-300 cursor-pointer rounded-lg">
+      <div className="w-full h-[150px] bg-blue-400 rounded-t-lg">
+        <img
+          src={info.image}
+          className="w-full h-full object-cover object-center rounded-t-lg"
+        />
+      </div>
+
+      <div className="w-full h-fit bg-white rounded-b-lg pt-4 space-y-5">
+        <div className="w-full flex items-center justify-between px-4">
+          <p className="text-base font-semibold">{info.title}</p>
+          <div className="flex items-center space-x-3 border border-slate-300 text-slate-800 px-2 py-1 rounded-lg text-xs">
+            <IoStar className="text-orange-400" />
+            <p>{info.rating}</p>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-2 text-slate-500 text-xs px-4 ">
+          <IoLocationOutline />
+          <p>{info.location}</p>
+        </div>
+
+        <div className="flex items-center space-x-7 text-sm px-4">
+          <div className="flex items-center space-x-2">
+            <MdElectricBolt />
+            <p className="font-semibold">{info.power} kW</p>
+          </div>
+          {/* 
+            <div className="flex items-center bg-amber-100 px-4 py-1 rounded-md text-xs">
+                <p>Type 2</p>
+            </div> */}
+        </div>
+
+        <div className="flex items-center justify-between border-t border-slate-200 p-4 bg-white/95 rounded-b-lg">
+          <div className="text-sm">
+            <p>
+              <span className="font-bold text-lg">₹{info.rate}</span>/unit
+            </p>
+          </div>
+
+          <div>
+            <button
+              onClick={() => navigate(`/driver/find/book?stationid=${id}`)}
+              className="bg-black text-white text-xs px-4 py-2 rounded-lg cursor-pointer"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const FinderCharger = () => {
   const [isMapExpanded, setIsMapExpanded] = useState(false);
@@ -53,11 +120,9 @@ const FinderCharger = () => {
 
           <div className="w-full flex-1 h-full bg-slate-100 rounded-lg px-4 py-2 overflow-hidden">
             <div className="w-full h-full flex flex-col space-y-8 overflow-y-scroll no-scrollbar">
-              <StationCard />
-              <StationCard />
-              <StationCard />
-              <StationCard />
-              <StationCard />
+              {stations.map((station, index) => (
+                <StationCard id={index} key={index} info={station} />
+              ))}
             </div>
           </div>
         </div>
@@ -74,7 +139,10 @@ const FinderCharger = () => {
                   onClick={() => setIsDrawerOpen(!isDrawerOpen)}
                   className=" bg-slate-800 text-white px-3 py-2 rounded-lg flex items-center justify-center cursor-pointer shadow-[0px_1px_3px_0px_#0000001A]"
                 >
-                  <p className="text-[10px]"> {isDrawerOpen ? 'Close' : 'Open'} Drawer</p>
+                  <p className="text-[10px]">
+                    {" "}
+                    {isDrawerOpen ? "Close" : "Open"} Drawer
+                  </p>
                 </div>
               )}
 
@@ -82,10 +150,7 @@ const FinderCharger = () => {
                 onClick={() => setIsMapExpanded(!isMapExpanded)}
                 className=" bg-slate-800 text-white w-[30px] h-[30px] rounded-lg flex items-center justify-center cursor-pointer shadow-[0px_1px_3px_0px_#0000001A]"
               >
-                {
-                  isMapExpanded ? <FaMinimize /> : <FaExpand />
-                }
-                
+                {isMapExpanded ? <FaMinimize /> : <FaExpand />}
               </div>
             </div>
 
@@ -99,21 +164,17 @@ const FinderCharger = () => {
               />
             </APIProvider>
 
-            {
-                isDrawerOpen && (
-                    <div className="w-full h-fit bg-[#F8F9FC] absolute bottom-0 left-0 z-50 p-4">
-                        <div className="w-full h-full flex space-x-4 overflow-x-scroll no-scrollbar">
-                           {
-                            [1,2,3,4,5].map((item) => (
-                                <div key={item} className="w-[400px] shrink-0">
-                                    <StationCard />
-                                </div>
-                            ))
-                           }
-                        </div>
+            {isDrawerOpen && (
+              <div className="w-full h-fit bg-[#F8F9FC] absolute bottom-0 left-0 z-50 p-4">
+                <div className="w-full h-full flex space-x-4 overflow-x-scroll no-scrollbar">
+                  {stations.map((station, index) => (
+                    <div key={index} className="w-[400px] shrink-0">
+                      <StationCard id={index} key={index} info={station} />
                     </div>
-                )
-            }
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
