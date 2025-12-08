@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../utils/cn.util";
-import { HiMiniArrowRight } from 'react-icons/hi2';
-import { LuMapPin, LuZap } from 'react-icons/lu';
-import { FiCreditCard, FiTrendingUp } from 'react-icons/fi';
+import { HiMiniArrowRight } from "react-icons/hi2";
+import { LuMapPin, LuZap } from "react-icons/lu";
+import { FiCreditCard, FiTrendingUp } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % 3);
@@ -21,22 +22,22 @@ const HeroCarousel = () => {
       subtitle: "Pioneering EV Infrastructure",
       description: "10,000+ stations. 500+ cities. One seamless network.",
       icon: LuZap,
-      number: "01"
+      number: "01",
     },
     {
       title: "Host & Earn",
       subtitle: "Monetize Your Charger",
       description: "Transform your charging station into passive income.",
       icon: FiTrendingUp,
-      number: "02"
+      number: "02",
     },
     {
       title: "Premium Card",
       subtitle: "Exclusive Rewards",
       description: "5% cashback. Zero fees. Infinite possibilities.",
       icon: FiCreditCard,
-      number: "03"
-    }
+      number: "03",
+    },
   ];
 
   const currentSlideData = slides[currentSlide];
@@ -50,15 +51,15 @@ const HeroCarousel = () => {
       transition={{ duration: 0.8, delay: 0.2 }}
     >
       {/* Ambient Glow */}
-      <motion.div 
+      <motion.div
         className="absolute w-96 h-96 bg-gray-800 rounded-full blur-[150px] opacity-20"
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
-          opacity: [0.2, 0.3, 0.2]
+          opacity: [0.2, 0.3, 0.2],
         }}
         transition={{ duration: 8, repeat: Infinity }}
       />
-      
+
       {/* Main Card */}
       <div className="relative w-[440px]">
         <AnimatePresence mode="wait">
@@ -72,13 +73,16 @@ const HeroCarousel = () => {
           >
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent"></div>
-            
+
             {/* Grid Pattern */}
             <div className="absolute inset-0 opacity-[0.03]">
-              <div className="w-full h-full" style={{
-                backgroundImage: `linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)`,
-                backgroundSize: '50px 50px'
-              }}></div>
+              <div
+                className="w-full h-full"
+                style={{
+                  backgroundImage: `linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)`,
+                  backgroundSize: "50px 50px",
+                }}
+              ></div>
             </div>
 
             {/* Floating Number */}
@@ -94,7 +98,10 @@ const HeroCarousel = () => {
             {/* Animated Lines */}
             <svg className="absolute inset-0 w-full h-full">
               <motion.line
-                x1="0" y1="25%" x2="100%" y2="25%"
+                x1="0"
+                y1="25%"
+                x2="100%"
+                y2="25%"
                 stroke="white"
                 strokeWidth="0.5"
                 opacity="0.1"
@@ -103,7 +110,10 @@ const HeroCarousel = () => {
                 transition={{ duration: 2, ease: "easeInOut" }}
               />
               <motion.line
-                x1="0" y1="75%" x2="100%" y2="75%"
+                x1="0"
+                y1="75%"
+                x2="100%"
+                y2="75%"
                 stroke="white"
                 strokeWidth="0.5"
                 opacity="0.1"
@@ -125,7 +135,7 @@ const HeroCarousel = () => {
                 >
                   <Icon className="w-10 h-10 text-black" />
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -156,18 +166,26 @@ const HeroCarousel = () => {
                 <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 mb-6 border border-white/10">
                   <div className="flex items-center justify-between">
                     <div className="text-center flex-1">
-                      <div className="text-2xl font-black text-white">99.8%</div>
-                      <div className="text-xs text-white/50 font-medium">Uptime</div>
+                      <div className="text-2xl font-black text-white">
+                        99.8%
+                      </div>
+                      <div className="text-xs text-white/50 font-medium">
+                        Uptime
+                      </div>
                     </div>
                     <div className="w-[1px] h-8 bg-white/10"></div>
                     <div className="text-center flex-1">
                       <div className="text-2xl font-black text-white">24/7</div>
-                      <div className="text-xs text-white/50 font-medium">Support</div>
+                      <div className="text-xs text-white/50 font-medium">
+                        Support
+                      </div>
                     </div>
                     <div className="w-[1px] h-8 bg-white/10"></div>
                     <div className="text-center flex-1">
                       <div className="text-2xl font-black text-white">50K+</div>
-                      <div className="text-xs text-white/50 font-medium">Users</div>
+                      <div className="text-xs text-white/50 font-medium">
+                        Users
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -183,12 +201,14 @@ const HeroCarousel = () => {
                         whileTap={{ scale: 0.9 }}
                         className={cn(
                           "h-1.5 rounded-full transition-all duration-500",
-                          idx === currentSlide ? "w-10 bg-white" : "w-1.5 bg-white/30"
+                          idx === currentSlide
+                            ? "w-10 bg-white"
+                            : "w-1.5 bg-white/30"
                         )}
                       />
                     ))}
                   </div>
-                  
+
                   <motion.button
                     whileHover={{ x: 5 }}
                     className="flex items-center gap-2 text-white text-sm font-semibold"
@@ -203,8 +223,13 @@ const HeroCarousel = () => {
             {/* Light Sweep Effect */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ duration: 4, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut",
+              }}
             />
           </motion.div>
         </AnimatePresence>
@@ -214,60 +239,71 @@ const HeroCarousel = () => {
 };
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+
   return (
-     <div className="bg-white text-black min-h-screen overflow-x-hidden">
-
-
+    <div className="bg-white text-black min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <div className="relative bg-white overflow-hidden">
         <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-white" style={{clipPath: "polygon(0 0, 100% 0, 100% 90%, 0 100%)"}}></div>
-            <div className="absolute inset-0 opacity-[0.03]" style={{
+          <div
+            className="absolute inset-0 bg-white"
+            style={{ clipPath: "polygon(0 0, 100% 0, 100% 90%, 0 100%)" }}
+          ></div>
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
               backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3e%3cpath d='m 100 0 l 0 100 l -100 0 z' fill='none' stroke='%23000000' stroke-width='0.5'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23grid)'/%3e%3c/svg%3e")`,
-            }}></div>
+            }}
+          ></div>
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[90vh]">
-                {/* Left Column: Headline & Form */}
-                <motion.div 
-                    className="text-center lg:text-left py-16"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[90vh]">
+            {/* Left Column: Headline & Form */}
+            <motion.div
+              className="text-center lg:text-left py-16"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 text-black">
+                The Future of <br /> EV Charging.
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed mb-10">
+                Find reliable stations instantly, or earn by sharing your own.
+                Seamless, smart, and always ready.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto lg:mx-0">
+                <button
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                  className="flex-1 h-16 bg-black hover:bg-gray-800 text-white text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] group flex items-center justify-center space-x-10 cursor-pointer"
                 >
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 text-black">
-                        The Future of <br/> EV Charging.
-                    </h1>
-                    <p className="text-lg md:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed mb-10">
-                        Find reliable stations instantly, or earn by sharing your own. Seamless, smart, and always ready.
-                    </p>
+                  <LuMapPin className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                  Find Station
+                  <HiMiniArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                  className="flex-1 h-16 bg-white hover:bg-gray-50 text-black text-lg font-bold rounded-2xl border-2 border-black shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] group flex items-center justify-center space-x-8 cursor-pointer"
+                >
+                  <LuZap className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                  Become a Host
+                </button>
+              </div>
+            </motion.div>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto lg:mx-0">
-                        <button 
-                            className="flex-1 h-16 bg-black hover:bg-gray-800 text-white text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] group flex items-center justify-center space-x-10"
-                        >
-                            <LuMapPin className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                            Find Station
-                            <HiMiniArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                        <button 
-                            className="flex-1 h-16 bg-white hover:bg-gray-50 text-black text-lg font-bold rounded-2xl border-2 border-black shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] group flex items-center justify-center space-x-8"
-                        >
-                            <LuZap className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                            Become a Host
-                        </button>
-                    </div>
-                </motion.div>
-
-                {/* Right Column: Stunning Carousel */}
-                <HeroCarousel />
-            </div>
+            {/* Right Column: Stunning Carousel */}
+            <HeroCarousel />
+          </div>
         </div>
       </div>
-
-  
     </div>
   );
 };

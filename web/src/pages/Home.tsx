@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 import Slider from "../components/Slider";
 import { cn } from "../utils/cn.util";
+import { useNavigate } from "react-router-dom";
 
 const currencyData = {
   USD: { symbol: "$", rate: 1, max: 20, step: 0.5 },
@@ -185,7 +186,7 @@ const Home = () => {
   const prevCurrencyRef = useRef("INR"); // Initial previous currency set to INR
 
   const currentCurrency = currencyData[currency as keyof typeof currencyData];
-
+  
   // Corrected logic: Price in the slider is ALWAYS in the selected currency.
   const monthlyEarnings = hours[0] * days[0] * price[0] * 4.33;
 
