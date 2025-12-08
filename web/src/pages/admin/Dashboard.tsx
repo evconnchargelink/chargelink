@@ -4,25 +4,31 @@ import {
   IoIosCloseCircleOutline,
   IoIosInformationCircleOutline,
 } from "react-icons/io";
+import StatsService from "../../services/admin/stats.service";
+import { useEffect, useState } from "react";
 
-const statsInfo = [
+
+const statsService = new StatsService();
+
+const getStatsInfo = ({ totalDrivers, totalHosts }: {totalDrivers: number, totalHosts: number }) => {
+  const statsInfo = [
   {
-    title: "Total Bookings",
-    value: "4",
+    title: "Total Users",
+    value: (totalDrivers + totalHosts).toString() || "0",
     Icon: IoIosCheckmarkCircleOutline,
     iconBG: "#F3F4F6",
     iconColor: "#1900A9",
   },
   {
-    title: "Total Charged",
-    value: "100 kWh",
+    title: "Total Drivers",
+    value: totalDrivers.toString() || "0",
     Icon: IoIosCheckmarkCircleOutline,
     iconBG: "#D1FAE5",
     iconColor: "#10B981",
   },
   {
-    title: "Paid",
-    value: "100",
+    title: "Total Hosts",
+    value: totalHosts.toString() || "0",
     Icon: IoIosCloseCircleOutline,
     iconBG: "#FEE2E2",
     iconColor: "#EF4444",
@@ -36,6 +42,9 @@ const statsInfo = [
     iconColor: "#6B7280",
   },
 ];
+
+return statsInfo;
+}
 
 const margin = { right: 24 };
 const uData = [
@@ -63,6 +72,30 @@ const xLabels = [
 ];
 
 const AdminDashboard = () => {
+
+
+  const [dashboardStats, setDashboardStats] = useState<{
+    driversCount: number;
+    hostsCount: number;
+  }>({ driversCount: 0, hostsCount: 0 });
+
+
+  const fetchDashboardStats = async () => {
+    try {
+      const response = await statsService.getDashboardStats();
+      setDashboardStats({
+        driversCount: response.data.driversCount || 0,
+        hostsCount: response.data.hostsCount || 0,
+      });
+    } catch (error) {
+      console.error("Error fetching dashboard stats:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDashboardStats();
+  }, []);
+
   return (
     <div className="w-full h-full flex flex-col p-8">
       {/* heading */}
@@ -73,7 +106,10 @@ const AdminDashboard = () => {
 
       {/* stats */}
       <div className="my-8 grid grid-cols-4 gap-10">
-        {statsInfo.map((item, index) => (
+        {getStatsInfo({
+          totalDrivers: dashboardStats.driversCount,
+          totalHosts: dashboardStats.hostsCount,
+        }).map((item, index) => (
           <div
             key={index}
             className="space-x-2 bg-white rounded-xl py-2 px-4 flex justify-between shadow-[0px_1px_3px_0px_#0000001A] "

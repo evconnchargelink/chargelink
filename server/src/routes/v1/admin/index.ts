@@ -7,6 +7,7 @@ import { AUTH_ROLES } from "../../../types/role.type";
 import { authMiddleware } from "../../../middlewares/auth.middleware";
 import { getChargers } from "../../../controllers/admin/charger.controller";
 import { getUsers } from "../../../controllers/admin/user.controller";
+import { getDashboardStats } from "../../../controllers/admin/stats.controller";
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.post(
 
 router.get("/chargers", authMiddleware(AUTH_ROLES.ADMIN), getChargers);
 router.get("/users", authMiddleware(AUTH_ROLES.ADMIN), getUsers);
+router.get("/dashboard-stats", authMiddleware(AUTH_ROLES.ADMIN), getDashboardStats);
 
 export default router;
