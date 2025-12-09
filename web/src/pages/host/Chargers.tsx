@@ -92,6 +92,7 @@ const AddChargerModal = ({
   const [imgFile, setImgFile] = useState<File | null>(null);
 
   const [title, setTitle] = useState<string>("");
+  const [isUnitRateExceed, setIsUnitRateExceed] = useState<boolean>(false);
 
   const [location, setLocation] = useState<{
     lat: number;
@@ -102,6 +103,7 @@ const AddChargerModal = ({
   });
 
   const [locationName, setLocationName] = useState<string>("");
+  const [numberOfChargers, setNumberOfChargers] = useState<number>(1);
 
   const [type, setType] = useState<string>("");
   const [power, setPower] = useState<number>(0);
@@ -162,7 +164,7 @@ const AddChargerModal = ({
   return (
     <Modal open={open} onClose={onClose}>
       <div
-        className="w-[80%] h-fit bg-white rounded-2xl p-8"
+        className="w-[80%] h-[80%] bg-white rounded-2xl p-8 overflow-y-auto"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -271,11 +273,39 @@ const AddChargerModal = ({
             </div>
 
             <div className="flex flex-col space-y-2">
-              <p className="text-base font-medium">Unit Rate*</p>
+              <p className="text-base font-medium">Number of chargers*</p>
               <input
                 type="text"
+                value={numberOfChargers}
+                onChange={(e) => setNumberOfChargers(Number(e.target.value))}
+                placeholder="Enter number of chargers"
+                className="border border-gray-300 rounded-lg px-4 py-2 w-full"
+              />
+            </div>
+
+            <div className="flex flex-col space-y-2">
+              <div className="flex items-center space-x-3">
+                <p className="text-base font-medium">Unit Rate*</p>
+
+                {isUnitRateExceed && (
+                  <p className="text-xs text-red-500">
+                    Unit rate cannot exceed 16 ₹/unit
+                  </p>
+                )}
+              </div>
+              <input
+                type="number"
                 value={price}
-                onChange={(e) => setPrice(Number(e.target.value))}
+                onChange={(e) => {
+                  if (parseInt(e.target.value) > 16) {
+                    setIsUnitRateExceed(true);
+                    return;
+                  }
+
+                  setIsUnitRateExceed(false);
+
+                  setPrice(Number(e.target.value));
+                }}
                 placeholder="Enter the hourly rate"
                 className="border border-gray-300 rounded-lg px-4 py-2 w-full"
               />

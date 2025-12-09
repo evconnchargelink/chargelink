@@ -8,6 +8,24 @@ import CarService, { type CarType } from "../../services/driver/car.service";
 
 const carService = new CarService();
 
+const vehicals = [
+  {
+    name: "Tesla Model 3",
+    power: 60,
+    estimatedTime: 3,
+  },
+  {
+    name: "Nissan Leaf",
+    power: 40,
+    estimatedTime: 2,
+  },
+  {
+    name: "Mahindra XUV300",
+    power: 30,
+    estimatedTime: 4,
+  },
+];
+
 const AddThumbnailComponent = ({
   imgFile,
   setImgFile,
@@ -86,37 +104,25 @@ const AddCarModal = ({
   open: boolean;
   onClose: () => void;
 }) => {
-  const [imgFile, setImgFile] = useState<File | null>(null);
-
-  const [carName, setCarName] = useState<string>("");
-
-  const [power, setPower] = useState<number | null>(null);
-
-  const [estimatedTime, setEstimatedTime] = useState<number>(0);
+  const [selectedVehical, setSelectedVehical] = useState<string | null>(null);
+  const [numberPlate, setNumberPlate] = useState<string>("");
 
   const { openToast } = useToast();
 
   const checkFormValidity = () => {
-    if (!carName || !estimatedTime || !imgFile) {
+    if (!selectedVehical) {
       return false;
     }
     return true;
   };
 
   const addCharger = async () => {
-    if (!checkFormValidity() || !imgFile) {
+    if (!checkFormValidity()) {
       openToast("Please fill all the fields", "ERROR");
       return;
     }
 
     try {
-      const response = await carService.addCar(
-        carName,
-        power!,
-        estimatedTime,
-        imgFile!
-      );
-
       openToast("Car added successfully", "SUCCESS");
       onClose();
     } catch (e: any) {
@@ -142,30 +148,43 @@ const AddCarModal = ({
               checkFormValidity() ? "opacity-100" : "opacity-40"
             }`}
           >
-            <p className="text-sm text-white font-medium">Add a car</p>
+            <p className="text-sm text-white font-medium">Save</p>
           </button>
         </div>
 
         <div className="my-8 w-full flex flex-1 gap-x-6 justify-between">
           {/* left section */}
-          <div className="flex-[0.4]">
+          {/* <div className="flex-[0.4]">
             <AddThumbnailComponent imgFile={imgFile} setImgFile={setImgFile} />
-          </div>
+          </div> */}
 
           {/* right section */}
-          <div className="flex-[0.55] flex flex-col space-y-8">
+          <div className="flex-1 flex flex-col space-y-8">
             <div className="flex flex-col space-y-2">
-              <p className="text-base font-medium">Car name*</p>
-              <input
-                value={carName}
-                onChange={(e) => setCarName(e.target.value)}
-                type="text"
-                placeholder="Enter a title"
-                className="border border-gray-300 rounded-lg px-4 py-2 w-full"
-              />
+              <p className="text-base font-medium">Cars*</p>
+
+              <div className="w-full space-x-4 flex items-center">
+                <select
+                  value={selectedVehical || ""}
+                  onChange={(e) => {
+                    setSelectedVehical(e.target.value);
+                  }}
+                  className="border border-gray-300  text-sm rounded-md px-3 py-3 outline-none w-full"
+                >
+                  <option value="">Select a car</option>
+                  {vehicals.map((vehical) => (
+                    <option key={vehical.name} value={vehical.name}>
+                      {vehical.name} ({vehical.power} kWh)
+                    </option>
+                  ))}
+                </select>
+                <button className="bg-black shrink-0 text-white text-sm px-4 py-3 rounded-lg">
+                  Add Car
+                </button>
+              </div>
             </div>
 
-            <div className="flex flex-col space-y-2">
+            {/* <div className="flex flex-col space-y-2">
               <p className="text-base font-medium">
                 Estimated Time to charge to 100%*
               </p>
@@ -178,15 +197,15 @@ const AddCarModal = ({
               />
             </div>
 
+             */}
+
             <div className="flex flex-col space-y-2">
-              <p className="text-base font-medium">Power (kWh)*</p>
+              <p className="text-base font-medium">Number Plate*</p>
               <input
-                type="number"
-                value={power ?? ""}
-                onChange={(e) =>
-                  setPower(e.target.value ? Number(e.target.value) : null)
-                }
-                placeholder="Enter the power in kWh"
+                type="text"
+                value={numberPlate}
+                onChange={(e) => setNumberPlate(e.target.value)}
+                placeholder="Enter the number plate"
                 className="border border-gray-300 rounded-lg px-4 py-2 w-full"
               />
             </div>
@@ -238,7 +257,6 @@ const CarDetails = () => {
       setCars(response.data.cars);
     } catch (e) {}
   };
-
 
   useEffect(() => {
     fetchCars();

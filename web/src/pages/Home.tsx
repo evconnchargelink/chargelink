@@ -181,13 +181,14 @@ const Home = () => {
   const [hours, setHours] = useState([8]);
   const [days, setDays] = useState([5]);
   const [price, setPrice] = useState([420]); // Initial price set to roughly 5 USD in INR (5 * 83.5 = 417.5)
+  const [sessions, setSessions] = useState([2]);
   const [currency, setCurrency] = useState("INR"); // Default currency set to INR
   const prevCurrencyRef = useRef("INR"); // Initial previous currency set to INR
 
   const currentCurrency = currencyData[currency as keyof typeof currencyData];
 
   // Corrected logic: Price in the slider is ALWAYS in the selected currency.
-  const monthlyEarnings = hours[0] * days[0] * price[0] * 4.33;
+  const monthlyEarnings = hours[0] * days[0] * price[0] * 4.33 * sessions[0];
 
   const earningsSpring = useSpring(monthlyEarnings, {
     mass: 0.8,
@@ -489,6 +490,23 @@ const Home = () => {
                   </div>
 
                   <div className="max-w-xl mx-auto mt-12 space-y-10">
+
+                      <div className="space-y-4">
+                      <div className="flex justify-between items-center font-medium">
+                        <label>Number of sessions</label>
+                        <span className="font-bold text-lg">
+                          {sessions[0]} sessions
+                        </span>
+                      </div>
+                      <Slider
+                        value={sessions}
+                        onValueChange={setSessions}
+                        max={8}
+                        step={1}
+                      />
+                    </div>
+
+
                     <div className="space-y-4">
                       <div className="flex justify-between items-center font-medium">
                         <label>Hours available per day</label>
