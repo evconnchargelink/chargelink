@@ -123,6 +123,16 @@ const AddCarModal = ({
     }
 
     try {
+      const file = new File([], "placeholder.jpg");
+
+      const vehical = vehicals.find((v) => v.name === selectedVehical);
+      const response = await carService.addCar(
+        vehical?.name!,
+        vehical!.power,
+        vehical?.estimatedTime!,
+        file
+      );
+
       openToast("Car added successfully", "SUCCESS");
       onClose();
     } catch (e: any) {
@@ -178,9 +188,6 @@ const AddCarModal = ({
                     </option>
                   ))}
                 </select>
-                <button className="bg-black shrink-0 text-white text-sm px-4 py-3 rounded-lg">
-                  Add Car
-                </button>
               </div>
             </div>
 
