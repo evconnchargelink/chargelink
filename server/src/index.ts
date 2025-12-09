@@ -17,6 +17,8 @@ if (config.ENV === "development") {
 
 connectDB();
 
+console.log(config.FRONTEND_URL)
+
 const corsOptions = {
   origin: [config.FRONTEND_URL, "https://server/.chargelink.co.in"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
