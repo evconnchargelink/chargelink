@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import asyncHandler from "../../utils/async.handler";
-import { HostModel } from "../../models/host.model";
-import { generateAccessAndRefreshTokens } from "../../utils/generateAccessRefreshToken";
-import { AUTH_ROLES } from "../../types/role.type";
+import asyncHandler from "../../utils/async.handler.js";
+import { HostModel } from "../../models/host.model.js";
+import { generateAccessAndRefreshTokens } from "../../utils/generateAccessRefreshToken.js";
+import { AUTH_ROLES } from "../../types/role.type.js";
 
 
 

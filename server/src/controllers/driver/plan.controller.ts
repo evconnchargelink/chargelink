@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import asyncHandler from "../../utils/async.handler";
-import { config } from "../../env.config";
+import asyncHandler from "../../utils/async.handler.js";
+import { config } from "../../env.config.js";
 
 const genAI = new GoogleGenerativeAI(config.GEMINI_API_KEY!);
 

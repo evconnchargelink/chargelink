@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import asyncHandler from "../../utils/async.handler";
-import { StationModel } from "../../models/station.model";
+import asyncHandler from "../../utils/async.handler.js";
+import { StationModel } from "../../models/station.model.js";
 
 export const getChargers = asyncHandler(async (req: Request, res: Response) => {
   try {

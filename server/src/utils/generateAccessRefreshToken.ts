@@ -1,9 +1,9 @@
 import {Schema} from "mongoose";
-import AppError from "./appError";
-import { AdminModel } from "../models/admin.model";
-import { DriverModel } from "../models/driver.model";
-import { AUTH_ROLES } from "../types/role.type";
-import { HostModel } from "../models/host.model";
+import AppError from "./appError.js";
+import { AdminModel } from "../models/admin.model.js";
+import { DriverModel } from "../models/driver.model.js";
+import { AUTH_ROLES } from "../types/role.type.js";
+import { HostModel } from "../models/host.model.js";
 
 export const generateAccessAndRefreshTokens = async (
   requiredRole: AUTH_ROLES,

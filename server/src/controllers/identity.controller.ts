@@ -1,10 +1,10 @@
-import { AdminModel } from "../models/admin.model";
-import { DriverModel } from "../models/driver.model";
-import { HostModel } from "../models/host.model";
-import { AUTH_ROLES } from "../types/role.type";
-import asyncHandler from "../utils/async.handler";
+import { AdminModel } from "../models/admin.model.js";
+import { DriverModel } from "../models/driver.model.js";
+import { HostModel } from "../models/host.model.js";
+import { AUTH_ROLES } from "../types/role.type.js";
+import asyncHandler from "../utils/async.handler.js";
 import { Request, Response } from "express";
-import AppError from "../utils/appError";
+import AppError from "../utils/appError.js";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const getIdentity = asyncHandler(async (req: Request, res: Response) => {

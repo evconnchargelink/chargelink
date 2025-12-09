@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import asyncHandler from "../../utils/async.handler";
-import { StationModel } from "../../models/station.model";
-import { DriverModel } from "../../models/driver.model";
-import { HostModel } from "../../models/host.model";
+import asyncHandler from "../../utils/async.handler.js";
+import { DriverModel } from "../../models/driver.model.js";
+import { HostModel } from "../../models/host.model.js";
 
 export const getUsers = asyncHandler(async (req: Request, res: Response) => {
   try {

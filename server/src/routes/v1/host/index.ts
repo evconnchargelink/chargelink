@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { AUTH_ROLES } from "../../../types/role.type";
-import { handleRefreshAccessToken } from "../../../controllers/refreshToken.controller";
-import { signup } from "../../../controllers/host/auth.controller";
-import { handleLogout } from "../../../controllers/logout.controller";
-import { getDashboardData } from "../../../controllers/host/dashboard.controller";
+import { AUTH_ROLES } from "../../../types/role.type.js";
+import { handleRefreshAccessToken } from "../../../controllers/refreshToken.controller.js";
+import { signup } from "../../../controllers/host/auth.controller.js";
+import { handleLogout } from "../../../controllers/logout.controller.js";
+import { getDashboardData } from "../../../controllers/host/dashboard.controller.js";
 import {
   addCharger,
   getChargers,
-} from "../../../controllers/host/charger.controller";
-import { fileUpload } from "../../../utils/multer.util";
-import { authMiddleware } from "../../../middlewares/auth.middleware";
+} from "../../../controllers/host/charger.controller.js";
+import { fileUpload } from "../../../utils/multer.util.js";
+import { authMiddleware } from "../../../middlewares/auth.middleware.js";
 
 const router = Router();
 

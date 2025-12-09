@@ -1,11 +1,11 @@
-import AppError from "../utils/appError";
+import AppError from "../utils/appError.js";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import asyncHandler from "../utils/async.handler";
-import { AdminModel } from "../models/admin.model";
+import asyncHandler from "../utils/async.handler.js";
+import { AdminModel } from "../models/admin.model.js";
 import { Request, Response, NextFunction } from "express";
-import { DriverModel } from "../models/driver.model";
-import { AUTH_ROLES } from "../types/role.type";
-import { HostModel } from "../models/host.model";
+import { DriverModel } from "../models/driver.model.js";
+import { AUTH_ROLES } from "../types/role.type.js";
+import { HostModel } from "../models/host.model.js";
 
 export const authMiddleware = (requiredRole: AUTH_ROLES) => {
   return asyncHandler(async (req:Request, _:Response, next:NextFunction) => {

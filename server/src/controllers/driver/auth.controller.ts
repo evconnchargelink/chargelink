@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import asyncHandler from "../../utils/async.handler";
-import { DriverModel } from "../../models/driver.model";
-import { generateAccessAndRefreshTokens } from "../../utils/generateAccessRefreshToken";
-import { AUTH_ROLES } from "../../types/role.type";
+import asyncHandler from "../../utils/async.handler.js";
+import { DriverModel } from "../../models/driver.model.js";
+import { generateAccessAndRefreshTokens } from "../../utils/generateAccessRefreshToken.js";
+import { AUTH_ROLES } from "../../types/role.type.js";
 
 
 // Signup Controller

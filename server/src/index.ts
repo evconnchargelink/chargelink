@@ -3,9 +3,9 @@ import v1Router from "./routes/v1/index.js";
 import { config } from "./env.config.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import notFoundMiddleware from "./middlewares/notFound.middleware";
-import errorHandlerMiddleware from "./middlewares/errorHandler.middleware";
-import connectDB from "./db/connect.db";
+import notFoundMiddleware from "./middlewares/notFound.middleware.js";
+import errorHandlerMiddleware from "./middlewares/errorHandler.middleware.js";
+import connectDB from "./db/connect.db.js";
 import morgan from "morgan";
 
 const app = express();

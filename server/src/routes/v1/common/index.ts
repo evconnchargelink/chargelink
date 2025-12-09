@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getIdentity } from "../../../controllers/identity.controller";
-import { login } from "../../../controllers/login.controller";
+import { getIdentity } from "../../../controllers/identity.controller.js";
+import { login } from "../../../controllers/login.controller.js";
 
 const router = Router();
 

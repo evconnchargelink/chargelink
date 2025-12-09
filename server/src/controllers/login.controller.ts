@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/async.handler";
-import { HostModel } from "../models/host.model";
-import { DriverModel } from "../models/driver.model";
-import { AUTH_ROLES } from "../types/role.type";
-import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken";
-import { AdminModel } from "../models/admin.model";
+import asyncHandler from "../utils/async.handler.js";
+import { HostModel } from "../models/host.model.js";
+import { DriverModel } from "../models/driver.model.js";
+import { AUTH_ROLES } from "../types/role.type.js";
+import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken.js";
+import { AdminModel } from "../models/admin.model.js";
 
 // Login Controller
 export const login = asyncHandler(async (req: Request, res: Response) => {

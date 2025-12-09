@@ -1,4 +1,4 @@
-import asyncHandler from "../../utils/async.handler";
+import asyncHandler from "../../utils/async.handler.js";
 import { Request, Response } from "express";
 
 export const getWalletInfo = asyncHandler(

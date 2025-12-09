@@ -1,13 +1,13 @@
 import { CookieOptions, NextFunction, Request, Response } from "express";
 import AppError from "../utils/appError";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken";
-import asyncHandler from "../utils/async.handler";
-import { AdminModel } from "../models/admin.model";
-import { DriverModel } from "../models/driver.model";
-import { config } from "../env.config";
-import { AUTH_ROLES } from "../types/role.type";
-import { HostModel } from "../models/host.model";
+import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken.js";
+import asyncHandler from "../utils/async.handler.js";
+import { AdminModel } from "../models/admin.model.js";
+import { DriverModel } from "../models/driver.model.js";
+import { config } from "../env.config.js";
+import { AUTH_ROLES } from "../types/role.type.js";
+import { HostModel } from "../models/host.model.js";
 
 export const handleRefreshAccessToken = (requiredRole: AUTH_ROLES) => {
   return asyncHandler(

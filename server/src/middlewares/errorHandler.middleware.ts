@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import AppError from "../utils/appError";
+import AppError from "../utils/appError.js";
 
 const errorHandlerMiddleware = (
   err: any,
