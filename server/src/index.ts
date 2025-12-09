@@ -20,7 +20,7 @@ connectDB();
 console.log(config.FRONTEND_URL)
 
 const corsOptions = {
-  origin: [config.FRONTEND_URL, "https://server/.chargelink.co.in"],
+  origin: [config.FRONTEND_URL, "https://chargelink.co.in"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "Referer", "User-Agent"],
