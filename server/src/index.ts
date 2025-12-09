@@ -7,6 +7,9 @@ import notFoundMiddleware from "./middlewares/notFound.middleware.js";
 import errorHandlerMiddleware from "./middlewares/errorHandler.middleware.js";
 import connectDB from "./db/connect.db.js";
 import morgan from "morgan";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = config.PORT;
@@ -20,12 +23,10 @@ connectDB();
 console.log(config.FRONTEND_URL);
 
 app.get("/api/v1/test", (_, res) => {
-  return res
-    .status(200)
-    .json({
-      message: "Server is running successfully!",
-      corsOrigins: config.FRONTEND_URL,
-    });
+  return res.status(200).json({
+    message: "Server is running successfully!",
+    corsOrigins: config.FRONTEND_URL,
+  });
 });
 
 const corsOptions = {
