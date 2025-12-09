@@ -1,8 +1,8 @@
 import { Document, Model, Schema, model } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { config } from "../env.config";
-import { AUTH_ROLES } from "../types/role.type";
+import { config } from "../env.config.js";
+import { AUTH_ROLES } from "../types/role.type.js";
 
 
 export interface IDriver extends Document {

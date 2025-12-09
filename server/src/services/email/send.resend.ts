@@ -1,8 +1,8 @@
 import { render } from "@react-email/render";
 import React from "react";
-import OtpTemplate from "./templates/otp.template";
+import OtpTemplate from "./templates/otp.template.js";
 import { Resend } from "resend";
-import { config } from "../../env.config";
+import { config } from "../../env.config.js";
 
 const resend = new Resend(config.RESEND);
 

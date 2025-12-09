@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { render } from "@react-email/components";
-import OtpTemplate from "../templates/otp.template";
+import OtpTemplate from "../templates/otp.template.js";
 import React from "react";
-import asyncHandler from "../../../utils/async.handler";
+import asyncHandler from "../../../utils/async.handler.js";
 
 export const resendOTPTemplate = asyncHandler(async (req: Request, res: Response) => {
   const html = await render(

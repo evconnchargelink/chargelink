@@ -1,5 +1,5 @@
 import { CookieOptions, NextFunction, Request, Response } from "express";
-import AppError from "../utils/appError";
+import AppError from "../utils/appError.js";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { generateAccessAndRefreshTokens } from "../utils/generateAccessRefreshToken.js";
 import asyncHandler from "../utils/async.handler.js";
