@@ -18,7 +18,7 @@ if (config.ENV === "development") {
 connectDB();
 
 const corsOptions = {
-  origin: config.FRONTEND_URL,
+  origin: [config.FRONTEND_URL, "https://server/.chargelink.co.in"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "Referer", "User-Agent"],
@@ -29,7 +29,6 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 
 app.use(express.json());
-
 
 app.use("/api/v1", v1Router);
 
