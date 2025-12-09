@@ -78,7 +78,7 @@ jobs:
             rm -f server.tar.gz
 
             # Write environment variables
-            echo "${{ secrets.SERVER_ENV_FILE }}" > .env
+            echo "${{ secrets.SERVER_ENV }}" > .env
 
             # Install production dependencies
             npm ci --omit=dev
