@@ -271,7 +271,7 @@ const AddChargerModal = ({
             </div>
 
             <div className="flex flex-col space-y-2">
-              <p className="text-base font-medium">Hourly Rate*</p>
+              <p className="text-base font-medium">Unit Rate*</p>
               <input
                 type="text"
                 value={price}
@@ -282,7 +282,7 @@ const AddChargerModal = ({
             </div>
 
             <div className="flex flex-col space-y-2">
-              <p className="text-base font-medium">Power*</p>
+              <p className="text-base font-medium">Power (kWh)*</p>
               <input
                 type="text"
                 value={power}
