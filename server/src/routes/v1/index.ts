@@ -1,8 +1,8 @@
 import { Router } from "express";
-import adminRoutes from "./admin";
-import driverRoutes from "./driver";
-import hostRoutes from "./host";
-import commonRoutes from "./common";
+import adminRoutes from "./admin/index";
+import driverRoutes from "./driver/index";
+import hostRoutes from "./host/index";
+import commonRoutes from "./common/index";
 
 const router = Router();
 
