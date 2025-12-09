@@ -1,6 +1,6 @@
 import express from "express";
-import v1Router from "./routes/v1/index";
-import { config } from "./env.config";
+import v1Router from "./routes/v1/index.js";
+import { config } from "./env.config.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import notFoundMiddleware from "./middlewares/notFound.middleware";
