@@ -1,5 +1,5 @@
 import express from "express";
-import v1Router from "./routes/v1";
+import v1Router from "./routes/v1/index";
 import { config } from "./env.config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
