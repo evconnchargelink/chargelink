@@ -23,24 +23,24 @@ const ChargerCard = ({info}:{info: ChargerType}) => {
 
         <div className="flex items-center space-x-2 text-slate-500 text-xs px-4 ">
           <IoLocationOutline />
-          <p>Jaipur, Rajasthan</p>
+          <p>{info.location?.name || 'Location not available'}</p>
         </div>
 
         <div className="flex items-center justify-between px-4 pb-4">
           <div className="flex items-center space-x-7 text-sm ">
             <div className="flex items-center space-x-2">
               <MdElectricBolt />
-              <p className="font-semibold">{info.power}</p>
+              <p className="font-semibold">{info.power} kW</p>
             </div>
 
             <div className="flex items-center bg-amber-100 px-4 py-1 rounded-md text-xs">
-              <p>{info.type}</p>
+              <p>{info.chargerType}</p>
             </div>
           </div>
 
           <div className="text-sm">
             <p>
-              <span className="font-bold text-lg">₹{info.price}</span>/hr
+              <span className="font-bold text-lg">₹{info.price}</span>/unit
             </p>
           </div>
         </div>

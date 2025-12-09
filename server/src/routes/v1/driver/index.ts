@@ -7,6 +7,7 @@ import { authMiddleware } from "../../../middlewares/auth.middleware";
 import { planTrip } from "../../../controllers/driver/plan.controller";
 import { addCar, getCars } from "../../../controllers/driver/car.controller";
 import { fileUpload } from "../../../utils/multer.util";
+import { getSingleCharger, nearestChargers } from "../../../controllers/driver/charger.controller";
 
 const router = Router();
 
@@ -20,6 +21,9 @@ router.post(
 router.post("/plan-trip", planTrip);
 router.get("/cars", authMiddleware(AUTH_ROLES.DRIVER), getCars);
 router.post("/add-car", authMiddleware(AUTH_ROLES.DRIVER), fileUpload.single('file'), addCar);
+router.get("/chargers", nearestChargers);
+router.get("/chargers/:id", getSingleCharger);
+
 
 
 

@@ -29,6 +29,8 @@ export const addCharger = asyncHandler(async (req: Request, res: Response) => {
 
   const { title, location, type, power, price } = req.body;
 
+  console.log(location)
+
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
@@ -50,8 +52,9 @@ export const addCharger = asyncHandler(async (req: Request, res: Response) => {
       title,
       description: "",
       location: {
-        lat: JSON.parse(location).lat,
-        lng: JSON.parse(location).lng,
+        name: JSON.parse(location).name,
+        lat: JSON.parse(location).lat as number,
+        lng: JSON.parse(location).lng as number,
       },
       chargerType: type,
       power,
@@ -67,6 +70,7 @@ export const addCharger = asyncHandler(async (req: Request, res: Response) => {
       charger,
     });
   } catch (e: any) {
+    console.log(e)
     res.status(500).json({
       message: "Internal Server Error",
       error: e.message,

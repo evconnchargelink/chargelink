@@ -5,10 +5,11 @@ export type ChargerType = {
   _id: string;
   title: string;
   location: {
+    name: string;
     lat: number;
     lng: number;
   };
-  type: string;
+  chargerType: string;
   power: number;
   price: number;
   thumbnail: string;
@@ -37,6 +38,7 @@ class ChargerService {
     location: {
       lat: number;
       lng: number;
+      name: string;
     };
     type: string;
     power: number;

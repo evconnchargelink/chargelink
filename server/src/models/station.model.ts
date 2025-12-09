@@ -7,6 +7,7 @@ export interface IStation extends Document {
   description: string;
   thumbnail: string;
   location: {
+    name: string;
     lat: number;
     lng: number;
   },
@@ -37,6 +38,10 @@ const stationSchema: Schema<IStation> = new Schema<IStation>({
     trim: true,
   },
   location: {
+    name: {
+      type: String,
+      required: true,
+    },
     lat: {
       type: Number,
       required: true,

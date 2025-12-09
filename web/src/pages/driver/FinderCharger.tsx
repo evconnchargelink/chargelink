@@ -1,27 +1,24 @@
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import { FaExpand } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LuFilter, LuSearch } from "react-icons/lu";
 import { FaMinimize } from "react-icons/fa6";
-import { stations } from "../../sample/station.data";
 import { IoLocationOutline, IoStar } from "react-icons/io5";
 import { MdElectricBolt } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import type { ChargerType } from "../../services/host/charger.service";
+import ChargerService from "../../services/driver/charger.service";
 
-const StationCard = ({
-  id,
-  info,
-}: {
-  id: number;
-  info: (typeof stations)[0];
-}) => {
+const chargerService = new ChargerService();
+
+const StationCard = ({ id, info }: { id: string; info: ChargerType }) => {
   const navigate = useNavigate();
 
   return (
     <div className="w-full hover:shadow-lg hover:scale-95 transition-all duration-300 cursor-pointer rounded-lg">
       <div className="w-full h-[150px] bg-blue-400 rounded-t-lg">
         <img
-          src={info.image}
+          src={info.thumbnail}
           className="w-full h-full object-cover object-center rounded-t-lg"
         />
       </div>
@@ -31,13 +28,13 @@ const StationCard = ({
           <p className="text-base font-semibold">{info.title}</p>
           <div className="flex items-center space-x-3 border border-slate-300 text-slate-800 px-2 py-1 rounded-lg text-xs">
             <IoStar className="text-orange-400" />
-            <p>{info.rating}</p>
+            <p>{4.3}</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-2 text-slate-500 text-xs px-4 ">
           <IoLocationOutline />
-          <p>{info.location}</p>
+          <p>{info.location.name}</p>
         </div>
 
         <div className="flex items-center space-x-7 text-sm px-4">
@@ -54,7 +51,7 @@ const StationCard = ({
         <div className="flex items-center justify-between border-t border-slate-200 p-4 bg-white/95 rounded-b-lg">
           <div className="text-sm">
             <p>
-              <span className="font-bold text-lg">₹{info.rate}</span>/unit
+              <span className="font-bold text-lg">₹{info.price}</span>/unit
             </p>
           </div>
 
@@ -75,6 +72,21 @@ const StationCard = ({
 const FinderCharger = () => {
   const [isMapExpanded, setIsMapExpanded] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const [chargers, setChargers] = useState<ChargerType[]>([]);
+
+  const fetchChargers = async () => {
+    try {
+      const response = await chargerService.getAll();
+      setChargers(response.data.chargers);
+    } catch (e) {
+      console.error("Failed to fetch chargers", e);
+    }
+  };
+
+  useEffect(() => {
+    fetchChargers();
+  }, []);
 
   return (
     <div className="w-full h-full p-8 flex flex-col flex-1 relative">
@@ -120,8 +132,8 @@ const FinderCharger = () => {
 
           <div className="w-full flex-1 h-full bg-slate-100 rounded-lg px-4 py-2 overflow-hidden">
             <div className="w-full h-full flex flex-col space-y-8 overflow-y-scroll no-scrollbar">
-              {stations.map((station, index) => (
-                <StationCard id={index} key={index} info={station} />
+              {chargers.map((station, index) => (
+                <StationCard id={station._id} key={index} info={station} />
               ))}
             </div>
           </div>
@@ -167,9 +179,9 @@ const FinderCharger = () => {
             {isDrawerOpen && (
               <div className="w-full h-fit bg-[#F8F9FC] absolute bottom-0 left-0 z-50 p-4">
                 <div className="w-full h-full flex space-x-4 overflow-x-scroll no-scrollbar">
-                  {stations.map((station, index) => (
+                  {chargers.map((charger, index) => (
                     <div key={index} className="w-[400px] shrink-0">
-                      <StationCard id={index} key={index} info={station} />
+                      <StationCard id={charger._id} key={index} info={charger} />
                     </div>
                   ))}
                 </div>

@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { DatePickerWithTime } from "../../components/DatePicker";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import MapWithRouting from "../../components/Map";
-import { stations } from "../../sample/station.data";
 import type { CarType } from "../../services/driver/car.service";
 import CarService from "../../services/driver/car.service";
-
+import type { ChargerType } from "../../services/host/charger.service";
+import ChargerService from "../../services/driver/charger.service";
 
 const carService = new CarService();
+const chargerService = new ChargerService();
 
 // Declare Razorpay type for TypeScript
 declare global {
@@ -69,9 +70,27 @@ const BookCharger = () => {
   const [vehicals, setVehicals] = useState<CarType[]>([]);
 
   const [searchParams] = useSearchParams();
+  const [charger, setCharger] = useState<ChargerType | null>(null);
+
   const stationid = searchParams.get("stationid");
 
-  
+  const fetchCharger = async () => {
+    try {
+      const response = await chargerService.getOne(stationid || "");
+
+      if (response && response.data) {
+        setCharger(response.data.charger);
+      }
+    } catch (e) {
+      console.error("Error fetching charger:", e);
+    }
+  };
+
+  useEffect(() => {
+    if (stationid) {
+      fetchCharger();
+    }
+  }, [stationid]);
 
   const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
 
@@ -151,17 +170,14 @@ const BookCharger = () => {
     paymentObject.open();
   };
 
-
   const fetchCars = async () => {
     try {
-
       const response = await carService.getAll();
       setVehicals(response.data.cars);
-
-    }catch(e){
+    } catch (e) {
       console.error("Error fetching cars:", e);
     }
-  }
+  };
 
   useEffect(() => {
     fetchCars();
@@ -345,7 +361,7 @@ const BookCharger = () => {
                   parseInt(
                     (
                       calculateEnergyNeeded(
-                        60,
+                        selectedVehical.power,
                         targetChargeLevel - currentChargeLevel
                       ) * 16
                     ).toFixed(2)
@@ -377,11 +393,11 @@ const BookCharger = () => {
             <div className="p-4 space-y-6">
               <div className="w-full flex items-center justify-between">
                 <p className="text-xl font-semibold">
-                  {stations[parseInt(stationid!)]?.title || "Unknown Station"}
+                  {charger?.title || "Unknown Station"}
                 </p>
                 <div className="flex items-center space-x-3 border border-slate-300 text-slate-800 px-2 py-1 rounded-lg text-xs">
                   <IoStar className="text-orange-400" />
-                  <p>{stations[parseInt(stationid!)]?.rating || "4.2"}</p>
+                  <p>{"4.2"}</p>
                 </div>
               </div>
 
@@ -389,7 +405,7 @@ const BookCharger = () => {
                 <div className="flex items-center space-x-2 text-slate-500 text-sm">
                   <IoLocationOutline />
                   <p>
-                    {stations[parseInt(stationid!)]?.location ||
+                    {charger?.location.name ||
                       "Jaipur, Rajasthan"}
                   </p>
                 </div>
@@ -398,7 +414,7 @@ const BookCharger = () => {
                   <div className="flex items-center space-x-2">
                     <MdElectricBolt />
                     <p className="font-semibold">
-                      {stations[parseInt(stationid!)]?.power || "7.4"}
+                      {charger?.power || "7.4"}
                     </p>
                   </div>
 
@@ -463,14 +479,28 @@ const BookCharger = () => {
 
                 <p className="text-lg font-semibold">
                   ₹
-                  {(
-                    calculateEnergyNeeded(
-                      selectedVehical.power,
-                      targetChargeLevel - currentChargeLevel
-                    ) * 16
-                  ).toFixed(2)}
+                  {calculateEnergyNeeded(
+                    selectedVehical.power,
+                    targetChargeLevel - currentChargeLevel
+                  ) >= 10
+                    ? (
+                        calculateEnergyNeeded(
+                          selectedVehical.power,
+                          targetChargeLevel - currentChargeLevel
+                        ) * 16
+                      ).toFixed(2)
+                    : 160}
                 </p>
               </div>
+
+              {calculateEnergyNeeded(
+                selectedVehical.power,
+                targetChargeLevel - currentChargeLevel
+              ) < 10 && (
+                <p className="text-end text-[10px] text-gray-400">
+                  Additional charges may apply for energy below 10 kWh
+                </p>
+              )}
             </div>
           </div>
         </div>

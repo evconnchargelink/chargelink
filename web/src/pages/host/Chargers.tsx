@@ -2,7 +2,6 @@ import { IoIosAdd } from "react-icons/io";
 import Modal from "../../components/Modal";
 import { useEffect, useRef, useState } from "react";
 import { IoLocationOutline, IoStar } from "react-icons/io5";
-import { MdElectricBolt } from "react-icons/md";
 import { FiUploadCloud } from "react-icons/fi";
 import useToast from "../../hooks/toast.hook";
 import ChargerService, {
@@ -102,6 +101,8 @@ const AddChargerModal = ({
     lng: 0,
   });
 
+  const [locationName, setLocationName] = useState<string>("");
+
   const [type, setType] = useState<string>("");
   const [power, setPower] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
@@ -139,7 +140,10 @@ const AddChargerModal = ({
     try {
       const response = await chargerService.addCharger({
         title,
-        location,
+        location: {
+          ...location,
+          name: locationName,
+        },
         type,
         power,
         price,
@@ -198,9 +202,35 @@ const AddChargerModal = ({
 
             <div className="flex flex-col space-y-2">
               <div className="flex items-center space-x-3">
-                <p className="text-base font-medium">Location*</p>
+                <p className="text-base font-medium">Coordinates*</p>
                 <p className="text-sm text-gray-500">
-                  ( {location.lat}, {location.lng} )
+                  ({" "}
+                  <input
+                    onChange={(e) => {
+                      setLocation({
+                        ...location,
+                        lat: parseFloat(e.target.value) || 0,
+                      });
+                    }}
+                    type="number"
+                    value={location.lat}
+                    className="outline-none w-[40px]"
+                    step="0.000001"
+                  />
+                  ,{" "}
+                  <input
+                    onChange={(e) => {
+                      setLocation({
+                        ...location,
+                        lng: parseFloat(e.target.value) || 0,
+                      });
+                    }}
+                    type="number"
+                    value={location.lng}
+                    className="outline-none w-[40px]"
+                    step="0.000001"
+                  />{" "}
+                  )
                 </p>
               </div>
               <div
@@ -210,6 +240,19 @@ const AddChargerModal = ({
                 <IoLocationOutline className="text-gray-500" />
                 <p>Set current location</p>
               </div>
+            </div>
+
+            <div className="flex flex-col space-y-2">
+              <div className="flex items-center space-x-3">
+                <p className="text-base font-medium">Location*</p>
+              </div>
+              <input
+                type="text"
+                value={locationName}
+                onChange={(e) => setLocationName(e.target.value)}
+                placeholder="Enter the name of the location"
+                className="border border-gray-300 rounded-lg px-4 py-2 w-full"
+              />
             </div>
 
             <div className="flex flex-col space-y-2">
