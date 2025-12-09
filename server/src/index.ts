@@ -17,7 +17,16 @@ if (config.ENV === "development") {
 
 connectDB();
 
-console.log(config.FRONTEND_URL)
+console.log(config.FRONTEND_URL);
+
+app.get("/api/v1/test", (_, res) => {
+  return res
+    .status(200)
+    .json({
+      message: "Server is running successfully!",
+      corsOrigins: config.FRONTEND_URL,
+    });
+});
 
 const corsOptions = {
   origin: [config.FRONTEND_URL, "https://chargelink.co.in"],
