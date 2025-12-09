@@ -187,8 +187,8 @@ const TripPlanner: React.FC = () => {
             <div className="lg:col-span-1 space-y-4">
               {/* Start Point */}
               <div>
-                <label className="text-sm font-medium flex items-center gap-2">
-                  <FaMapMarkerAlt className="text-green-500" /> Starting Point
+                <label className="text-base font-medium flex items-center gap-2 mb-3">
+                   Starting Point
                 </label>
                 <input
                   type="text"
@@ -204,8 +204,8 @@ const TripPlanner: React.FC = () => {
 
               {/* Destination */}
               <div>
-                <label className="text-sm font-medium flex items-center gap-2">
-                  <FaRoute className="text-red-500" /> Destination
+                <label className="text-base font-medium flex items-center gap-2 mb-3">
+                   Destination
                 </label>
                 <input
                   type="text"
@@ -221,14 +221,14 @@ const TripPlanner: React.FC = () => {
 
               {/* Vehicle */}
               <div>
-                <label className="text-sm font-medium">EV Car Name</label>
+                <label className="text-base font-medium mb-3">EV Car Name</label>
                 <select
                   value={selectedVehical.name}
                   onChange={(e) => {
                     const v = vehicals.find((x) => x.name === e.target.value);
                     if (v) setSelectedVehical(v);
                   }}
-                  className="border px-3 py-2 rounded-md w-full text-sm"
+                  className="border px-3 py-2 rounded-md w-full text-sm mt-3"
                 >
                   {vehicals.map((v) => (
                     <option key={v.name}>

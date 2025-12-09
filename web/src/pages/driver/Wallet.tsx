@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CardSection from "../../components/Card";
 import { DatePicker } from "../../components/DatePicker";
+import { useNavigate } from "react-router-dom";
 
 const transactionHistory = [
   {
@@ -47,8 +48,86 @@ const transactionHistory = [
   },
 ];
 
+// Declare Razorpay type for TypeScript
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
+interface RazorpayResponse {
+  razorpay_payment_id: string;
+  razorpay_order_id?: string;
+  razorpay_signature?: string;
+}
+
 const Wallet = () => {
   const [date, setDate] = useState<Date>(new Date());
+  const [addMoneyAmount, setAddMoneyAmount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const loadRazorpayScript = (): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const handlePayment = async (amount: number) => {
+    setLoading(true);
+
+    const res = await loadRazorpayScript();
+
+    if (!res) {
+      alert(
+        "Razorpay SDK failed to load. Please check your internet connection."
+      );
+      setLoading(false);
+      return;
+    }
+
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_TEST_API_KEY, // Replace with your Test Key ID
+      amount: amount * 100, // Amount in paise (50000 paise = ₹500)
+      currency: "INR",
+      name: "Chargelink",
+      description: "Adding money to wallet",
+      image: "/logo.png", // Optional logo
+      handler: function (response: RazorpayResponse) {
+        console.log("Payment ID:", response.razorpay_payment_id);
+        console.log("Order ID:", response.razorpay_order_id);
+        console.log("Signature:", response.razorpay_signature);
+
+        // Here you can send the response to your backend for verification
+        setLoading(false);
+        navigate(`/driver/bookings/${response.razorpay_payment_id}/track`);
+      },
+      prefill: {
+        name: "Ronak Paul",
+        email: "john.doe@example.com",
+        contact: "9876543210",
+      },
+      notes: {
+        address: "123 Main Street, City, Country",
+      },
+      theme: {
+        color: "#000",
+      },
+      modal: {
+        ondismiss: function () {
+          setLoading(false);
+          console.log("Payment cancelled by user");
+        },
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
 
   return (
     <div className="w-full h-full p-8 overflow-y-scroll">
@@ -75,6 +154,8 @@ const Wallet = () => {
               {" "}
               <input
                 type="number"
+                value={addMoneyAmount || ""}
+                onChange={(e) => setAddMoneyAmount(Number(e.target.value))}
                 placeholder="Enter amount (min 500)"
                 className="px-6 py-3 bg-gray-200 rounded-lg w-full text-sm placeholder:text-gray-500 outline-none"
               />
@@ -82,13 +163,14 @@ const Wallet = () => {
                 {[500, 1000, 2000].map((amount, index) => (
                   <div
                     key={index}
+                    onClick={() => setAddMoneyAmount((prev) => prev + amount)}
                     className="text-xs px-4 py-2 border border-slate-300 rounded-full cursor-pointer text-slate-700 hover:text-[#059669]"
                   >
                     + ₹{amount}
                   </div>
                 ))}
               </div>
-              <button className="px-6 py-3 bg-black text-white rounded-lg text-sm font-medium w-full">
+              <button onClick={() => handlePayment(addMoneyAmount)} className="px-6 py-3 bg-black text-white rounded-lg text-sm font-medium w-full">
                 Add to Wallet
               </button>
             </div>
